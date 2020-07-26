@@ -1,0 +1,5 @@
+// node modules cut out
+node_modules
+
+// pakage_lock.json cut out
+pakage_lock.json
