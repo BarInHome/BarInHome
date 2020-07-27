@@ -1,10 +1,20 @@
 import React from 'react';
+import Door from './Door';
+import Recommed from './Recommend';
+
+// hooks
+import {useLoginValue} from '../utils';
 
 function Main():JSX.Element{
+    const {isLogin} = useLoginValue();
 
     return(
         <div>
-            Main Pages
+           {!isLogin?(
+               <Door/>
+           ):(
+               <Recommed/>
+           )}
         </div>
     );
 }
