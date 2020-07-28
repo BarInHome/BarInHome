@@ -1,11 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.section`
+  padding: 4em;
+  background: papayawhip;
+`;
 
 function Myrefg():JSX.Element{
 
     return(
-        <div>
+        <Wrapper>
             My Refregerator
-        </div>
+        </Wrapper>
     );
 }
 
