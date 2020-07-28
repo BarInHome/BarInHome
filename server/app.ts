@@ -7,7 +7,7 @@ import createError from 'http-errors';
 import session from 'express-session';
 import passport from 'passport';
 //import passportConfig from './passport/passport';
-import usersRouter from './routes/users';
+import usersRouter from './routes/users/mainLogin';
 import indexRouter from './routes/index';
 
 class ServerApi{
