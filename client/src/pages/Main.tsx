@@ -1,21 +1,31 @@
 import React from 'react';
-import Door from './Door';
+import Auth from './Auth';
 import Recommed from './Recommend';
+import styled from 'styled-components';
 
 // hooks
 import {useLoginValue} from '../utils';
+
+const Wrapper = styled.section`
+  padding: 4em;
+  background: papayawhip;
+  display: flex;
+  justify-content:center;
+  text-align:center;    
+`;  
+
 
 function Main():JSX.Element{
     const {isLogin} = useLoginValue();
 
     return(
-        <div>
+        <Wrapper>
            {!isLogin?(
-               <Door/>
+               <Auth/>
            ):(
                <Recommed/>
            )}
-        </div>
+        </Wrapper>
     );
 }
 

@@ -7,7 +7,7 @@ const useLoginValue = () :{
 } => {
     const [isLogin,setIsLogin] = React.useState<boolean>(false);
 
-    axios.get<boolean>('users/login/check')
+    axios.get<boolean>('auth/login/check')
     .then((res) => {
       if (!res.data) {
         setIsLogin(true);
