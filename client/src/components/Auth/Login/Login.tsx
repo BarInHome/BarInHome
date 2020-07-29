@@ -61,14 +61,20 @@ interface userInterface{
   pw:string;
 }
 
+interface userSessionInterface{
+  handleLoginInfo: (state: boolean) => void;
+}
 
-export default function SignIn() {
+export default function Login(props:userSessionInterface) {
+  const {handleLoginInfo} = props;
+
   const classes = useStyles();
-
   const handleID = useInputChange();
   const handlePW = useInputChange();
   const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/login',()=>{
-      console.log('[login success]')
+      console.log('[login success]');
+      //handleLoginInfo(true);
+      window.location.reload();
   });
 
   const onClickLogin = () => {

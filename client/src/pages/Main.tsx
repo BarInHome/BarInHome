@@ -1,20 +1,27 @@
 import React from 'react';
 import Auth from './Auth';
 import Recommed from './Recommend';
-import Header from '../components/Main/Header';
 
 // hooks
 import {useLoginValue} from '../utils';
 
 function Main():JSX.Element{
-    const {isLogin} = useLoginValue();
+    const {isLogin,setIsLogin} = useLoginValue();
+    
+    const handleLoginInfo=(state:boolean)=>{
+        setIsLogin(state);
+    }
+
+    React.useEffect(()=>{
+        console.log("isLogin",isLogin);
+    },[isLogin])
 
     return(
         <div>
-            {!isLogin?(
-                <Auth/>
-            ):(
+            {isLogin?(
                 <Recommed/>
+            ):(
+                <Auth handleLoginInfo={handleLoginInfo}/>
             )}
         </div>
     );

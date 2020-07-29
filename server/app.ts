@@ -50,7 +50,7 @@ class ServerApi{
     this.app.use('/cocktails', cocktailsRouter);
     this.app.use('/refrigerator', refrigeratorRouter);
     this.app.use('/', mainloginRouter);
-    this.app.use('/', authRouter);
+    this.app.use('/auth', authRouter);
 
     this.app.use(function(req, res, next) {
       next(createError(404));

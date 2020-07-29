@@ -3,18 +3,6 @@ import passport from '../../middleware/passport/passport';
 const router = express.Router();
 
 
-/*
-interface Iuser{
-    Id: string;
-    password: string;
-}
-
-export export const signup = (callback: Send) => {
-    request.get('https://naver.com', (err, res) => {
-        if (err) callback('');
-        callback(res.body);
-});*/
-
 router.route('/')
     .post(
         passport.authenticate('local-login',{
@@ -26,9 +14,28 @@ router.route('/')
 router.route('/check')
      .get(
          (req,res)=>{
-             console.log('[Login Check..]');
-             res.sendStatus(200);
+            const sessionInfo = req.user;
+            if(sessionInfo!=undefined){
+                res.send(true);
+              }
+              else{
+                res.send(false);
+              }
          }
      )
 
+
 export default router;
+
+
+/*
+interface Iuser{
+    Id: string;
+    password: string;
+}
+
+export export const signup = (callback: Send) => {
+    request.get('https://naver.com', (err, res) => {
+        if (err) callback('');
+        callback(res.body);
+});*/

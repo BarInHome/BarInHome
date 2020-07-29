@@ -11,9 +11,16 @@ const connection = mysql.init();
 mysql.test_open(connection);
 */
 
-const router = express.Router();
+const router = express.Router();    
+router.use('/login',loginRouter);
+router.use('/signup',signupRouter);
 
-router.use('/auth/login',loginRouter);
-router.use('/auth/signup',signupRouter);
+router.route('/logout')
+    .post(
+        (req,res)=>{
+            req.logout();
+            res.sendStatus(200);
+        }
+    )
 
 export default router;

@@ -5,7 +5,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import oc from 'open-color';
+import Grid from '@material-ui/core/Grid';
+// hooks
+import {useLoginValue,usePostRequest} from '../../utils';
+
 
 //import MenuIcon from '@material-ui/icons/Menu';
 
@@ -28,8 +31,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Header() {
   const classes = useStyles();  
+  const {isLogin,setIsLogin} = useLoginValue();
+  const {doPostRequest} = usePostRequest<void,any>('/auth/logout',()=>{
+    console.log("[Logout Success]");
+    setIsLogin(false);
+    window.location.reload();
+  });
 
-  return (
+  const onClickLogout = () => {
+    doPostRequest();
+  }
+
+  return (  
     <div className={classes.root}>
       <AppBar position="static" color="primary">
         <Toolbar>
@@ -38,8 +51,26 @@ function Header() {
           <Typography variant="h6" className={classes.title}>
             Bar In Home
           </Typography>
-          <Button color="secondary" variant="contained">Login</Button>
-          <Button color="secondary" variant="contained">My Refrigerator</Button>
+          {isLogin?(
+            <Grid align-items-xs-center justify-xs-flex-end>
+              <Button 
+                color="secondary" 
+                variant="contained" 
+                className={classes.menuButton}
+              >
+                My Refrigerator
+              </Button>
+              <Button 
+                color="secondary" 
+                variant="contained"
+                onClick={onClickLogout}
+              >
+                logout
+              </Button>
+            </Grid>
+          ):(
+            <Button color="secondary" variant="contained">Login Please</Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>
