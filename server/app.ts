@@ -7,8 +7,8 @@ import createError from 'http-errors';
 import session from 'express-session';
 import passport from 'passport';
 //import passportConfig from './passport/passport';
-import mainloginRouter from './routes/users/mainLogin';
-import cocktailsRouter from './routes/cocktail/cocktails';
+import mainloginRouter from './routes/users/login';
+import cocktailRouter from './routes/cocktail/cocktail';
 import refrigeratorRouter from './routes/refrigerator/refrigerator';
 import authRouter from './routes/users/index';
 
@@ -47,7 +47,7 @@ class ServerApi{
   }
 
   private initializeRouters():void{
-    this.app.use('/cocktails', cocktailsRouter);
+    this.app.use('/cocktail', cocktailRouter);
     this.app.use('/refrigerator', refrigeratorRouter);
     this.app.use('/', mainloginRouter);
     this.app.use('/auth', authRouter);

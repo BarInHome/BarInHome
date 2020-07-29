@@ -1,4 +1,4 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
 module.exports = function(){
     return {
@@ -8,8 +8,8 @@ module.exports = function(){
             host: 'localhost',
             port: '3306',
             user: 'root',
-            password: 'wjdrms15!',
-            database: 'user'
+            password: 'love97jawoon!',
+            database: 'barinhome'
           })
         },
         

@@ -1,9 +1,13 @@
-import express, { Request, Response, NextFunction} from 'express' // 1
+import express from 'express';
 
-const router = express.Router();
+const router = express.Router();    
 
-router.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("refrigerator");
-});
+router.route('/')
+    .post(
+        (req,res)=>{
+            req.logout();
+            res.sendStatus(200);
+        }
+    )
 
-export = router;
+export default router;
