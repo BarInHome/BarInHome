@@ -12,6 +12,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import history from '../../../history';
 
 import useInputChange from '../../../utils/hooks/useInputChange';
 import usePostRequest from '../../../utils/hooks/usePostRequest';
@@ -62,7 +63,9 @@ export default function Signup() {
   const handlePW = useInputChange();
 
   const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/signup',()=>{
-      console.log('[signup success]')
+      console.log('[signup success]');
+      history.push('/');
+      window.location.reload();
   });
 
   const onClickSignup = () => {
