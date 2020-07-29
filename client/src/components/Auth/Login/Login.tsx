@@ -18,6 +18,8 @@ import Container from '@material-ui/core/Container';
 import useInputChange from '../../../utils/hooks/useInputChange';
 import usePostRequest from '../../../utils/hooks/usePostRequest';
 
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -52,18 +54,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+interface userInterface{
+  name?:string;
+  id:string;
+  pw:string;
+}
+
+
 export default function SignIn() {
   const classes = useStyles();
 
   const handleID = useInputChange();
   const handlePW = useInputChange();
-  const {doPostRequest} = usePostRequest<string[],boolean>('/auth/login',()=>{
+  const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/login',()=>{
       console.log('[login success]')
   });
 
   const onClickLogin = () => {
       try{
-          doPostRequest([handleID.value,handlePW.value]);
+          doPostRequest({
+            id:handleID.value,
+            pw:handlePW.value
+          });
       }catch(e){
           console.log(e);
       }
@@ -90,6 +103,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={handleID.value}
+            onChange={handleID.handleChange}
           />
           <TextField
             variant="outlined"
@@ -100,7 +115,9 @@ export default function SignIn() {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            autoComplete="current-password" 
+            value={handlePW.value}
+            onChange={handlePW.handleChange}
           />
           <Button
             type="submit"

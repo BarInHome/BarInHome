@@ -49,19 +49,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+interface userInterface{
+  name:string;
+  id:string;
+  pw:string;
+}
+
 export default function Signup() {
   const classes = useStyles(); 
   const handleName = useInputChange();
   const handleID = useInputChange();
   const handlePW = useInputChange();
 
-  const {doPostRequest} = usePostRequest<string[],boolean>('/auth/singup',()=>{
+  const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/signup',()=>{
       console.log('[signup success]')
   });
 
   const onClickSignup = () => {
       try{
-          doPostRequest([handleName.value,handleID.value,handlePW.value]);
+          doPostRequest({
+            name:handleName.value,
+            id:handleID.value,
+            pw:handlePW.value
+          });
       }catch(e){
           console.log(e);
       }
@@ -85,6 +95,8 @@ export default function Signup() {
                 label="Your Name"
                 name="name"
                 autoComplete="lname"
+                value={handleName.value}
+                onChange={handleName.handleChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -95,6 +107,8 @@ export default function Signup() {
                 id="email"
                 label="Email Address"
                 name="email"
+                value={handleID.value}
+                onChange={handleID.handleChange}
                 autoComplete="email"
               />
             </Grid>
@@ -107,6 +121,8 @@ export default function Signup() {
                 label="Password"
                 type="password"
                 id="password"
+                value={handlePW.value}
+                onChange={handlePW.handleChange}
                 autoComplete="current-password"
               />
             </Grid>
