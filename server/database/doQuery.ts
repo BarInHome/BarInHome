@@ -34,5 +34,5 @@ function doQuery<QueryResult = any>(
           });
         }
   )};
-    
+  
   export default doQuery;
