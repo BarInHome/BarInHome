@@ -7,8 +7,9 @@ import createError from 'http-errors';
 import session from 'express-session';
 import passport from 'passport';
 //import passportConfig from './passport/passport';
-import usersRouter from './routes/users';
-import indexRouter from './routes/index';
+import mainloginRouter from './routes/users/mainLogin';
+import cocktailsRouter from './routes/cocktail/cocktails';
+import refrigeratorRouter from './routes/refrigerator/refrigerator';
 
 class ServerApi{
   public app : express.Express
@@ -44,8 +45,9 @@ class ServerApi{
   }
 
   private initializeRouters():void{
-    this.app.use('/', indexRouter);
-    this.app.use('/users', usersRouter);
+    this.app.use('/cocktails', cocktailsRouter);
+    this.app.use('/refrigerator', refrigeratorRouter);
+    this.app.use('/', mainloginRouter);
     
     this.app.use(function(req, res, next) {
       next(createError(404));
