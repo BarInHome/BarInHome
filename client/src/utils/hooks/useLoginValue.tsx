@@ -4,12 +4,13 @@ import axios from '../axios';
 
 const useLoginValue = () :{
     isLogin : boolean;
+    setIsLogin:React.Dispatch<React.SetStateAction<boolean>>;
 } => {
     const [isLogin,setIsLogin] = React.useState<boolean>(false);
 
     axios.get<boolean>('auth/login/check')
     .then((res) => {
-      if (!res.data) {
+      if (res.data) {
         setIsLogin(true);
       } else {
         setIsLogin(false);
@@ -19,7 +20,7 @@ const useLoginValue = () :{
       console.log(err);
     });
 
-    return {isLogin};
+    return {isLogin,setIsLogin};
 }
 
 export default useLoginValue;

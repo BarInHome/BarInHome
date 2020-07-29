@@ -18,6 +18,8 @@ import Container from '@material-ui/core/Container';
 import useInputChange from '../../../utils/hooks/useInputChange';
 import usePostRequest from '../../../utils/hooks/usePostRequest';
 
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -52,18 +54,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
-  const classes = useStyles();
 
+interface userInterface{
+  name?:string;
+  id:string;
+  pw:string;
+}
+
+interface userSessionInterface{
+  handleLoginInfo: (state: boolean) => void;
+}
+
+export default function Login(props:userSessionInterface) {
+  const {handleLoginInfo} = props;
+
+  const classes = useStyles();
   const handleID = useInputChange();
   const handlePW = useInputChange();
-  const {doPostRequest} = usePostRequest<string[],boolean>('/auth/login',()=>{
-      console.log('[login success]')
+  const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/login',()=>{
+      console.log('[login success]');
+      //handleLoginInfo(true);
+      window.location.reload();
   });
 
   const onClickLogin = () => {
       try{
-          doPostRequest([handleID.value,handlePW.value]);
+          doPostRequest({
+            id:handleID.value,
+            pw:handlePW.value
+          });
       }catch(e){
           console.log(e);
       }
@@ -90,6 +109,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={handleID.value}
+            onChange={handleID.handleChange}
           />
           <TextField
             variant="outlined"
@@ -100,7 +121,9 @@ export default function SignIn() {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            autoComplete="current-password" 
+            value={handlePW.value}
+            onChange={handlePW.handleChange}
           />
           <Button
             type="submit"

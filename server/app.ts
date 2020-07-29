@@ -10,6 +10,8 @@ import passport from 'passport';
 import mainloginRouter from './routes/users/mainLogin';
 import cocktailsRouter from './routes/cocktail/cocktails';
 import refrigeratorRouter from './routes/refrigerator/refrigerator';
+import authRouter from './routes/users/index';
+
 
 class ServerApi{
   public app : express.Express
@@ -48,7 +50,8 @@ class ServerApi{
     this.app.use('/cocktails', cocktailsRouter);
     this.app.use('/refrigerator', refrigeratorRouter);
     this.app.use('/', mainloginRouter);
-    
+    this.app.use('/auth', authRouter);
+
     this.app.use(function(req, res, next) {
       next(createError(404));
     });
