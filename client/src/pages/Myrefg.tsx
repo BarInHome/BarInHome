@@ -1,18 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const Wrapper = styled.section`
-  padding: 4em;
-  background: papayawhip;
-`;
+import Refrigerator from '../components/MyRefg/Refrigerator';
 
 function Myrefg():JSX.Element{
 
-    return(
-        <Wrapper>
-            My Refregerator
-        </Wrapper>
-    );
+  return(
+    <>
+      <Refrigerator></Refrigerator>
+    </>
+  );
 }
 
 export default Myrefg;

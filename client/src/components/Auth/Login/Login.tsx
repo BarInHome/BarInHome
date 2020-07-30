@@ -8,16 +8,18 @@ import TextField from '@material-ui/core/TextField';
 //import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 //import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+
 
 
 import useInputChange from '../../../utils/hooks/useInputChange';
 import usePostRequest from '../../../utils/hooks/usePostRequest';
 
+import history from '../.././../history';
 
 
 function Copyright() {
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: "priamary",
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: 'parent', // Fix IE 11 issue.
@@ -64,9 +66,9 @@ interface userInterface{
 interface userSessionInterface{
   handleLoginInfo: (state: boolean) => void;
 }
-
-export default function Login(props:userSessionInterface) {
-  const {handleLoginInfo} = props;
+//props:userSessionInterface
+export default function Login() {
+  //const {handleLoginInfo} = props;
 
   const classes = useStyles();
   const handleID = useInputChange();
@@ -74,6 +76,7 @@ export default function Login(props:userSessionInterface) {
   const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/login',()=>{
       console.log('[login success]');
       //handleLoginInfo(true);
+      history.push('/main');
       window.location.reload();
   });
 
@@ -142,7 +145,7 @@ export default function Login(props:userSessionInterface) {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/auth/signup" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

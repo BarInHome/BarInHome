@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from  'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
+import {Link , withRouter} from 'react-router-dom';
 // hooks
 import {useLoginValue,usePostRequest} from '../../utils';
 
@@ -31,16 +32,23 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Header() {
   const classes = useStyles();  
-  const {isLogin,setIsLogin} = useLoginValue();
+  const {isLogin,setIsLogin,check} = useLoginValue();
   const {doPostRequest} = usePostRequest<void,any>('/auth/logout',()=>{
     console.log("[Logout Success]");
-    setIsLogin(false);
-    window.location.reload();
   });
 
   const onClickLogout = () => {
     doPostRequest();
+    check();
   }
+
+  const onClickRefg = () => {
+    console.log('refg');  
+  } 
+
+  useEffect(()=>{
+    check();
+  },[check, isLogin])
 
   return (  
     <div className={classes.root}>
@@ -53,20 +61,35 @@ function Header() {
           </Typography>
           {isLogin?(
             <Grid align-items-xs-center justify-xs-flex-end>
+           <Link to='/main'>
               <Button 
                 color="secondary" 
                 variant="contained" 
                 className={classes.menuButton}
+                onClick={onClickRefg}
+              >
+                Recommand Drinks
+              </Button>
+           </Link>
+           <Link to='/myrefg'>
+              <Button 
+                color="secondary" 
+                variant="contained" 
+                className={classes.menuButton}
+                onClick={onClickRefg}
               >
                 My Refrigerator
               </Button>
-              <Button 
+           </Link>
+           <Link to='/'>
+           <Button 
                 color="secondary" 
                 variant="contained"
                 onClick={onClickLogout}
               >
-                logout
-              </Button>
+                Logout
+            </Button>
+           </Link>
             </Grid>
           ):(
             <Button color="secondary" variant="contained">Login Please</Button>
@@ -77,4 +100,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default withRouter(Header);

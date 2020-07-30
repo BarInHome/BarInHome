@@ -6,6 +6,17 @@ import Recommed from './Recommend';
 import {useLoginValue} from '../utils';
 
 function Main():JSX.Element{
+    return(
+        <div>
+                <Recommed/>
+        </div>
+    );
+}
+
+export default Main;
+
+/*
+function Main():JSX.Element{
     const {isLogin,setIsLogin} = useLoginValue();
     
     const handleLoginInfo=(state:boolean)=>{
@@ -14,17 +25,17 @@ function Main():JSX.Element{
 
     React.useEffect(()=>{
         console.log("isLogin",isLogin);
+        //window.location.reload();
     },[isLogin])
-
+    //handleLoginInfo={handleLoginInfo}
     return(
         <div>
             {isLogin?(
                 <Recommed/>
             ):(
-                <Auth handleLoginInfo={handleLoginInfo}/>
+                <Auth />
             )}
         </div>
     );
 }
-
-export default Main;
+*/

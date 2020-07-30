@@ -19,7 +19,7 @@ router.route('/logout')
     .post(
         (req,res)=>{
             req.logout();
-            res.sendStatus(200);
+            res.sendStatus(200);        
         }
     )
 
