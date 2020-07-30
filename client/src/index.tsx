@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import history from './history';
 
 // styled-components
@@ -13,10 +13,8 @@ import { MuiThemeProvider as ThemeProvider } from '@material-ui/core/styles';
 import Main from './pages/Main';  // 추천 칵테일 페이지 + 내 냉장고 페이지 링크
 import Myrefg from './pages/Myrefg';
 import Recommend from './pages/Recommend';
-import Auth from './pages/Auth';
 import Signup from './components/Auth/Signup/Signup';
 import Header from './components/Main/Header';
-
 
 ReactDOM.render(
   <Router history={history}>
@@ -27,8 +25,8 @@ ReactDOM.render(
         <Route exact path='/' component={Main}/>
         <Route exact path='/recom' component={Recommend}/>
         <Route exact path='/myrefg' component={Myrefg}/>  
-        <Route exact path='/auth/signup' component={Signup}/> 
       </Switch>
+
     </ThemeProvider>
   </Router>,
   document.getElementById('root')

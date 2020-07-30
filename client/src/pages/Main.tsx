@@ -14,14 +14,15 @@ function Main():JSX.Element{
 
     React.useEffect(()=>{
         console.log("isLogin",isLogin);
+        //window.location.reload();
     },[isLogin])
-
+    //handleLoginInfo={handleLoginInfo}
     return(
         <div>
             {isLogin?(
                 <Recommed/>
             ):(
-                <Auth handleLoginInfo={handleLoginInfo}/>
+                <Auth />
             )}
         </div>
     );

@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: "priamary",
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: 'parent', // Fix IE 11 issue.
@@ -64,9 +64,9 @@ interface userInterface{
 interface userSessionInterface{
   handleLoginInfo: (state: boolean) => void;
 }
-
-export default function Login(props:userSessionInterface) {
-  const {handleLoginInfo} = props;
+//props:userSessionInterface
+export default function Login() {
+  //const {handleLoginInfo} = props;
 
   const classes = useStyles();
   const handleID = useInputChange();

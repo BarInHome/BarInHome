@@ -6,13 +6,14 @@ import styled from 'styled-components';
 interface userSessionInterface{
     handleLoginInfo: (state: boolean) => void;
 }
-
-function Auth(props:userSessionInterface):JSX.Element{
-    const {handleLoginInfo} = props;
+//props:userSessionInterface
+// handleLoginInfo={handleLoginInfo}
+function Auth():JSX.Element{
+    //const {handleLoginInfo} = props;
     return(
        <div>
            <Route exact path='/' 
-                render={()=><Login handleLoginInfo={handleLoginInfo}/>}/>
+                render={()=><Login/>}/>
            <Route exact path='/auth/signup' component={Signup}/> 
        </div>
     );
