@@ -6,6 +6,17 @@ import Recommed from './Recommend';
 import {useLoginValue} from '../utils';
 
 function Main():JSX.Element{
+    return(
+        <div>
+                <Recommed/>
+        </div>
+    );
+}
+
+export default Main;
+
+/*
+function Main():JSX.Element{
     const {isLogin,setIsLogin} = useLoginValue();
     
     const handleLoginInfo=(state:boolean)=>{
@@ -27,5 +38,4 @@ function Main():JSX.Element{
         </div>
     );
 }
-
-export default Main;
+*/

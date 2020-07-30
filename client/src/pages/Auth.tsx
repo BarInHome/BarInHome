@@ -12,9 +12,7 @@ function Auth():JSX.Element{
     //const {handleLoginInfo} = props;
     return(
        <div>
-           <Route exact path='/' 
-                render={()=><Login/>}/>
-           <Route exact path='/auth/signup' component={Signup}/> 
+           <Login></Login>
        </div>
     );
 }

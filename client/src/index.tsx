@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter , Switch, Route, Redirect } from 'react-router-dom';
 import history from './history';
 
 // styled-components
@@ -15,20 +15,25 @@ import Myrefg from './pages/Myrefg';
 import Recommend from './pages/Recommend';
 import Signup from './components/Auth/Signup/Signup';
 import Header from './components/Main/Header';
+import Login from './components/Auth/Login/Login';
+
 
 ReactDOM.render(
-  <Router history={history}>
-    <GlobalStyles/>
+  <BrowserRouter >
+    <GlobalStyles/> 
     <ThemeProvider theme={theme}>
-      <Header/>
-      <Switch>
-        <Route exact path='/' component={Main}/>
-        <Route exact path='/recom' component={Recommend}/>
-        <Route exact path='/myrefg' component={Myrefg}/>  
-      </Switch>
-
+      <Header></Header>
+        <Switch>
+          <Route exact path='/' component={Login} push/>
+          <Route exact path='/signup' component={Signup}/>
+        </Switch>
+        
+        <Switch>
+          <Route exact path='/main' component={Main} push/>
+          <Route exact path='/myrefg' component={Myrefg}/>
+        </Switch>
     </ThemeProvider>
-  </Router>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
