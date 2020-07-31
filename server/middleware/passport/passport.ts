@@ -1,8 +1,13 @@
 import passport from "passport";
 import passportLocal from "passport-local";
+import passportFacebook from 'passport-facebook';
 import dbQuery from '../../database/doQuery';
+import { info } from "console";
+import doQuery from "../../database/doQuery";
 
+const secret_config = require('../../secret');
 const LocalStrategy = passportLocal.Strategy;
+const FacebookStrategy = passportFacebook.Strategy;
 
 passport.serializeUser<any, any>((id, done) => {
   console.log("serializeUser : "+id);
@@ -62,4 +67,57 @@ passport.use('local-signup',new LocalStrategy({ usernameField: "id" ,passwordFie
       })
 }));
 
+
+passport.use('facebook',new FacebookStrategy({
+  clientID:secret_config.federation.facebook.client_id,
+  clientSecret: secret_config.federation.facebook.secret_id,
+  callbackURL: secret_config.federation.facebook.callback_url,
+  passReqToCallback: true,
+}, (req, accessToken, refreshToken, profile, done) => {
+  const _profile = profile._json;
+
+  console.log('FaceBook Login Strategy',_profile);
+
+  loginByThirdparty({
+    'auth_type': 'facebook',
+    'auth_id': _profile.id,
+    'auth_name': _profile.name,
+    'auth_email': _profile.id
+  }, done);
+  
+}));
+
+function loginByThirdparty(info:any, done:any) {
+  console.log('process : ' + info.auth_type);
+  //var stmt_duplicated = 'select *from `user` where `user_id` = ?';
+
+  const sql_dupleCheck = `
+    SELECT * FROM userinfo WHERE id = ?
+  `;
+
+  doQuery(sql_dupleCheck,[info.auth_id])
+    .then((row)=>{
+      if(row.result.length == 0){
+        // 길이가 0, 중복 x , insert(회원가입) 시키고 done로그인 수행
+        const sql_insert = `
+          INSERT INTO userinfo(id,pw,name,kind) VALUES(?,?,?,?)
+        `;
+
+        doQuery(sql_insert,[info.auth_id, info.auth_name,'facebookPW','facebook'])
+          .then((row)=>{
+            console.log('info.auth_id',info.auth_id);
+            return done(null,info.auth_id);  
+          })
+          .catch((err)=>{
+            return done(false);
+          })
+      }
+      else{
+        console.log('row.result[0].id)',row.result[0].id);
+        done(null,row.result[0].id);
+      }
+    })  
+}
+
 export default passport;
+

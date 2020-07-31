@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Header() {
   const classes = useStyles();  
-  const {isLogin,setIsLogin,check} = useLoginValue();
+  const {isLogin,check} = useLoginValue();
   const {doPostRequest} = usePostRequest<void,any>('/auth/logout',()=>{
     console.log("[Logout Success]");
   });
@@ -48,6 +48,7 @@ function Header() {
 
   useEffect(()=>{
     check();
+    console.log("isLogin",isLogin);
   },[check, isLogin])
 
   return (  
