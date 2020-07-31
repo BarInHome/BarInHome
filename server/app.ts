@@ -6,6 +6,7 @@ import path from 'path'
 import createError from 'http-errors';
 import session from 'express-session';
 import passport from 'passport';
+import cors from 'cors';
 //import passportConfig from './passport/passport';
 import mainloginRouter from './routes/users/login';
 import cocktailRouter from './routes/cocktail/cocktail';
@@ -23,6 +24,7 @@ class ServerApi{
   }
 
   private initializeAppSettings():void{
+    
     this.app.use(session({
       secret:"beobwoo",
       resave:false,
@@ -31,7 +33,18 @@ class ServerApi{
         
       }
     }));
+    /*
+    const whiteList = [
+      'http://localhost:3000',
+     ];
+    const corsOptions = {
+       origin: whiteList,
+       credentials: true
+    };
+    this.app.use(cors(corsOptions));
+    */
 
+   
     this.app.use(logger('dev'));
     this.app.use(express.json());
     this.app.use(bodyParser.json());
@@ -40,6 +53,8 @@ class ServerApi{
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(cookieParser());
     this.app.use(express.static(path.join(__dirname, 'public')));
+
+    
 
     this.app.use(session({ secret: '비밀코드', resave: true, saveUninitialized: false }));
     this.app.use(passport.initialize()); // passport 구동

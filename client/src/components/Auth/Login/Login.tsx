@@ -15,9 +15,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-
 import useInputChange from '../../../utils/hooks/useInputChange';
 import usePostRequest from '../../../utils/hooks/usePostRequest';
+import useGetRequest from '../../../utils/hooks/useGetRequest';
 
 import history from '../.././../history';
 
@@ -54,6 +54,13 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  submitAPI: {
+    margin: theme.spacing(3, 0, 2),
+    width: "45%",
+  },
+  buttonWrapper: {
+    justifyContent: "space-between"
+  }
 }));
 
 
@@ -151,7 +158,28 @@ export default function Login() {
             </Grid>
           </Grid>
 
-      
+          <Grid container className={classes.buttonWrapper} >
+        
+              <Button
+              type="submit"
+              className={classes.submitAPI}
+              variant="contained" 
+              color="primary"
+              href="http://localhost:5000/auth/login/facebook" 
+              >
+              Facebook
+              </Button>
+  
+              <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={onClickLogin}
+              className={classes.submitAPI}
+            >
+              Google
+            </Button>
+          </Grid>
       </div>
       <Box mt={8}>
         <Copyright />
