@@ -19,26 +19,19 @@ router.route('/')
                     if(row.result[0]){
                         console.log("success");
                         console.log(row.result);
-                        var tokens = new Array(row.result.length).fill('?').join(',');
+                        let tokens = new Array(row.result.length).fill('?').join(',');
                         let userDrink:Array<string>=[];
                         row.result.forEach(function(element:{ drinkKategorie:string, userId: string}){
                             console.log("element : "+element.drinkKategorie);
                             console.log(typeof(element.drinkKategorie));
                             userDrink.push(element.drinkKategorie);
                         });
-                        // for(let i=0; i < row.result.length ;i++){
-                        
-                        //     userDrink+= "'"+row.result[i].drinkKategorie+"'";
-                        //     if(i<row.result.length-1)
-                        //         userDrink+=" OR "
-                        //     console.log(userDrink);
-                        // }
-                        //console.log(typeof(row.result[0]))
-                        const sql2 = `SELECT cocktailName FROM recipe WHERE ingredient IN(${tokens})`;
+                        const sql2 = `SELECT cocktailName,ingredient,maxIngredient FROM recipe WHERE ingredient IN(${tokens})`;
                         console.log("userDrink:"+userDrink)
                         dbQuery(sql2,userDrink)
                             .then((row)=>{
                                 console.log(row.result);
+                                res.send(row.result);
                             })
                     }
                     else{

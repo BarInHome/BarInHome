@@ -40,37 +40,7 @@ const testitems:testItemInterface[] = [
      title: "My sixth post",
      excerpt: "This is my sixth post with more content inside",
      image: "https://bit.ly/2WNi2Ml"
-    },
-    {
-        title: "My first post",
-        excerpt: "This is my first post with more content inside",
-        image: "https://bit.ly/2WNi2Ml"
-       },
-       {
-        title: "My first post",
-        excerpt: "This is my first post with more content inside",
-        image: "https://bit.ly/2WNi2Ml"
-       },
-       {
-        title: "My first post",
-        excerpt: "This is my first post with more content inside",
-        image: "https://bit.ly/2WNi2Ml"
-       },
-       {
-        title: "My first post",
-        excerpt: "This is my first post with more content inside",
-        image: "https://bit.ly/2WNi2Ml"
-       },
-       {
-        title: "My first post",
-        excerpt: "This is my first post with more content inside",
-        image: "https://bit.ly/2WNi2Ml"
-       },
-       {
-        title: "My first post",
-        excerpt: "This is my first post with more content inside",
-        image: "https://bit.ly/2WNi2Ml"
-       },   
+    }   
    ]
 
    export default testitems;
