@@ -92,7 +92,7 @@ router.route('/naver/callback')
       router.route('/kakao')
       .get(
         passport.authenticate('kakao',{
-          
+         
         },()=>{
           console.log('/kakao excute');
         })
