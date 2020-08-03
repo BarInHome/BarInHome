@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Grid, Paper, Typography } from "@material-ui/core";
 //import Grid from '@material-ui/core/Grid';
 import Card from "@material-ui/core/Card";
@@ -13,6 +13,7 @@ import useGetRequest from '../../utils/hooks/useGetRequest';
 import useInputChange from '../../utils/hooks/useInputChange';
 import history from '../../history';
 import { request } from 'https';
+import { componentDidMount } from 'react-addons-linked-state-mixin';
 
 const useStyles = makeStyles({
     root: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
     },
   });
   
-interface cocktails{
+interface cocktail{
     cocktailName:string,
     ingredient:string,
     maxIngredient:number
@@ -34,28 +35,43 @@ function CocktailBoard():JSX.Element {
     const classes = useStyles();
     console.log("cocktailboard");
 
-    const cocktailname = useInputChange();
-    const ingredient = useInputChange();
-    const maxIngredient = useInputChange();
+    // const [cocktailName, setcocktailName] = useState([]);
+    // const [ingredient, setingredient] = useState([]);
+    // const [maxIngredient, setmaxIngredient] = useState([]);
 
-    const doGetRequest = useGetRequest<void,[cocktails]>('/main',()=>{
+    const {data, doGetRequest} = useGetRequest<void,Array<cocktail>>('/main',()=>{
         console.log('allocation cocktails');
+        if(data!=null){ 
+            data.forEach(function(cocktail){
+                console.log("not null data:"+cocktail);
+            })
+        }
     });
-    doGetRequest.doGetRequest();
     
-    if(doGetRequest.data!=null){
-        doGetRequest.data.forEach(function(value){
-            cocktailname.setValue(value.cocktailName);
-            ingredient.setValue(value.ingredient);
-            maxIngredient.setValue(value.maxIngredient.toString());
-        })
-    }
-    else
-        history.push('/myrefg');
+    useEffect(()=>{
+        doGetRequest();
+    },[]);
+    
+    // console.log("board : " +doGetRequest.data);
+    
+    // if(doGetRequest.data==null)
+    //     history.push('/myrefg');
+    
+    
+    // if(doGetRequest.data!=null){
+    //     doGetRequest.data.forEach(function(value){
+    //         cocktailname.setValue(value.cocktailName);
+    //         ingredient.setValue(value.ingredient);
+    //         maxIngredient.setValue(value.maxIngredient.toString());
+    //     })
+    // }
+    // else
+    //     history.push('/myrefg');
 
     return (
         <div style={{ marginTop: 20, padding: 30 }}>
         <Grid container spacing={10} justify="center">
+            doGetRequest();
             {testItems.map(testItems => (
             <Grid item key={testItems.title}>
                 <Card className={classes.root}>

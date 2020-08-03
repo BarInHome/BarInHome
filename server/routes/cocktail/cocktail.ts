@@ -7,6 +7,12 @@ const router = express.Router();
 
 router.use('/detail',cocktailDetailRouter);
 
+interface cocktail{
+    cocktailName:string,
+    ingredient:string,
+    maxIngredient:number
+}
+
 router.route('/')
     .get(
         (req,res)=>{
@@ -31,7 +37,15 @@ router.route('/')
                         dbQuery(sql2,userDrink)
                             .then((row)=>{
                                 console.log(row.result);
-                                res.send(row.result);
+                                const rescocktail:Array<cocktail> = row.result;
+                                console.log("cocktails"+rescocktail)
+                                console.log(typeof(rescocktail));
+                                rescocktail.forEach(function(cocktail){
+                                    console.log(cocktail.cocktailName);
+                                    console.log(cocktail.ingredient);
+                                    console.log(cocktail.maxIngredient);
+                                })
+                                res.send(rescocktail)
                             })
                     }
                     else{
