@@ -14,8 +14,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import {AuthState,AuthAction} from '../Auth.reducer';
 
-import useInputChange from '../../../utils/hooks/useInputChange';
 import usePostRequest from '../../../utils/hooks/usePostRequest';
 import useGetRequest from '../../../utils/hooks/useGetRequest';
 
@@ -69,24 +69,29 @@ interface userInterface{
   id:string;
   pw:string;
 }
-
 interface userSessionInterface{
   handleLoginInfo: (state: boolean) => void;
 }
+interface AuthInterface{
+  handleSetIsLogin: (pageNum: boolean) => void;
+  state: AuthState;
+  dispatch: React.Dispatch<AuthAction>;
+}
 
-//props:userSessionInterface
-export default function Login():JSX.Element {
-  //const {handleLoginInfo} = props;
-
-
+export default function Login(props:AuthInterface):JSX.Element {
+  const {
+    handleSetIsLogin, state, dispatch
+  } = props;
   const classes = useStyles();
+  const {id,pw} = state;
 
-  const handleID = useInputChange();
-  const handlePW = useInputChange();
+  const handleChange = (name:any) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch({type: name , value: event.target.value});
+  }
 
   const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/login',()=>{
       console.log('[login success]');
-      //handleLoginInfo(true);
+      handleSetIsLogin(true);
       history.push('/main');
       window.location.reload();
   });
@@ -94,8 +99,8 @@ export default function Login():JSX.Element {
   const onClickLogin = () => {
       try{
           doPostRequest({
-            id:handleID.value,
-            pw:handlePW.value
+            id:id,
+            pw:pw
           });
       }catch(e){
           console.log(e);
@@ -123,8 +128,8 @@ export default function Login():JSX.Element {
             name="email"
             autoComplete="email"
             autoFocus
-            value={handleID.value}
-            onChange={handleID.handleChange}
+            value={id}
+            onChange={handleChange('id')}
           />
           <TextField
             variant="outlined"
@@ -136,8 +141,8 @@ export default function Login():JSX.Element {
             type="password"
             id="password"
             autoComplete="current-password" 
-            value={handlePW.value}
-            onChange={handlePW.handleChange}
+            value={pw}
+            onChange={handleChange('pw')}
           />
           <Button
             type="submit"
@@ -156,8 +161,8 @@ export default function Login():JSX.Element {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link variant="body2" onClick={()=>handleSetIsLogin(false)}>
+                 Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
@@ -191,91 +196,3 @@ export default function Login():JSX.Element {
     </Container>
   );
 }
-
-
-/* 
-import React from 'react'
-import {Link} from 'react-router-dom';
-import {TextField} from '@material-ui/core';
-import styled from 'styled-components';
-import oc from 'open-color';
-import { shadow } from '../../../styles/theme';
-import InputWithLabel from '../Styels/InputWithLabel';
-
-import useInputChange from '../../../utils/hooks/useInputChange';
-import usePostRequest from '../../../utils/hooks/usePostRequest';
-// 실제 로그인 수행
-// Hooks 통한 서버인증 수행부
-
-const Wrapper = styled.div`
-    & + & {
-        margin-top: 1rem;
-    }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const StyledTextField = styled(TextField)`
- 
-  .MuiInput-underline:before {
-    border-bottom: 2px solid ${oc.orange[1]};
-  }
-  
-  && .MuiInput-underline:hover:before {
-    border-bottom: 2px solid ${oc.orange[1]};
-  }
-  
-  .MuiInput-underline:after {
-    border-bottom: 2px solid ${oc.orange[1]};
-  }
-`;
-
-
-function Login():JSX.Element{
-    const handleID = useInputChange();
-    const handlePW = useInputChange();
-    const {doPostRequest} = usePostRequest<string[],boolean>('/auth/login');
-
-    const onClickLogin = () => {
-        try{
-            doPostRequest([handleID.value,handlePW.value]);
-        }catch(e){
-            console.log(e);
-        }
-    }
-
-    return(
-        <Wrapper>
-            <StyledTextField 
-                margin="normal"
-                type="text"
-                name="id"
-                label="ID"
-                size="medium"
-                value={handleID.value}
-                onChange={handleID.handleChange}
-                placeholder="ID"/>
-            
-            <StyledTextField 
-                type="password"
-                margin="normal" 
-                name="pw"
-                label="Password"
-                size="medium"
-                value={handlePW.value}
-                onChange={handlePW.handleChange}
-                placeholder="PW"/>
-            
-            <Button
-                variant="contained" 
-                color="inherit"
-                onClick={onClickLogin}>
-                    Login
-            </Button>
-
-        </Wrapper>
-    );
-}
-
-export default Login; */

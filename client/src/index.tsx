@@ -16,6 +16,7 @@ import Recommend from './pages/Recommend';
 import Signup from './components/Auth/Signup/Signup';
 import Header from './components/Main/Header';
 import Login from './components/Auth/Login/Login';
+import Auth from './pages/Auth';
 
 
 ReactDOM.render(
@@ -23,15 +24,16 @@ ReactDOM.render(
     <GlobalStyles/> 
       <ThemeProvider theme={theme}>
         <Header></Header>
+        
         <Switch>
-          <Route exact path='/' component={Login} push/>
-          <Route exact path='/signup' component={Signup}/>
+          <Route exact path='/' component={Auth} push/>
         </Switch>
         
         <Switch>
           <Route exact path='/main' component={Main} push/>
           <Route exact path='/myrefg' component={Myrefg}/>
         </Switch>
+        
       </ThemeProvider>
   </BrowserRouter>,
   document.getElementById('root')
