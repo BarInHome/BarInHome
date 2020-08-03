@@ -8,7 +8,7 @@ export default function useInputChange(defaultValue = ''): {
     handleChangePhoneNumber?(e: React.ChangeEvent<HTMLInputElement>): void;
   } {
     const [value, setValue] = React.useState(defaultValue);
-  
+
     function inputPhoneNumber(phoneNumber: string): string {
       const number = phoneNumber.replace(/[^0-9]/g, '');
       let phone = '';

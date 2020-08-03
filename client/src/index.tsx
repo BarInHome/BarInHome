@@ -19,10 +19,10 @@ import Login from './components/Auth/Login/Login';
 
 
 ReactDOM.render(
-  <BrowserRouter >
+  <BrowserRouter>
     <GlobalStyles/> 
-    <ThemeProvider theme={theme}>
-      <Header></Header>
+      <ThemeProvider theme={theme}>
+        <Header></Header>
         <Switch>
           <Route exact path='/' component={Login} push/>
           <Route exact path='/signup' component={Signup}/>
@@ -32,7 +32,7 @@ ReactDOM.render(
           <Route exact path='/main' component={Main} push/>
           <Route exact path='/myrefg' component={Myrefg}/>
         </Switch>
-    </ThemeProvider>
+      </ThemeProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
