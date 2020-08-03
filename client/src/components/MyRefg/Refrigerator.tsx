@@ -63,6 +63,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     minWidth: 200, // a number of your choice
     width: "auto", // a number of your choice  
   },
+  tabPanel: {
+    justifyContent:"center",
+  },
+
 }));
 
 export default function Refrigerator() {
@@ -82,26 +86,25 @@ export default function Refrigerator() {
             <Typography component="h1" variant="h5" className={classes.title}>
                 My Refrigerator
             </Typography>
-            <Grid container item xs={6}>
-           
-                <AppBar position="static" >
-                    <Tabs 
-                      value={value}
-                      onChange={handleChange} 
-                      aria-label="simple tabs example">
-                        
-                        <Tab label="Drink" className={classes.tab} {...a11yProps(0)} />
-                        <Tab label="Fruits" className={classes.tab} {...a11yProps(1)} />
-                        <Tab label="Others" className={classes.tab} {...a11yProps(2)} />
-                    </Tabs>
-                 
-                </AppBar>
-
+            <Grid>
+              <AppBar position="static" >
+                  <Tabs 
+                    value={value}
+                    onChange={handleChange} 
+                    aria-label="simple tabs example">
+                   <Tab label="Drink" className={classes.tab} {...a11yProps(0)} />
+                   <Tab label="Fruits" className={classes.tab} {...a11yProps(1)} />
+                   <Tab label="Others" className={classes.tab} {...a11yProps(2)} />
+                  </Tabs>   
+              </AppBar>
+            </Grid>
+            
+            <Grid container item xs={6} className={classes.tabPanel}>
                 <TabPanel value={value} index={0}>
-                    <RefrigeratorBoard></RefrigeratorBoard>
+                  <RefrigeratorBoard></RefrigeratorBoard>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                 
+                  <RefrigeratorBoard></RefrigeratorBoard>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                   <RefrigeratorBoard/>
