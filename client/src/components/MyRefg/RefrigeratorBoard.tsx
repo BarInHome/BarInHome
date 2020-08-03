@@ -17,22 +17,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     refg: {
         height: "auto",
         minHeight:"200px",
-        width: "auto",
+        minWidth: "800px",
         border:"solid",
         borderColor: theme.palette.primary.main,
     },
     title: {
         marginBottom: "15px",
-  
     }
   }));
-
 
 function RefrigeratorBoard():JSX.Element{
     const classes = useStyles();
     return (
         <div>
-            <Grid className={classes.refg}>
+            <Grid className={classes.refg} alignItems="stretch">
                 
             </Grid>
         </div>
