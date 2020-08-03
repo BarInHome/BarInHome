@@ -61,6 +61,7 @@ export default function Signup() {
   const handleName = useInputChange();
   const handleID = useInputChange();
   const handlePW = useInputChange();
+  
 
   const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/signup',()=>{
       console.log('[signup success]');

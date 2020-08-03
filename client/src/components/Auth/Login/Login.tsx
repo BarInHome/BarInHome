@@ -73,13 +73,17 @@ interface userInterface{
 interface userSessionInterface{
   handleLoginInfo: (state: boolean) => void;
 }
+
 //props:userSessionInterface
-export default function Login() {
+export default function Login():JSX.Element {
   //const {handleLoginInfo} = props;
 
+
   const classes = useStyles();
+
   const handleID = useInputChange();
   const handlePW = useInputChange();
+
   const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/login',()=>{
       console.log('[login success]');
       //handleLoginInfo(true);
