@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {Icon} from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,8 +13,9 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 //import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
+import {Facebook,Public,Email, ContactSupport} from '@material-ui/icons';
+import googleLogo from '../../../../public/images/google_icon.png';
 import { makeStyles } from '@material-ui/core/styles';
-
 import {AuthState,AuthAction} from '../Auth.reducer';
 
 import usePostRequest from '../../../utils/hooks/usePostRequest';
@@ -59,10 +61,41 @@ const useStyles = makeStyles((theme) => ({
     width: "45%",
   },
   buttonWrapper: {
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
+  facebook: {
+    background: "#4267b2",
+    borderRadius: "5px",
+    color: "white",
+    margin: theme.spacing(3, 0, 2),
+    width: "45%",
+    justifyContent: "space-around",
+  },
+  google: {
+    background: "#FFFFFF",
+    borderRadius: "5px",
+    color: "black",
+    margin: theme.spacing(3, 0, 2),
+    width: "45%",
+    justifyContent: "space-around",
+  },
+  naver: {
+    background: "#37b24d",
+    borderRadius: "5px",
+    color: "white",
+    margin: theme.spacing(3, 0, 2),
+    width: "45%",
+    justifyContent: "space-around",
+  },
+  kakao: {
+    background: "#fcc419",
+    borderRadius: "5px",
+    color: "white",
+    margin: theme.spacing(3, 0, 2),
+    width: "45%",
+    justifyContent: "space-around",
+  },
 }));
-
 
 interface userInterface{
   name?:string;
@@ -167,14 +200,15 @@ export default function Login(props:AuthInterface):JSX.Element {
             </Grid>
           </Grid>
 
-          <Grid container className={classes.buttonWrapper} >
+          <Grid container className={classes.buttonWrapper}>
         
               <Button
               type="submit"
-              className={classes.submitAPI}
+              className={classes.facebook}
               variant="contained" 
               color="primary"
-              href="http://localhost:5000/auth/login/facebook" 
+              href="http://localhost:5000/auth/login/facebook"
+              startIcon={<Facebook></Facebook>} 
               >
               Facebook
               </Button>
@@ -184,9 +218,36 @@ export default function Login(props:AuthInterface):JSX.Element {
               variant="contained"
               color="primary"
               onClick={onClickLogin}
-              className={classes.submitAPI}
+              className={classes.google}
+              href="http://localhost:5000/auth/login/google"
+              startIcon={<Public></Public>} 
             >
               Google
+            </Button>
+          </Grid>
+          <Grid container className={classes.buttonWrapper} >
+        
+              <Button
+              type="submit"
+              className={classes.naver}
+              variant="contained" 
+              color="primary"
+              href="http://localhost:5000/auth/login/naver"
+              startIcon={<Email/>} 
+              >
+              Naver
+              </Button>
+  
+              <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={onClickLogin}
+              className={classes.kakao}
+              href="http://localhost:5000/auth/login/kakao"
+              startIcon={<ContactSupport/>} 
+            >
+              KaKao
             </Button>
           </Grid>
       </div>

@@ -2,6 +2,8 @@ import passport from "passport";
 import passportLocal from "passport-local";
 import passportFacebook from 'passport-facebook';
 import passportGoogle from 'passport-google-oauth';
+import passportNaver from 'passport-naver';
+import passportKakao from 'passport-kakao';
 import dbQuery from '../../database/doQuery';
 import { info } from "console";
 import doQuery from "../../database/doQuery";
@@ -10,6 +12,8 @@ const secret_config = require('../../secret');
 const LocalStrategy = passportLocal.Strategy;
 const FacebookStrategy = passportFacebook.Strategy;
 const GoogleStrategy = passportGoogle.OAuth2Strategy;
+const NaverStrategy = passportNaver.Strategy;
+import { Strategy as KakaoStrategy } from "passport-kakao";
 
 passport.serializeUser<any, any>((id, done) => {
   console.log("serializeUser : "+id);
@@ -39,10 +43,6 @@ passport.use('local-login',new LocalStrategy({ usernameField: "id" ,passwordFiel
 }));
 
 passport.use('local-signup',new LocalStrategy({ usernameField: "id" ,passwordField:"pw"}, (id:string, pw:string, done: any) => { 
-    // id 중복 체크
-    // if dupled, return done false
-    // else 하단 실행
-
     const sqlDupleCheck = 'SELECT * FROM userinfo WHERE id = ?';
     dbQuery(sqlDupleCheck,[id])
       .then((row)=>{
@@ -77,7 +77,7 @@ passport.use('facebook',new FacebookStrategy({
   passReqToCallback: true,
 }, (req, accessToken, refreshToken, profile, done) => {
   const _profile = profile._json;
-
+  // name : string , id : string
   console.log('FaceBook Login Strategy',_profile);
 
   loginByThirdparty({
@@ -90,20 +90,57 @@ passport.use('facebook',new FacebookStrategy({
 }));
 
 passport.use('google',new GoogleStrategy({
-  clientID:secret_config.federation.facebook.client_id,
-  clientSecret: secret_config.federation.facebook.secret_id,
-  callbackURL: secret_config.federation.facebook.callback_url,
+  clientID:secret_config.federation.google.client_id,
+  clientSecret: secret_config.federation.google.secret_id,
+  callbackURL: secret_config.federation.google.callback_url,
   passReqToCallback: true,
 }, (req, accessToken, refreshToken, profile, done) => {
   const _profile = profile._json;
-
+  // name : string , email : string 
   console.log('Google Login Strategy',_profile);
 
   loginByThirdparty({
     'auth_type': 'google',
-    'auth_id': _profile.id,
+    'auth_id': _profile.email,
     'auth_name': _profile.name,
-    'auth_email': _profile.id1
+    'auth_email': _profile.email
+  }, done);
+  
+}));
+
+passport.use('naver',new NaverStrategy({
+  clientID:secret_config.federation.naver.client_id,
+  clientSecret: secret_config.federation.naver.secret_id,
+  callbackURL: secret_config.federation.naver.callback_url,
+  passReqToCallback: true,
+}, (req, accessToken, refreshToken, profile, done) => {
+  const _profile = profile._json;
+  // { email: string; nickname: string; profile_image: string; age: number; birthday: any; id: string;
+  console.log('Naver Login Strategy',_profile);
+
+  loginByThirdparty({
+    'auth_type': 'naver',
+    'auth_id': _profile.id,
+    'auth_name': _profile.nickname,
+    'auth_email': _profile.email
+  }, done);
+  
+}));
+
+passport.use('kakao',new KakaoStrategy({
+  clientID:secret_config.federation.kakao.client_id,
+  clientSecret: "",
+  callbackURL: secret_config.federation.kakao.callback_url
+}, (accessToken, refreshToken, profile, done) => {
+  const _profile = profile._json;
+  // { email: string; nickname: string; profile_image: string; age: number; birthday: any; id: string;
+  console.log('Kakao Login Strategy',_profile);
+
+  loginByThirdparty({
+    'auth_type': 'kakao',
+    'auth_id': _profile.id,
+    'auth_name': _profile.nickname,
+    'auth_email': _profile.email
   }, done);
   
 }));
