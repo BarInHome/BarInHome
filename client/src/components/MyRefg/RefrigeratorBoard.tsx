@@ -7,6 +7,10 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import RefrigeratorItem from './RefrigeratorItem';
+
+import  testItems  from "./test-items";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -23,15 +27,31 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     title: {
         marginBottom: "15px",
-    }
+    },
+    rootCard: {
+        maxWidth: 200,
+        maxHeight:400,
+      },
+      media: {
+        height: 200,
+      },
   }));
 
 function RefrigeratorBoard():JSX.Element{
     const classes = useStyles();
+
     return (
-        <div>
-            <Grid className={classes.refg} alignItems="stretch">
-                
+        <div style={{ marginTop: 20, padding: 30 }}>
+            <Grid container spacing={10} justify="center">
+                {testItems.map(testItems => (   
+                <Grid item key={testItems.title}>
+                    <RefrigeratorItem
+                        image={testItems.image}
+                        title={testItems.title}
+                        excerpt={testItems.excerpt}    
+                    />
+                </Grid>
+                ))}
             </Grid>
         </div>
     );
