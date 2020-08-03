@@ -26,12 +26,9 @@ ReactDOM.render(
         <Header></Header>
         
         <Switch>
-          <Route exact path='/' component={Auth} push/>
-        </Switch>
-        
-        <Switch>
           <Route exact path='/main' component={Main} push/>
           <Route exact path='/myrefg' component={Myrefg}/>
+          <Route path='/' component={Auth} push/>
         </Switch>
         
       </ThemeProvider>

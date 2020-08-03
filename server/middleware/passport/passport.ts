@@ -1,19 +1,12 @@
 import passport from "passport";
-import passportLocal from "passport-local";
-import passportFacebook from 'passport-facebook';
-import passportGoogle from 'passport-google-oauth';
-import passportNaver from 'passport-naver';
-import passportKakao from 'passport-kakao';
 import dbQuery from '../../database/doQuery';
-import { info } from "console";
-import doQuery from "../../database/doQuery";
+import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as NaverStrategy } from "passport-naver";
+import { Strategy as FacebookStrategy } from "passport-facebook";
+import { OAuth2Strategy as GoogleStrategy } from "passport-google-oauth";
+import { Strategy as KakaoStrategy } from "passport-kakao";
 
 const secret_config = require('../../secret');
-const LocalStrategy = passportLocal.Strategy;
-const FacebookStrategy = passportFacebook.Strategy;
-const GoogleStrategy = passportGoogle.OAuth2Strategy;
-const NaverStrategy = passportNaver.Strategy;
-import { Strategy as KakaoStrategy } from "passport-kakao";
 
 passport.serializeUser<any, any>((id, done) => {
   console.log("serializeUser : "+id);
@@ -77,6 +70,7 @@ passport.use('facebook',new FacebookStrategy({
   passReqToCallback: true,
 }, (req, accessToken, refreshToken, profile, done) => {
   const _profile = profile._json;
+  console.log("facebook profile",profile);
   // name : string , id : string
   console.log('FaceBook Login Strategy',_profile);
 
@@ -115,7 +109,7 @@ passport.use('naver',new NaverStrategy({
   passReqToCallback: true,
 }, (req, accessToken, refreshToken, profile, done) => {
   const _profile = profile._json;
-  // { email: string; nickname: string; profile_image: string; age: number; birthday: any; id: string;
+  // email: string; nickname: string; profile_image: string; age: number; birthday: any; id: string;
   console.log('Naver Login Strategy',_profile);
 
   loginByThirdparty({
@@ -133,7 +127,7 @@ passport.use('kakao',new KakaoStrategy({
   callbackURL: secret_config.federation.kakao.callback_url
 }, (accessToken, refreshToken, profile, done) => {
   const _profile = profile._json;
-  // { email: string; nickname: string; profile_image: string; age: number; birthday: any; id: string;
+  // id : string
   console.log('Kakao Login Strategy',_profile);
 
   loginByThirdparty({
@@ -153,7 +147,7 @@ function loginByThirdparty(info:any, done:any) {
     SELECT * FROM userinfo WHERE id = ?
   `;
 
-  doQuery(sql_dupleCheck,[info.auth_id])
+  dbQuery(sql_dupleCheck,[info.auth_id])
     .then((row)=>{
       if(row.result.length == 0){
         // 길이가 0, 중복 x , insert(회원가입) 시키고 done로그인 수행
@@ -161,7 +155,7 @@ function loginByThirdparty(info:any, done:any) {
           INSERT INTO userinfo(id,pw,name,kind) VALUES(?,?,?,?)
         `;
 
-        doQuery(sql_insert,[info.auth_id, info.auth_name,info.auth_type+'PW',info.auth_type])
+        dbQuery(sql_insert,[info.auth_id, info.auth_name,info.auth_type+'PW',info.auth_type])
           .then((row)=>{
             console.log('info.auth_id',info.auth_id);
             return done(null,info.auth_id);  
