@@ -6,7 +6,6 @@ import path from 'path'
 import createError from 'http-errors';
 import session from 'express-session';
 import passport from 'passport';
-import cors from 'cors';
 //import passportConfig from './passport/passport';
 import mainloginRouter from './routes/users/login';
 import cocktailRouter from './routes/cocktail/cocktail';
@@ -61,8 +60,8 @@ class ServerApi{
     this.app.use(passport.session()); // 세션 연결
   }
 
-  private initializeRouters():void{
-    this.app.use('/cocktail', cocktailRouter);
+  private initializeRouters():void{ 
+    this.app.use('/main', cocktailRouter);
     this.app.use('/refrigerator', refrigeratorRouter);
     this.app.use('/', mainloginRouter);
     this.app.use('/auth', authRouter);
