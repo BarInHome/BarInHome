@@ -6,6 +6,13 @@ import { Strategy as FacebookStrategy } from "passport-facebook";
 import { OAuth2Strategy as GoogleStrategy } from "passport-google-oauth";
 import { Strategy as KakaoStrategy } from "passport-kakao";
 
+/*
+  1) Facebook : id, name            + email
+  2) Google   : id, name, email     
+  3) Naver    : id, email           + name
+  4) Kakao    : id                  + id , email
+*/
+
 const secret_config = require('../../secret');
 
 passport.serializeUser<any, any>((id, done) => {

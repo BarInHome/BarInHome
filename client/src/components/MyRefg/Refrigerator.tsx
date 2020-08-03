@@ -47,14 +47,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    marginTop:"15px"
+    marginTop:"15px",
   },
   refg: {
       height: "auto",
       minHeight:"200px",
-      width: "auto",
+      width: "1200px",
       border:"solid",
       borderColor: theme.palette.primary.main,
+      justifyContent:"center",
   },
   title: {
       marginBottom: "15px",
@@ -99,12 +100,12 @@ export default function Refrigerator() {
               </AppBar>
             </Grid>
             
-            <Grid container item xs={6} className={classes.tabPanel}>
+            <Grid container item xs={12} className={classes.refg}>
                 <TabPanel value={value} index={0}>
-                  <RefrigeratorBoard></RefrigeratorBoard>
+                  <RefrigeratorBoard/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                  <RefrigeratorBoard></RefrigeratorBoard>
+                  <RefrigeratorBoard/>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                   <RefrigeratorBoard/>

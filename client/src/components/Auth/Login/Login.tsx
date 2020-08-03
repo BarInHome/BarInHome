@@ -24,6 +24,23 @@ import useGetRequest from '../../../utils/hooks/useGetRequest';
 import history from '../.././../history';
 
 
+/*
+  1) Facebook : id, name            + email
+  2) Google   : id, name, email     
+  3) Naver    : id, email           + name
+  4) Kakao    : id                  + id , email
+*/
+
+/*
+  id : string
+  pw : string
+  name : string
+  email : string
+  kind : string (1,2,3,4,5)
+*/
+
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
