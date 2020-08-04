@@ -56,6 +56,7 @@ interface userInterface{
   name:string;
   id:string;
   pw:string;
+  email?:string
 }
 
 interface AuthInterface{

@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-
+import Paper from '@material-ui/core/Paper';
 import RefrigeratorBoard from './RefrigeratorBoard';
 import { Toolbar } from 'material-ui';
 
@@ -47,27 +47,36 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    marginTop:"15px",
+    marginTop:"25px",
   },
   refg: {
       height: "auto",
       minHeight:"200px",
-      width: "1200px",
+      minWidth: "600px",
       border:"solid",
+      borderRadius: "15px",
       borderColor: theme.palette.primary.main,
       justifyContent:"center",
   },
   title: {
-      marginBottom: "15px",
+      marginBottom: "30px",
+      borderRadius: "5px",
+      border: "solid"
   },
   tab: {
     minWidth: 200, // a number of your choice
     width: "auto", // a number of your choice  
+    borderRadius: "15px",
+    background:"white",
+    color:  theme.palette.primary.dark,
   },
   tabPanel: {
     justifyContent:"center",
   },
-
+  tabLabel: {
+    borderRadius: "15px",
+    background:"white",
+  }
 }));
 
 export default function Refrigerator() {
@@ -80,22 +89,22 @@ export default function Refrigerator() {
   
   return (
     <div className={classes.root}>
-        <Grid container 
+      <Paper elevation={3}>
+      <Grid container 
+            style={{padding:"30px"}}
             direction="column"
             justify="center"
-            alignItems="center">
-            <Typography component="h1" variant="h5" className={classes.title}>
-                내 냉장고
-            </Typography>
+            alignItems="center"
+           >
             <Grid>
-              <AppBar position="static" >
-                  <Tabs 
+              <AppBar position="static" className={classes.tabLabel}>
+                  <Tabs
+                    centered
                     value={value}
-                    onChange={handleChange} 
+                    onChange={handleChange}
                     aria-label="simple tabs example">
                    <Tab label="Drink" className={classes.tab} {...a11yProps(0)} />
-                   <Tab label="Fruits" className={classes.tab} {...a11yProps(1)} />
-                   <Tab label="Others" className={classes.tab} {...a11yProps(2)} />
+                   <Tab label="Others" className={classes.tab} {...a11yProps(1)} />
                   </Tabs>   
               </AppBar>
             </Grid>
@@ -105,13 +114,12 @@ export default function Refrigerator() {
                   <RefrigeratorBoard/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                  <RefrigeratorBoard/>
-                </TabPanel>
-                <TabPanel value={value} index={2}>
-                  <RefrigeratorBoard/>
+                  Empty
                 </TabPanel>
             </Grid>
         </Grid>
+      </Paper>
+        
     </div>
   );
 }

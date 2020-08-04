@@ -38,19 +38,19 @@ function CocktailBoard():JSX.Element {
     // const [cocktailName, setcocktailName] = useState([]);
     // const [ingredient, setingredient] = useState([]);
     // const [maxIngredient, setmaxIngredient] = useState([]);
-
-    const {data, doGetRequest} = useGetRequest<void,Array<cocktail>>('/main',()=>{
-        console.log('allocation cocktails');
-        if(data!=null){ 
-            data.forEach(function(cocktail){
-                console.log("not null data:"+cocktail);
-            })
-        }
-    });
     
-    useEffect(()=>{
-        doGetRequest();
-    },[]);
+    // const {data, doGetRequest} = useGetRequest<void,Array<cocktail>>('/main',()=>{
+    //     console.log('allocation cocktails');
+    //     if(data!=null){ 
+    //         data.forEach(function(cocktail){
+    //             console.log("not null data:"+cocktail);
+    //         })
+    //     }
+    // });
+    
+    // useEffect(()=>{
+    //     doGetRequest();
+    // },[]);
     
     // console.log("board : " +doGetRequest.data);
     
@@ -68,10 +68,11 @@ function CocktailBoard():JSX.Element {
     // else
     //     history.push('/myrefg');
 
+
+
     return (
         <div style={{ marginTop: 20, padding: 30 }}>
         <Grid container spacing={10} justify="center">
-            doGetRequest();
             {testItems.map(testItems => (
             <Grid item key={testItems.title}>
                 <Card className={classes.root}>
