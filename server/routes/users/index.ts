@@ -2,16 +2,49 @@ import express from 'express';
 import loginRouter from './login';
 import signupRouter from './signup';
 import doQuery from '../../database/doQuery';
+import bodyParser from 'body-parser';
 
 const router = express.Router();    
 router.use('/login',loginRouter);
 router.use('/signup',signupRouter);
+
 
 router.route('/logout')
     .post(
         (req,res)=>{
             req.logout();
             res.sendStatus(200);        
+        }
+    )
+
+router.route('/APItest')
+    .get(
+        (req,res)=>{
+            const axios = require("axios");
+
+            axios({
+                "method":"GET",
+                "url":"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin",
+                "headers":{
+                "content-type":"application/octet-stream",
+                "x-rapidapi-host":"the-cocktail-db.p.rapidapi.com",
+                "x-rapidapi-key":"474944d17dmsh955ee15d671644ap181c17jsn1e0bf4a95758",
+                "useQueryString":true
+                },"params":{
+                
+                }
+                })
+                .then((response:any)=>{
+                    // console.log(response.data);
+                    // console.log(response.data[0]);
+                    //const data = JSON.parse(response.data);
+                    console.log(response.data);
+                    res.send(response.data);
+
+                })
+                .catch((error:Error)=>{
+                console.log(error)
+                })
         }
     )
 

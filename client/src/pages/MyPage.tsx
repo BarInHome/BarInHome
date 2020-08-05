@@ -19,6 +19,8 @@ import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/sty
 import LeftMenuDrawer from '../components/MyPage/LeftMenu/LeftMenuDrawer';
 import Refrigerator from '../components/MyPage/MyPageElements/MyRefg/Refrigerator';
 import MyInfo from '../components/MyPage/MyPageElements/MyInfo/MyInfo';
+import APITest from '../components/MyPage/Others/APITest';
+
 
 const drawerWidth = 240;
 
@@ -81,7 +83,7 @@ export default function MyPage() {
       setMenuIndex(index);
   }
   const ContentsArray = [<MyInfo/>,<Refrigerator/>,
-                         <div>2</div>,<div>3</div>];
+                         <div>2</div>,<APITest/>];
 
   return (
     <div className={classes.root}>
