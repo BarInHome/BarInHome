@@ -140,8 +140,8 @@ passport.use('kakao',new KakaoStrategy({
   loginByThirdparty({
     'auth_type': 'kakao',
     'auth_id': _profile.id,
-    'auth_name': _profile.nickname,
-    'auth_email': _profile.email
+    'auth_name': _profile.id,
+    'auth_email': _profile.id
   }, done);
   
 }));
@@ -159,10 +159,10 @@ function loginByThirdparty(info:any, done:any) {
       if(row.result.length == 0){
         // 길이가 0, 중복 x , insert(회원가입) 시키고 done로그인 수행
         const sql_insert = `
-          INSERT INTO userinfo(id,pw,name,kind) VALUES(?,?,?,?)
+          INSERT INTO userinfo(id,pw,name,kind,email) VALUES(?,?,?,?,?)
         `;
 
-        dbQuery(sql_insert,[info.auth_id, info.auth_name,info.auth_type+'PW',info.auth_type])
+        dbQuery(sql_insert,[info.auth_id,info.auth_type+'PW',info.auth_name,info.auth_type,info.auth_email])
           .then((row)=>{
             console.log('info.auth_id',info.auth_id);
             return done(null,info.auth_id);  

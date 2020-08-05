@@ -49,14 +49,13 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
- 
 }));
 
 interface userInterface{
   name:string;
   id:string;
   pw:string;
-  email?:string
+  email:string
 }
 
 interface AuthInterface{
@@ -70,8 +69,8 @@ export default function Signup(props:AuthInterface) {
     handleSetIsLogin, state, dispatch
   } = props;
   const classes = useStyles(); 
-  const {id,pw,name} = state;
-
+  const {id,pw,name,email} = state;
+  
   const handleChange = (name:any) => (event: React.ChangeEvent<HTMLInputElement>) => {
       dispatch({type: name , value: event.target.value});
   }
@@ -87,7 +86,8 @@ export default function Signup(props:AuthInterface) {
           doPostRequest({
             name:name,
             id:id,
-            pw:pw
+            pw:pw,
+            email:email
           });
       }catch(e){
           console.log(e);
@@ -127,9 +127,21 @@ export default function Signup(props:AuthInterface) {
                 id="email"
                 label="Email Address"
                 name="email"
+                value={email}
+                onChange={handleChange('email')}
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="id"
+                label="ID"
+                name="id"
                 value={id}
                 onChange={handleChange('id')}
-                autoComplete="email"
               />
             </Grid>
             <Grid item xs={12}>
