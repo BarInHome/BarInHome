@@ -35,7 +35,7 @@ router.route('/info')
                     .then((row)=>{
                         if(row.result[0]){
                             res.send({
-                                
+                                    
                                     id:row.result[0].id,
                                     name:row.result[0].name,
                                     email:row.result[0].email,

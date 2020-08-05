@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import RefrigeratorBoard from './RefrigeratorBoard';
+import Button from '@material-ui/core/Button';
 import { Toolbar } from 'material-ui';
 
 interface TabPanelProps {
@@ -66,9 +67,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   tab: {
     minWidth: 200, // a number of your choice
     width: "auto", // a number of your choice  
-    borderRadius: "15px",
-    background:"white",
-    color:  theme.palette.primary.dark,
+    borderRadius: "5px",
+    background: theme.palette.primary.main,
+    color: "white",
   },
   tabPanel: {
     justifyContent:"center",
@@ -96,17 +97,26 @@ export default function Refrigerator() {
             justify="center"
             alignItems="center"
            >
-            <Grid>
-              <AppBar position="static" className={classes.tabLabel}>
-                  <Tabs
-                    centered
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="simple tabs example">
-                   <Tab label="Drink" className={classes.tab} {...a11yProps(0)} />
-                   <Tab label="Others" className={classes.tab} {...a11yProps(1)} />
-                  </Tabs>   
-              </AppBar>
+            <Grid container direction="row"  justify="space-evenly"
+            alignItems="center">
+              <Grid item>
+                <AppBar position="static" className={classes.tabLabel}>
+                    <Tabs
+                      centered
+                      value={value}
+                      onChange={handleChange}
+                      aria-label="simple tabs example">
+                    <Tab label="Drink" className={classes.tab} {...a11yProps(0)} />
+                    <Tab label="Others" className={classes.tab} {...a11yProps(1)} />
+                    </Tabs>
+                </AppBar>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" size="large" color="primary">
+                    새로운 재료 등록
+                </Button>  
+              </Grid>
+              
             </Grid>
             
             <Grid container item xs={12} className={classes.refg}>
