@@ -53,11 +53,12 @@ function CocktailBoard():JSX.Element {
     if(data!=null){
         console.log("data");
         console.log(data);
-        const {rescocktail,recommendcocktail}=data;
-        console.log("cocktails");
-        console.log(rescocktail);
+        const {rescancocktail,recommendcocktail}=data;
+        console.log("rescancocktails");
+        console.log(rescancocktail);
         console.log("recommendcocktail")
-        console.log(recommendcocktail);
+        console.log(recommendcocktail); 
+        
     };
     
     // console.log("board : " +doGetRequest.data);
