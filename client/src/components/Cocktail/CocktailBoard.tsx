@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import { Grid, Paper, Typography } from "@material-ui/core";
 //import Grid from '@material-ui/core/Grid';
 import Card from "@material-ui/core/Card";
@@ -14,6 +14,8 @@ import useInputChange from '../../utils/hooks/useInputChange';
 import history from '../../history';
 import { request } from 'https';
 import { componentDidMount } from 'react-addons-linked-state-mixin';
+import { VoidTypeAnnotation } from '@babel/types';
+import { constants } from 'perf_hooks';
 
 const useStyles = makeStyles({
     root: {
@@ -35,39 +37,28 @@ function CocktailBoard():JSX.Element {
     const classes = useStyles();
     console.log("cocktailboard");
 
-    // const [cocktailName, setcocktailName] = useState([]);
+    const [cocktailName, setcocktailName] = useState([]);
     // const [ingredient, setingredient] = useState([]);
     // const [maxIngredient, setmaxIngredient] = useState([]);
-    
-    // const {data, doGetRequest} = useGetRequest<void,Array<cocktail>>('/main',()=>{
-    //     console.log('allocation cocktails');
-    //     if(data!=null){ 
-    //         data.forEach(function(cocktail){
-    //             console.log("not null data:"+cocktail);
-    //         })
-    //     }
-    // });
-    
-    // useEffect(()=>{
-    //     doGetRequest();
-    // },[]);
-    
-    // console.log("board : " +doGetRequest.data);
-    
-    // if(doGetRequest.data==null)
-    //     history.push('/myrefg');
-    
-    
-    // if(doGetRequest.data!=null){
-    //     doGetRequest.data.forEach(function(value){
-    //         cocktailname.setValue(value.cocktailName);
-    //         ingredient.setValue(value.ingredient);
-    //         maxIngredient.setValue(value.maxIngredient.toString());
-    //     })
-    // }
-    // else
-    //     history.push('/myrefg');
 
+    const {data, doGetRequest} = useGetRequest<void,any>('/main',()=>{
+        console.log('allocation cocktails');
+        
+    });
+    
+    useEffect(()=>{
+        doGetRequest();
+    },[]);
+
+    if(data!=null){
+        console.log("data");
+        console.log(data);
+        const {rescancocktail,recommendcocktail}=data;
+        console.log("rescancocktails");
+        console.log(rescancocktail);
+        console.log("recommendcocktail")
+        console.log(recommendcocktail); 
+    };
 
 
     return (
