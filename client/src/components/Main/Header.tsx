@@ -57,7 +57,7 @@ function Header() {
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h4" className={classes.title}>
             Bar In Home
           </Typography>
           {isLogin?(
@@ -72,14 +72,14 @@ function Header() {
                 Recommand Drinks
               </Button>
            </Link>
-           <Link to='/myrefg'>
+           <Link to='/mypage'>
               <Button 
                 color="secondary" 
                 variant="contained" 
                 className={classes.menuButton}
                 onClick={onClickRefg}
               >
-                My Refrigerator
+                My Page
               </Button>
            </Link>
            <Link to='/'>

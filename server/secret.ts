@@ -3,9 +3,9 @@ module.exports = {
     
     'federation' : {
       'naver' : {
-        'client_id' : '',
-        'secret_id' : '',
-        'callback_url' : '/auth/login/naver/callback'
+        'client_id' : 'C3ibnS2NkJuxneW74og7',
+        'secret_id' : 'ODS6sgfToU',
+        'callback_url' : 'http://localhost:5000/auth/login/naver/callback/'
       },
       'facebook' : {
         'client_id' : '1973399842803660',
@@ -13,13 +13,13 @@ module.exports = {
         'callback_url' : 'http://localhost:5000/auth/login/facebook/callback/'
       },
       'kakao' : { 
-        'client_id' : '',
-        'callback_url' : '/auth/login/kakao/callback'
+        'client_id' : '47137eb4992ac6771d0302cd2e0dd87c',
+        'callback_url' : 'http://localhost:5000/auth/login/kakao/callback'
       },
       'google' : { 
-        'client_id' : '467774827392-u76hb0j1nrk90c744tns6rd6c7clr9cp.apps.googleusercontent.com',
-        'secret_id' : 'wD-VsU8BZDWB4bonsNqVhdnV',
-        'callback_url' : '/auth/login/google/callback'
+        'client_id' : '467774827392-jchg2shfoglvl5hebb8u0drpgfipsg5c.apps.googleusercontent.com',
+        'secret_id' : 'p2-SIZiIQkdeKSqN5b4Wh0id',
+        'callback_url' : 'http://localhost:5000/auth/login/google/callback'
       }
     }
   };

@@ -12,7 +12,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import history from '../../../history';
+
+import {AuthState,AuthAction} from '../Auth.reducer';
 
 import useInputChange from '../../../utils/hooks/useInputChange';
 import usePostRequest from '../../../utils/hooks/usePostRequest';
@@ -54,26 +55,39 @@ interface userInterface{
   name:string;
   id:string;
   pw:string;
+  email:string
 }
 
-export default function Signup() {
+interface AuthInterface{
+  handleSetIsLogin: (pageNum: boolean) => void;
+  state: AuthState;
+  dispatch: React.Dispatch<AuthAction>;
+}
+
+export default function Signup(props:AuthInterface) {
+  const {
+    handleSetIsLogin, state, dispatch
+  } = props;
   const classes = useStyles(); 
-  const handleName = useInputChange();
-  const handleID = useInputChange();
-  const handlePW = useInputChange();
+  const {id,pw,name,email} = state;
+  
+  const handleChange = (name:any) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch({type: name , value: event.target.value});
+  }
 
   const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/signup',()=>{
       console.log('[signup success]');
-      history.push('/');
+      handleSetIsLogin(true);
       window.location.reload();
   });
 
   const onClickSignup = () => {
       try{
           doPostRequest({
-            name:handleName.value,
-            id:handleID.value,
-            pw:handlePW.value
+            name:name,
+            id:id,
+            pw:pw,
+            email:email
           });
       }catch(e){
           console.log(e);
@@ -101,8 +115,8 @@ export default function Signup() {
                 label="Your Name"
                 name="name"
                 autoComplete="lname"
-                value={handleName.value}
-                onChange={handleName.handleChange}
+                value={name}
+                onChange={handleChange('name')}
               />
             </Grid>
             <Grid item xs={12}>
@@ -113,9 +127,21 @@ export default function Signup() {
                 id="email"
                 label="Email Address"
                 name="email"
-                value={handleID.value}
-                onChange={handleID.handleChange}
+                value={email}
+                onChange={handleChange('email')}
                 autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="id"
+                label="ID"
+                name="id"
+                value={id}
+                onChange={handleChange('id')}
               />
             </Grid>
             <Grid item xs={12}>
@@ -127,8 +153,8 @@ export default function Signup() {
                 label="Password"
                 type="password"
                 id="password"
-                value={handlePW.value}
-                onChange={handlePW.handleChange}
+                value={pw}
+                onChange={handleChange('pw')}
                 autoComplete="current-password"
               />
             </Grid>
@@ -145,7 +171,7 @@ export default function Signup() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/" variant="body2">
+              <Link variant="body2" onClick={()=>handleSetIsLogin(true)}>
                 Already have an account? Login
               </Link>
             </Grid>

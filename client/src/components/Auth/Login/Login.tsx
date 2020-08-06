@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {Icon} from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,15 +13,31 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 //import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
+import {Facebook,Public,Email, ContactSupport} from '@material-ui/icons';
+import googleLogo from '../../../../public/images/google_icon.png';
 import { makeStyles } from '@material-ui/core/styles';
+import {AuthState,AuthAction} from '../Auth.reducer';
 
-
-import useInputChange from '../../../utils/hooks/useInputChange';
 import usePostRequest from '../../../utils/hooks/usePostRequest';
 import useGetRequest from '../../../utils/hooks/useGetRequest';
 
 import history from '../.././../history';
 
+
+/*
+  1) Facebook : id, name            + email
+  2) Google   : id, name, email     
+  3) Naver    : id, email           + name
+  4) Kakao    : id                  + id , email
+*/
+
+/*
+  id : string
+  pw : string
+  name : string
+  email : string
+  kind : string (1,2,3,4,5)
+*/
 
 function Copyright() {
   return (
@@ -59,30 +76,70 @@ const useStyles = makeStyles((theme) => ({
     width: "45%",
   },
   buttonWrapper: {
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
+  facebook: {
+    background: "#4267b2",
+    borderRadius: "5px",
+    color: "white",
+    margin: theme.spacing(3, 0, 2),
+    width: "45%",
+    justifyContent: "space-around",
+  },
+  google: {
+    background: "#FFFFFF",
+    borderRadius: "5px",
+    color: "black",
+    margin: theme.spacing(3, 0, 2),
+    width: "45%",
+    justifyContent: "space-around",
+  },
+  naver: {
+    background: "#37b24d",
+    borderRadius: "5px",
+    color: "white",
+    margin: theme.spacing(3, 0, 2),
+    width: "45%",
+    justifyContent: "space-around",
+  },
+  kakao: {
+    background: "#fcc419",
+    borderRadius: "5px",
+    color: "white",
+    margin: theme.spacing(3, 0, 2),
+    width: "45%",
+    justifyContent: "space-around",
+  },
 }));
-
 
 interface userInterface{
   name?:string;
   id:string;
   pw:string;
 }
-
 interface userSessionInterface{
   handleLoginInfo: (state: boolean) => void;
 }
-//props:userSessionInterface
-export default function Login() {
-  //const {handleLoginInfo} = props;
+interface AuthInterface{
+  handleSetIsLogin: (pageNum: boolean) => void;
+  state: AuthState;
+  dispatch: React.Dispatch<AuthAction>;
+}
 
+export default function Login(props:AuthInterface):JSX.Element {
+  const {
+    handleSetIsLogin, state, dispatch
+  } = props;
   const classes = useStyles();
-  const handleID = useInputChange();
-  const handlePW = useInputChange();
+  const {id,pw} = state;
+
+  const handleChange = (name:any) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch({type: name , value: event.target.value});
+  }
+
   const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/login',()=>{
       console.log('[login success]');
-      //handleLoginInfo(true);
+      handleSetIsLogin(true);
       history.push('/main');
       window.location.reload();
   });
@@ -90,8 +147,8 @@ export default function Login() {
   const onClickLogin = () => {
       try{
           doPostRequest({
-            id:handleID.value,
-            pw:handlePW.value
+            id:id,
+            pw:pw
           });
       }catch(e){
           console.log(e);
@@ -119,8 +176,8 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
-            value={handleID.value}
-            onChange={handleID.handleChange}
+            value={id}
+            onChange={handleChange('id')}
           />
           <TextField
             variant="outlined"
@@ -132,8 +189,8 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password" 
-            value={handlePW.value}
-            onChange={handlePW.handleChange}
+            value={pw}
+            onChange={handleChange('pw')}
           />
           <Button
             type="submit"
@@ -152,20 +209,21 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link variant="body2" onClick={()=>handleSetIsLogin(false)}>
+                 Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
 
-          <Grid container className={classes.buttonWrapper} >
+          <Grid container className={classes.buttonWrapper}>
         
               <Button
               type="submit"
-              className={classes.submitAPI}
+              className={classes.facebook}
               variant="contained" 
               color="primary"
-              href="http://localhost:5000/auth/login/facebook" 
+              href="http://localhost:5000/auth/login/facebook"
+              startIcon={<Facebook></Facebook>} 
               >
               Facebook
               </Button>
@@ -175,9 +233,36 @@ export default function Login() {
               variant="contained"
               color="primary"
               onClick={onClickLogin}
-              className={classes.submitAPI}
+              className={classes.google}
+              href="http://localhost:5000/auth/login/google"
+              startIcon={<Public></Public>} 
             >
               Google
+            </Button>
+          </Grid>
+          <Grid container className={classes.buttonWrapper} >
+        
+              <Button
+              type="submit"
+              className={classes.naver}
+              variant="contained" 
+              color="primary"
+              href="http://localhost:5000/auth/login/naver"
+              startIcon={<Email/>} 
+              >
+              Naver
+              </Button>
+  
+              <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={onClickLogin}
+              className={classes.kakao}
+              href="http://localhost:5000/auth/login/kakao"
+              startIcon={<ContactSupport/>} 
+            >
+              KaKao
             </Button>
           </Grid>
       </div>
@@ -187,91 +272,3 @@ export default function Login() {
     </Container>
   );
 }
-
-
-/* 
-import React from 'react'
-import {Link} from 'react-router-dom';
-import {TextField} from '@material-ui/core';
-import styled from 'styled-components';
-import oc from 'open-color';
-import { shadow } from '../../../styles/theme';
-import InputWithLabel from '../Styels/InputWithLabel';
-
-import useInputChange from '../../../utils/hooks/useInputChange';
-import usePostRequest from '../../../utils/hooks/usePostRequest';
-// 실제 로그인 수행
-// Hooks 통한 서버인증 수행부
-
-const Wrapper = styled.div`
-    & + & {
-        margin-top: 1rem;
-    }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const StyledTextField = styled(TextField)`
- 
-  .MuiInput-underline:before {
-    border-bottom: 2px solid ${oc.orange[1]};
-  }
-  
-  && .MuiInput-underline:hover:before {
-    border-bottom: 2px solid ${oc.orange[1]};
-  }
-  
-  .MuiInput-underline:after {
-    border-bottom: 2px solid ${oc.orange[1]};
-  }
-`;
-
-
-function Login():JSX.Element{
-    const handleID = useInputChange();
-    const handlePW = useInputChange();
-    const {doPostRequest} = usePostRequest<string[],boolean>('/auth/login');
-
-    const onClickLogin = () => {
-        try{
-            doPostRequest([handleID.value,handlePW.value]);
-        }catch(e){
-            console.log(e);
-        }
-    }
-
-    return(
-        <Wrapper>
-            <StyledTextField 
-                margin="normal"
-                type="text"
-                name="id"
-                label="ID"
-                size="medium"
-                value={handleID.value}
-                onChange={handleID.handleChange}
-                placeholder="ID"/>
-            
-            <StyledTextField 
-                type="password"
-                margin="normal" 
-                name="pw"
-                label="Password"
-                size="medium"
-                value={handlePW.value}
-                onChange={handlePW.handleChange}
-                placeholder="PW"/>
-            
-            <Button
-                variant="contained" 
-                color="inherit"
-                onClick={onClickLogin}>
-                    Login
-            </Button>
-
-        </Wrapper>
-    );
-}
-
-export default Login; */

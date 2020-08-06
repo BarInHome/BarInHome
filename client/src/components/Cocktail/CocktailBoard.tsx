@@ -58,24 +58,8 @@ function CocktailBoard():JSX.Element {
         console.log(rescancocktail);
         console.log("recommendcocktail")
         console.log(recommendcocktail); 
-        
     };
-    
-    // console.log("board : " +doGetRequest.data);
-    
-    // if(doGetRequest.data==null)
-    //     history.push('/myrefg');
-    
-    
-    // if(doGetRequest.data!=null){
-    //     doGetRequest.data.forEach(function(value){
-    //         cocktailname.setValue(value.cocktailName);
-    //         ingredient.setValue(value.ingredient);
-    //         maxIngredient.setValue(value.maxIngredient.toString());
-    //     })
-    // }
-    // else
-    //     history.push('/myrefg');
+
 
     return (
         <div style={{ marginTop: 20, padding: 30 }}>

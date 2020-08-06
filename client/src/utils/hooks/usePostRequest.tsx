@@ -21,10 +21,11 @@ export default function usePostRequest<PARAM_TYPE = {[key: string]: any}, RES_DA
 
   const doPostRequest = useCallback((param: PARAM_TYPE): void => { //param넣으면 void 나온다
     setLoading(true); // 로딩 시작
-    console.log('param',param);
+    //console.log('param',param);
     axios.post<RES_DATA_TYPE>(`${url}`,
       { ...param })
       .then((res) => { // 200 번대 상태코드
+        console.log('res.data',res.data);
         setLoading(false); // 로딩 완료
         setData(res.data);
         setSuccess(true);

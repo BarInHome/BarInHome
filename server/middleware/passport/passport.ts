@@ -1,13 +1,19 @@
 import passport from "passport";
-import passportLocal from "passport-local";
-import passportFacebook from 'passport-facebook';
 import dbQuery from '../../database/doQuery';
-import { info } from "console";
-import doQuery from "../../database/doQuery";
+import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as NaverStrategy } from "passport-naver";
+import { Strategy as FacebookStrategy } from "passport-facebook";
+import { OAuth2Strategy as GoogleStrategy } from "passport-google-oauth";
+import { Strategy as KakaoStrategy } from "passport-kakao";
+
+/*
+  1) Facebook : id, name            + email
+  2) Google   : id, name, email     
+  3) Naver    : id, email           + name
+  4) Kakao    : id                  + id , email
+*/
 
 const secret_config = require('../../secret');
-const LocalStrategy = passportLocal.Strategy;
-const FacebookStrategy = passportFacebook.Strategy;
 
 passport.serializeUser<any, any>((id, done) => {
   console.log("serializeUser : "+id);
@@ -37,10 +43,6 @@ passport.use('local-login',new LocalStrategy({ usernameField: "id" ,passwordFiel
 }));
 
 passport.use('local-signup',new LocalStrategy({ usernameField: "id" ,passwordField:"pw"}, (id:string, pw:string, done: any) => { 
-    // id 중복 체크
-    // if dupled, return done false
-    // else 하단 실행
-
     const sqlDupleCheck = 'SELECT * FROM userinfo WHERE id = ?';
     dbQuery(sqlDupleCheck,[id])
       .then((row)=>{
@@ -75,7 +77,8 @@ passport.use('facebook',new FacebookStrategy({
   passReqToCallback: true,
 }, (req, accessToken, refreshToken, profile, done) => {
   const _profile = profile._json;
-
+  console.log("facebook profile",profile);
+  // name : string , id : string
   console.log('FaceBook Login Strategy',_profile);
 
   loginByThirdparty({
@@ -87,23 +90,79 @@ passport.use('facebook',new FacebookStrategy({
   
 }));
 
+passport.use('google',new GoogleStrategy({
+  clientID:secret_config.federation.google.client_id,
+  clientSecret: secret_config.federation.google.secret_id,
+  callbackURL: secret_config.federation.google.callback_url,
+  passReqToCallback: true,
+}, (req, accessToken, refreshToken, profile, done) => {
+  const _profile = profile._json;
+  // name : string , email : string 
+  console.log('Google Login Strategy',_profile);
+
+  loginByThirdparty({
+    'auth_type': 'google',
+    'auth_id': _profile.email,
+    'auth_name': _profile.name,
+    'auth_email': _profile.email
+  }, done);
+  
+}));
+
+passport.use('naver',new NaverStrategy({
+  clientID:secret_config.federation.naver.client_id,
+  clientSecret: secret_config.federation.naver.secret_id,
+  callbackURL: secret_config.federation.naver.callback_url,
+  passReqToCallback: true,
+}, (req, accessToken, refreshToken, profile, done) => {
+  const _profile = profile._json;
+  // email: string; nickname: string; profile_image: string; age: number; birthday: any; id: string;
+  console.log('Naver Login Strategy',_profile);
+
+  loginByThirdparty({
+    'auth_type': 'naver',
+    'auth_id': _profile.id,
+    'auth_name': _profile.nickname,
+    'auth_email': _profile.email
+  }, done);
+  
+}));
+
+passport.use('kakao',new KakaoStrategy({
+  clientID:secret_config.federation.kakao.client_id,
+  clientSecret: "",
+  callbackURL: secret_config.federation.kakao.callback_url
+}, (accessToken, refreshToken, profile, done) => {
+  const _profile = profile._json;
+  // id : string
+  console.log('Kakao Login Strategy',_profile);
+
+  loginByThirdparty({
+    'auth_type': 'kakao',
+    'auth_id': _profile.id,
+    'auth_name': _profile.id,
+    'auth_email': _profile.id
+  }, done);
+  
+}));
+
 function loginByThirdparty(info:any, done:any) {
   console.log('process : ' + info.auth_type);
   //var stmt_duplicated = 'select *from `user` where `user_id` = ?';
-
+  
   const sql_dupleCheck = `
     SELECT * FROM userinfo WHERE id = ?
   `;
 
-  doQuery(sql_dupleCheck,[info.auth_id])
+  dbQuery(sql_dupleCheck,[info.auth_id])
     .then((row)=>{
       if(row.result.length == 0){
         // 길이가 0, 중복 x , insert(회원가입) 시키고 done로그인 수행
         const sql_insert = `
-          INSERT INTO userinfo(id,pw,name,kind) VALUES(?,?,?,?)
+          INSERT INTO userinfo(id,pw,name,kind,email) VALUES(?,?,?,?,?)
         `;
 
-        doQuery(sql_insert,[info.auth_id, info.auth_name,'facebookPW','facebook'])
+        dbQuery(sql_insert,[info.auth_id,info.auth_type+'PW',info.auth_name,info.auth_type,info.auth_email])
           .then((row)=>{
             console.log('info.auth_id',info.auth_id);
             return done(null,info.auth_id);  

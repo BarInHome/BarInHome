@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Auth from './Auth';
 import Recommed from './Recommend';
 
@@ -6,6 +6,15 @@ import Recommed from './Recommend';
 import {useLoginValue} from '../utils';
 
 function Main():JSX.Element{
+    const {isLogin,check} = useLoginValue();
+
+    /*
+    React.useEffect(()=>{
+        if(!isLogin){
+            Redirect('/');   
+        }
+    },[isLogin,check])
+*/
     return(
         <div>
                 <Recommed/>

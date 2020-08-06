@@ -47,14 +47,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    marginTop:"15px"
+    marginTop:"15px",
   },
   refg: {
       height: "auto",
       minHeight:"200px",
-      width: "auto",
+      width: "1200px",
       border:"solid",
       borderColor: theme.palette.primary.main,
+      justifyContent:"center",
   },
   title: {
       marginBottom: "15px",
@@ -63,6 +64,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     minWidth: 200, // a number of your choice
     width: "auto", // a number of your choice  
   },
+  tabPanel: {
+    justifyContent:"center",
+  },
+
 }));
 
 export default function Refrigerator() {
@@ -80,28 +85,27 @@ export default function Refrigerator() {
             justify="center"
             alignItems="center">
             <Typography component="h1" variant="h5" className={classes.title}>
-                My Refrigerator
+                내 냉장고
             </Typography>
-            <Grid container item xs={6}>
-           
-                <AppBar position="static" >
-                    <Tabs 
-                      value={value}
-                      onChange={handleChange} 
-                      aria-label="simple tabs example">
-                        
-                        <Tab label="Drink" className={classes.tab} {...a11yProps(0)} />
-                        <Tab label="Fruits" className={classes.tab} {...a11yProps(1)} />
-                        <Tab label="Others" className={classes.tab} {...a11yProps(2)} />
-                    </Tabs>
-                 
-                </AppBar>
-
+            <Grid>
+              <AppBar position="static" >
+                  <Tabs 
+                    value={value}
+                    onChange={handleChange} 
+                    aria-label="simple tabs example">
+                   <Tab label="Drink" className={classes.tab} {...a11yProps(0)} />
+                   <Tab label="Fruits" className={classes.tab} {...a11yProps(1)} />
+                   <Tab label="Others" className={classes.tab} {...a11yProps(2)} />
+                  </Tabs>   
+              </AppBar>
+            </Grid>
+            
+            <Grid container item xs={12} className={classes.refg}>
                 <TabPanel value={value} index={0}>
-                    <RefrigeratorBoard></RefrigeratorBoard>
+                  <RefrigeratorBoard/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                 
+                  <RefrigeratorBoard/>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                   <RefrigeratorBoard/>

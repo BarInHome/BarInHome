@@ -52,7 +52,7 @@ router.route('/facebook/callback')
 router.route('/google')
       .get(
         passport.authenticate('google',{
-          scope: ['public_profile', 'email']
+          scope: ['profile', 'email']
         },()=>{
           console.log('/google excute');
         })
@@ -72,7 +72,7 @@ router.route('/google/callback')
 router.route('/naver')
       .get(
         passport.authenticate('naver',{
-          scope: ['public_profile', 'email']
+          
         },()=>{
           console.log('/naver excute');
         })
@@ -86,6 +86,25 @@ router.route('/naver/callback')
         }
       );
 
+/*
+  passport - kakao , 현재 테스트 앱 과 연결해놓았기에 바로 인증 수행됨
+*/
+      router.route('/kakao')
+      .get(
+        passport.authenticate('kakao',{
+         
+        },()=>{
+          console.log('/kakao excute');
+        })
+      )
+router.route('/kakao/callback')
+      .get(
+        passport.authenticate('kakao'),
+        (req,res) => {
+          console.log("[Kakao Login Success]",req.user);
+          res.redirect('http://localhost:3000/main');
+        }
+      );
 
 
 
