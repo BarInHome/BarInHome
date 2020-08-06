@@ -25,6 +25,7 @@ export default function usePostRequest<PARAM_TYPE = {[key: string]: any}, RES_DA
     axios.post<RES_DATA_TYPE>(`${url}`,
       { ...param })
       .then((res) => { // 200 번대 상태코드
+        console.log('res.data',res.data);
         setLoading(false); // 로딩 완료
         setData(res.data);
         setSuccess(true);

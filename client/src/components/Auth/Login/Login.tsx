@@ -39,8 +39,6 @@ import history from '../.././../history';
   kind : string (1,2,3,4,5)
 */
 
-
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">

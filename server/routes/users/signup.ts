@@ -6,8 +6,8 @@ const router = express.Router();
 router.route('/')
     .post(
      (req,res)=>{
-        console.log('[Signup]',req.body);  
-        const {name,id,pw} = req.body;
+        console.log('[SIGNUP TRY]',req.body);  
+        const {name,id,pw,email} = req.body;
 
          const sqlDupleCheck = 'SELECT * FROM userinfo WHERE id = ?';
          doQuery(sqlDupleCheck,[id])
@@ -20,8 +20,8 @@ router.route('/')
                 }
                 else{
                 //ok
-                const sql = 'INSERT INTO userinfo(id,pw,name) VALUES(?,?,?)';
-                const params = [id,pw,name];
+                const sql = 'INSERT INTO userinfo(id,pw,name,email) VALUES(?,?,?,?)';
+                const params = [id,pw,name,email];
 
                 doQuery(sql,params) 
                 .then((row)=>{
