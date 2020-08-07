@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { response } from 'express';
+const api = require('./openAPI.evn');
 
 /*
    "domain" : [
-        'https://www.thecocktaildb.com/api/json/v1/1',
+        'https://www.thecocktaildb.com/api/json/v2/9973533',
         'https://www.thecocktaildb.com/images/...',
     ],
     "query" : [
@@ -25,24 +26,31 @@ import { response } from 'express';
         15 'Add /preview to the end of the cocktail image URL'               : ''
 */
 
-const api = require('./openAPI.evn');
 
 export default function apiAxios(
     domainIndex : number,
     queryIndex : number,
     param : string|string[],
 ):any {
-    axios.get(`${api.domain[domainIndex]}/${api.query[queryIndex]}${param}`)
+    return axios.get(`${api.domain[domainIndex]}/${api.query[queryIndex]}${param}`)
         .then((result)=>{
             // API JSON Array Key Name : 'drinks' || 'ingredients'
             // console.log((Object.keys(result.data)));
             const jsonKeyName = Object.keys(result.data)[0];
-            if(jsonKeyName === 'drinks'){           // kind drinks
+            console.log("data");
+            console.log(result.data);
 
-                return true;
+            if(jsonKeyName === 'drinks'){               // kind drinks
+                if(result.data['drinks']==null)
+                    return null;
+                else
+                    return result.data;
             }
-            else if(jsonKeyName === 'ingredients'){ // kind ingredients
-                return true;
+            else if(jsonKeyName === 'ingredients'){    // kind ingredients
+                if(result.data['ingredients']==null)
+                    return null
+                else
+                    return result.data;
             }
             else{                                   // Error - Call Rerequest
                 return false;
