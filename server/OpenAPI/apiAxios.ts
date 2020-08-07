@@ -22,7 +22,7 @@ const api = require('./openAPI.evn');
         11 'Filter by alcoholic'                                             : 'filter.php?a=',
         12 'Filter by Category'                                              : 'filter.php?c=',
         13 'Filter by Glass'                                                 : 'filter.php?g=',
-        14 'List the categories, glasses, ingredients or alcoholic filters'  : 'list.php?c=',
+        14 'List the categories, glasses, ingredients or alcoholic filters'  : 'list.php?i=',
         15 'Add /preview to the end of the cocktail image URL'               : ''
 */
 
