@@ -11,7 +11,7 @@ import mainloginRouter from './routes/users/login';
 import cocktailRouter from './routes/cocktail/cocktail';
 import refrigeratorRouter from './routes/refrigerator/refrigerator';
 import authRouter from './routes/users/index';
-
+import dataRouter from './routes/data/data';
 
 class ServerApi{
   public app : express.Express
@@ -65,6 +65,7 @@ class ServerApi{
     this.app.use('/refrigerator', refrigeratorRouter);
     this.app.use('/', mainloginRouter);
     this.app.use('/auth', authRouter);
+    this.app.use('/data', dataRouter);
 
     this.app.use(function(req, res, next) {
       next(createError(404));
