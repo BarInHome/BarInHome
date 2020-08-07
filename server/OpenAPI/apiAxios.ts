@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { response } from 'express';
+import fs from 'fs';
 const api = require('./openAPI.evn');
 
 /*
@@ -31,14 +32,16 @@ export default function apiAxios(
     domainIndex : number,
     queryIndex : number,
     param : string|string[],
+    successCallback?: () => void
 ):any {
     return axios.get(`${api.domain[domainIndex]}/${api.query[queryIndex]}${param}`)
         .then((result)=>{
             // API JSON Array Key Name : 'drinks' || 'ingredients'
             // console.log((Object.keys(result.data)));
             const jsonKeyName = Object.keys(result.data)[0];
-            console.log("data");
-            console.log(result.data);
+            
+            fs.writeFile('cocktail.json', JSON.stringify(result.data.drink),function(){console.log(result.data);console.log("appendgood")});  
+
 
             if(jsonKeyName === 'drinks'){               // kind drinks
                 if(result.data['drinks']==null)
@@ -55,7 +58,6 @@ export default function apiAxios(
             else{                                   // Error - Call Rerequest
                 return false;
             }
-
             response.send(result.data);
         })
         .catch((err)=>{
