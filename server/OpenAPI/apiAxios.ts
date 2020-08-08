@@ -39,15 +39,12 @@ export default function apiAxios(
             // API JSON Array Key Name : 'drinks' || 'ingredients'
             // console.log((Object.keys(result.data)));
             const jsonKeyName = Object.keys(result.data)[0];
-            
-            fs.writeFile('cocktail.json', JSON.stringify(result.data.drink),function(){console.log(result.data);console.log("appendgood")});  
-
 
             if(jsonKeyName === 'drinks'){               // kind drinks
                 if(result.data['drinks']==null)
                     return null;
                 else
-                    return result.data;
+                    return {result,param};
             }
             else if(jsonKeyName === 'ingredients'){    // kind ingredients
                 if(result.data['ingredients']==null)
