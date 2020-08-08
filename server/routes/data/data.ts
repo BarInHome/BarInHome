@@ -1,5 +1,6 @@
 import express from 'express';
 import apiAxios from '../../OpenAPI/apiAxios';
+const fs = require ('fs');
 
 const router = express.Router();
 
@@ -42,6 +43,7 @@ interface drink{
     strMeasure13:string;
     strMeasure14:string;
     strMeasure15:string;
+    [key:string]:string;
 }
 
 // function getData() {
@@ -55,12 +57,22 @@ interface drink{
 
 router.route('/')
     .get(
-        (req,res)=>{
-            apiAxios(0,1,'1').then((data:any) =>{
-                console.log("route data");
-                console.log(data);
-            })
-                
+        (req,res)=>{            
+
+            const search = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+            // let result:any[]=[];
+
+            search.forEach(function(element){
+                 apiAxios(0,1,element,function(){
+                    
+                }).then((data:any) =>{
+                    console.log("route data");
+                    // console.log(data.drinks);
+                    // result.push(data.drinks);
+                });
+            });          
+    
+
             // getData().then(function(data){
             //     console.log('then');
             //     console.log(data);
