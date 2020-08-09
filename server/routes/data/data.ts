@@ -43,7 +43,6 @@ interface drink{
     strMeasure13:string;
     strMeasure14:string;
     strMeasure15:string;
-    // [key:string]:string;
 }
 
 // function getData() {
@@ -58,17 +57,9 @@ interface drink{
 router.route('/')
     .get(
         (req,res)=>{        
-            //   
-            const search = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-            
-            // fs.writeFile('./routes/data/cocktail.json','hello',function(err:Error){
-            //     if (err === null){
-            //         console.log('success'); 
-            //     } 
-            //     else {
-            //         console.log('fail'); 
-            //     } 
-            // });  
+            const search = ['0','1','2','3','4','5','6','7','8','9',
+            'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
 
             for(var element of search){
                 console.log("for"+element);
@@ -77,25 +68,112 @@ router.route('/')
                 .then((data:any) =>{
                     const {result,param} = data;
                     if(result){
-                        let drinkresult:drink[]= result.data.drinks;
+                        let drinkresult:drink[]=[];
+                        for (let {
+                            idDrink,
+                            strDrink,
+                            strTags,
+                            strCategory,
+                            strAlcoholic,
+                            strGlass,
+                            strInstructions,
+                            strDrinkThumb,
+                            strIngredient1,
+                            strIngredient2,
+                            strIngredient3,
+                            strIngredient4,
+                            strIngredient5,
+                            strIngredient6,
+                            strIngredient7,
+                            strIngredient8,
+                            strIngredient9,
+                            strIngredient10,
+                            strIngredient11,
+                            strIngredient12,
+                            strIngredient13,
+                            strIngredient14,
+                            strIngredient15,
+                            strMeasure1,
+                            strMeasure2,
+                            strMeasure3,
+                            strMeasure4,
+                            strMeasure5,
+                            strMeasure6,
+                            strMeasure7,
+                            strMeasure8,
+                            strMeasure9,
+                            strMeasure10,
+                            strMeasure11,
+                            strMeasure12,
+                            strMeasure13,
+                            strMeasure14,
+                            strMeasure15} of result.data.drinks) {
+                            drinkresult.push({
+                                idDrink,
+                                strDrink,
+                                strTags,
+                                strCategory,
+                                strAlcoholic,
+                                strGlass,
+                                strInstructions,
+                                strDrinkThumb,
+                                strIngredient1,
+                                strIngredient2,
+                                strIngredient3,
+                                strIngredient4,
+                                strIngredient5,
+                                strIngredient6,
+                                strIngredient7,
+                                strIngredient8,
+                                strIngredient9,
+                                strIngredient10,
+                                strIngredient11,
+                                strIngredient12,
+                                strIngredient13,
+                                strIngredient14,
+                                strIngredient15,
+                                strMeasure1,
+                                strMeasure2,
+                                strMeasure3,
+                                strMeasure4,
+                                strMeasure5,
+                                strMeasure6,
+                                strMeasure7,
+                                strMeasure8,
+                                strMeasure9,
+                                strMeasure10,
+                                strMeasure11,
+                                strMeasure12,
+                                strMeasure13,
+                                strMeasure14,
+                                strMeasure15
+                            });
+                        }
                         console.log("data.drinks");
-                        // console.log(data.drinks);
-                        
                         console.log(param);
-                        
                         fs.writeFile(`./routes/data/cocktail${param}.json`, JSON.stringify(drinkresult,null,'\t'),function(){console.log("appendgood")});  
                     } 
                 });
-            };        
-            // console.log("result data");
-            // console.log(result); 
+            };  
+            
+            
+            // for(var element of search){
+            //     console.log("for"+element);
+            //     console.log(element);
+            //     apiAxios(0,1,element)
+            //     .then((data:any) =>{
+            //         const {result,param} = data;
+            //         if(result){
+            //             let drinkresult:drink[]= result.data.drinks;
+            //             console.log("data.drinks");
+            //             // console.log(data.drinks);
                         
-            // getData().then(function(data){
-            //     console.log('then');
-            //     console.log(data);
-            // }).catch(function(err){
-            //     console.log(err);
-            // })
+            //             console.log(param);
+                        
+            //             fs.writeFile(`./routes/data/cocktail${param}.json`, JSON.stringify(drinkresult,null,'\t'),function(){console.log("appendgood")});  
+            //         } 
+            //     });
+            // };      
         }
     )
 

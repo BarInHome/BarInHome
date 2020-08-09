@@ -2,24 +2,11 @@
 	{
 		"idDrink": "16108",
 		"strDrink": "9 1/2 Weeks",
-		"strDrinkAlternate": null,
-		"strDrinkES": null,
-		"strDrinkDE": null,
-		"strDrinkFR": null,
-		"strDrinkZH-HANS": null,
-		"strDrinkZH-HANT": null,
 		"strTags": null,
-		"strVideo": null,
 		"strCategory": "Cocktail",
-		"strIBA": null,
 		"strAlcoholic": "Alcoholic",
 		"strGlass": "Cocktail glass",
 		"strInstructions": "Combine all ingredients in glass mixer. Chill and strain into Cocktail glass. Garnish with sliced strawberry.",
-		"strInstructionsES": null,
-		"strInstructionsDE": "Alle Zutaten in einem Glasmischer vermengen. Abkühlen lassen und in das Cocktailglas abseihen. Mit Erdbeerscheiben garnieren.",
-		"strInstructionsFR": null,
-		"strInstructionsZH-HANS": null,
-		"strInstructionsZH-HANT": null,
 		"strDrinkThumb": "https://www.thecocktaildb.com/images/media/drink/xvwusr1472669302.jpg",
 		"strIngredient1": "Absolut Citron",
 		"strIngredient2": "Orange Curacao",
@@ -50,8 +37,6 @@
 		"strMeasure12": null,
 		"strMeasure13": null,
 		"strMeasure14": null,
-		"strMeasure15": null,
-		"strCreativeCommonsConfirmed": "No",
-		"dateModified": "2016-08-31 19:48:22"
+		"strMeasure15": null
 	}
 ]

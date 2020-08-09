@@ -2,24 +2,11 @@
 	{
 		"idDrink": "13581",
 		"strDrink": "410 Gone",
-		"strDrinkAlternate": null,
-		"strDrinkES": null,
-		"strDrinkDE": null,
-		"strDrinkFR": null,
-		"strDrinkZH-HANS": null,
-		"strDrinkZH-HANT": null,
 		"strTags": null,
-		"strVideo": null,
 		"strCategory": "Ordinary Drink",
-		"strIBA": null,
 		"strAlcoholic": "Alcoholic",
 		"strGlass": "Collins Glass",
 		"strInstructions": "",
-		"strInstructionsES": null,
-		"strInstructionsDE": "",
-		"strInstructionsFR": null,
-		"strInstructionsZH-HANS": null,
-		"strInstructionsZH-HANT": null,
 		"strDrinkThumb": "https://www.thecocktaildb.com/images/media/drink/xtuyqv1472669026.jpg",
 		"strIngredient1": "Peach Vodka",
 		"strIngredient2": "Coca-Cola",
@@ -50,8 +37,6 @@
 		"strMeasure12": null,
 		"strMeasure13": null,
 		"strMeasure14": null,
-		"strMeasure15": null,
-		"strCreativeCommonsConfirmed": "No",
-		"dateModified": "2016-08-31 19:43:46"
+		"strMeasure15": null
 	}
 ]
