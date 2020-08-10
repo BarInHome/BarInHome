@@ -19,8 +19,8 @@ module.exports = {
         'filter.php?i=',
         'filter.php?a=',
         'filter.php?c=',
-        'filter.php?g=',
-        'list.php?c=',
+        'filter.php?g=',    
+        'list.php?i=',
         '',
     ]
 }
