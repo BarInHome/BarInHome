@@ -11,7 +11,7 @@ import mainloginRouter from './routes/users/login';
 import cocktailRouter from './routes/cocktail/cocktail';
 import refrigeratorRouter from './routes/refrigerator/refrigerator';
 import authRouter from './routes/users/index';
-import dataRouter from './routes/data/data';
+import dataRouter from './routes/data/cocktail';
 
 class ServerApi{
   public app : express.Express

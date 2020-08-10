@@ -1,10 +1,13 @@
 import express from 'express';
 import apiAxios from '../../OpenAPI/apiAxios';
-const fs = require ('fs');
+import fs from 'fs';
+import dbQuery from '../../database/doQuery';
+
 
 const router = express.Router();
 
 interface drink{
+    [key:string]:string;
     idDrink:string;
     strDrink:string;
     strTags:string;
@@ -45,14 +48,45 @@ interface drink{
     strMeasure15:string;
 }
 
-// function getData() {
-//     return new Promise((resolve, reject)=>{
-//         const search=['0','1','2','3','4','5','6','7','8','9','0'];
-//         console.log("resolve");
-         
-//         resolve(data);
-//     });
-//   }  
+function cocktaildb(drinkresult:drink[],callback?:() => void):void{    
+    drinkresult.forEach(function(drink){
+        let ingredients:string[]=[];
+        let measures:string[]=[];
+        for(let property in drink){
+            if(property.includes('strIngredient') && drink[property]!=null&&drink[property]!="")
+                ingredients.push(drink[property]);
+            else if(property.includes('strMeasure') && drink[property]!=null&&drink[property]!="")
+                measures.push(drink[property]);
+        }
+        const padding:Array<string> = new Array(ingredients.length-measures.length);
+        padding.fill('0');
+        measures = measures.concat(padding);
+        for(let index in ingredients){
+            dbQuery('INSERT INTO recipe (cocktailName,ingredient,amount,maxIngredient) VALUES (?,?,?,?)',[drink.strDrink,ingredients[index],measures[index],ingredients.length])
+            .then((result)=>{
+                ingredients=[];
+                ingredients.length=0;
+                measures=[];
+                measures.length=0;
+                console.log("good backup");
+                if(callback){
+                    callback();
+                }
+            })
+            .catch()
+        }
+    });
+}
+
+router.route('/delete')
+    .get(
+        (req,res)=>{
+            dbQuery('DELETE FROM recipe')
+            .then((result)=>{
+                console.log("delete complete");
+            })
+            .catch()
+        });
 
 router.route('/')
     .get(
@@ -149,31 +183,15 @@ router.route('/')
                                 strMeasure15
                             });
                         }
-                        console.log("data.drinks");
+                        //console.log("data.drinks");
                         console.log(param);
-                        fs.writeFile(`./routes/data/cocktail${param}.json`, JSON.stringify(drinkresult,null,'\t'),function(){console.log("appendgood")});  
+                        
+                        cocktaildb(drinkresult);
+                        // fs.writeFile(`./routes/data/cocktail${param}.json`, JSON.stringify(drinkresult,null,'\t'),function(){console.log("appendgood")});  
                     } 
                 });
             };  
             
-            
-            // for(var element of search){
-            //     console.log("for"+element);
-            //     console.log(element);
-            //     apiAxios(0,1,element)
-            //     .then((data:any) =>{
-            //         const {result,param} = data;
-            //         if(result){
-            //             let drinkresult:drink[]= result.data.drinks;
-            //             console.log("data.drinks");
-            //             // console.log(data.drinks);
-                        
-            //             console.log(param);
-                        
-            //             fs.writeFile(`./routes/data/cocktail${param}.json`, JSON.stringify(drinkresult,null,'\t'),function(){console.log("appendgood")});  
-            //         } 
-            //     });
-            // };      
         }
     )
 
