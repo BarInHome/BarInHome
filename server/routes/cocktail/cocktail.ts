@@ -12,9 +12,6 @@ interface cocktail{
     ingredient:string;
     maxIngredient:number;
 }
-interface arrtype {
-    [propName: string]: cocktail;
-}
 
 router.route('/')
     .get(
@@ -24,6 +21,8 @@ router.route('/')
            
             // console.log(req);
             // console.log(req.user);
+            
+            //첫번째 유저가 가지고 있는 술들을 가져온다
             dbQuery(sql1,params1).
                 then((row)=>{
                     if(row.result[0]){
@@ -37,6 +36,7 @@ router.route('/')
                             useringredient.push(element.drinkKategorie);
                         });
                         
+                        //두번째 유저가 가지고 있는 재료들로 만들 수 있는 칵테일 이름들을 가져온다
                         const sql2 = `SELECT cocktailName,ingredient,maxIngredient FROM recipe WHERE ingredient IN(${tokens})`;
                         console.log("useringredient:"+useringredient)
                         dbQuery(sql2,useringredient)
