@@ -61,7 +61,7 @@ export default function MyInfoUser(): JSX.Element {
       id : "qjqdn1568"
     }
     const {loading, data, doPostRequest} = usePostRequest<void,userInterface>('/auth/info');
-
+    
     React.useEffect(()=>{
       doPostRequest();
       console.log("dfdf")
