@@ -9,7 +9,7 @@ import passport from 'passport';
 //import passportConfig from './passport/passport';
 import mainloginRouter from './routes/users/login';
 import cocktailRouter from './routes/cocktail/cocktail';
-import refrigeratorRouter from './routes/refrigerator/refrigerator';
+import refrigeratorRouter from './routes/refrigerator/index';
 import authRouter from './routes/users/index';
 import dataRouter from './routes/data/cocktail';
 
