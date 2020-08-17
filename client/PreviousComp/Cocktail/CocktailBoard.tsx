@@ -9,13 +9,13 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import  testItems  from "./test-items";
 import { makeStyles } from '@material-ui/core/styles';
-import useGetRequest from '../../utils/hooks/useGetRequest';
-import useInputChange from '../../utils/hooks/useInputChange';
-import history from '../../history';
-import { request } from 'https';
+// import useGetRequest from '../../utils/hooks/useGetRequest';
+// import useInputChange from '../../utils/hooks/useInputChange';
+// import history from '../../history';
+// import { request } from 'https';
 import { componentDidMount } from 'react-addons-linked-state-mixin';
 import { VoidTypeAnnotation } from '@babel/types';
-import { constants } from 'perf_hooks';
+// import { constants } from 'perf_hooks';
 
 const useStyles = makeStyles({
     root: {
@@ -41,24 +41,24 @@ function CocktailBoard():JSX.Element {
     // const [ingredient, setingredient] = useState([]);
     // const [maxIngredient, setmaxIngredient] = useState([]);
 
-    const {data, doGetRequest} = useGetRequest<void,any>('/main',()=>{
-        console.log('allocation cocktails');
+    // const {data, doGetRequest} = useGetRequest<void,any>('/main',()=>{
+    //     console.log('allocation cocktails');
         
-    });
+    // });
     
     useEffect(()=>{
-        doGetRequest();
+        // doGetRequest();
     },[]);
 
-    if(data!=null){
-        console.log("data");
-        console.log(data);
-        const {rescancocktail,recommendcocktail}=data;
-        console.log("rescancocktails");
-        console.log(rescancocktail);
-        console.log("recommendcocktail")
-        console.log(recommendcocktail); 
-    };
+    // if(data!=null){
+    //     console.log("data");
+    //     console.log(data);
+    //     const {rescancocktail,recommendcocktail}=data;
+    //     console.log("rescancocktails");
+    //     console.log(rescancocktail);
+    //     console.log("recommendcocktail")
+    //     console.log(recommendcocktail); 
+    // };
 
 
     return (

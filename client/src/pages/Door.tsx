@@ -1,7 +1,7 @@
 import React from 'react';
 
-import AuthComponent from '../components/Door/Auth/AuthComponent';
-import RecommandComponent from '../components/Door/Recommand/RecommandComponent';
+import AuthComponent from '../components/door/auth/AuthComponent';
+import RecommandComponent from '../components/door/recommend/RecommandComponent';
 
 
 function Door(): JSX.Element {
