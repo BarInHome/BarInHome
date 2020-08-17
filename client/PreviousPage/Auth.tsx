@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthComponent from '../components/Auth/AuthComponent';
+import AuthComponent from '../../components/Auth/AuthComponent';
 
 interface userSessionInterface{
     handleLoginInfo: (state: boolean) => void;

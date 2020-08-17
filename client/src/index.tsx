@@ -8,28 +8,22 @@ import history from './history';
 import GlobalStyles from './styles/GlobalStyle';
 import theme from './styles/theme';
 import { MuiThemeProvider as ThemeProvider } from '@material-ui/core/styles';
+
 // pages
-//import Auth from './pages/Auth';  // 사용자 인증 안되어 있을시 - 로그인 페이지 + 회원가입 페이지 링크
-import Main from './pages/Main';  // 추천 칵테일 페이지 + 내 냉장고 페이지 링크
-import Myrefg from './pages/Myrefg';
-import MyPage from './pages/MyPage';
-import Recommend from './pages/Recommend';
-import Signup from './components/Auth/Signup/Signup';
-import Header from './components/Main/Header';
-import Login from './components/Auth/Login/Login';
-import Auth from './pages/Auth';
+import {
+  Door, Main, Mypage
+} from './pages';
 
 
 ReactDOM.render(
   <BrowserRouter>
     <GlobalStyles/> 
       <ThemeProvider theme={theme}>
-        <Header/>
+        
         <Switch>
-          <Route exact path='/main' component={Main} push/>
-          <Route exact path='/myrefg' component={Myrefg}/>
-          <Route exact path='/mypage' component={MyPage}/>
-          <Route path='/' component={Auth} push/>
+          <Route exact pate='/' component={Door}/>
+          <Route exact pate='/main' component={Main}/>
+          <Route exact pate='/mypage' component={Mypage}/>
         </Switch>
         
       </ThemeProvider>
