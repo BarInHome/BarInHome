@@ -1,13 +1,13 @@
 import React from 'react';
 
-function Mypage(): JSX.Element {
 
+function Header():JSX.Element {
 
     return(
         <div>
-
+            Header
         </div>
     );
 }
 
-export default Mypage;
+export default Header;

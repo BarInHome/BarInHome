@@ -12,10 +12,15 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-import {AccountBox,MoveToInbox,Description,Instagram} from '@material-ui/icons';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+
+import LeftMenuDrawer from '../components/MyPage/LeftMenu/LeftMenuDrawer';
+import Refrigerator from '../components/MyPage/MyPageElements/MyRefg/Refrigerator';
+import MyInfo from '../components/MyPage/MyPageElements/MyInfo/MyInfo';
+import APITest from '../components/MyPage/Others/APITest';
+
 
 const drawerWidth = 240;
 
@@ -23,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
+      alignItems: 'normal'
     },
     drawer: {
       [theme.breakpoints.up('sm')]: {
@@ -54,64 +60,40 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(3),
     },
     leftListItems: {
-        height: "150px",
-        display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
-        justifyContent:'center',
+        height: "100px",
     },
     leftListItemsIcons: {
         height: "100px",
-    },
-    itemAlign: {
-        justifyContent: "center"
-    },
-    active: {
-      backgroundColor: theme.palette.primary.dark,
     }
   }),
 );
 
-interface Props {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window?: () => Window;
-    handleSetMenuIndex : (index:number) => void;
-    menuIndex: number;
-}
 
-export default function LeftMenu(props:Props): JSX.Element {
-    const { handleSetMenuIndex ,menuIndex} = props;
-    const classes = useStyles();
-    const onClick = (index:number) =>{
-        handleSetMenuIndex(index);
-    }
+export default function MyPage() {
+  const classes = useStyles();
+  
+  /*    Page Selector
+        0 : 회원정보관리
+        1 : 내 냉장고
+        2 : 내 레시피
+        3 : 기타 사항
+  */
+  const [menuIndex, setMenuIndex] = React.useState(0);
+  const handleSetMenuIndex = (index:number) => {
+      setMenuIndex(index);
+  }
+  const ContentsArray = [<MyInfo/>,<Refrigerator/>,
+                         <div>2</div>,<APITest/>];
 
-    const IconArray = [ <AccountBox fontSize="large"/>,<MoveToInbox fontSize="large"/>,
-                        <Description fontSize="large"/>,<Instagram fontSize="large"/>, ]
-
-    return(
-      <div className={classes.toolbar}>
-        <List className={classes.itemAlign}>
-            {['회원정보 관리','내 냉장고','내 레시피','기타 사항'].map((text, index) => (
-            <>
-                <ListItem 
-                    button key={text}
-                    selected={menuIndex === index?true:false}
-                    className={classes.leftListItems}
-                    onClick={() => onClick(index)} 
-                >
-                    <ListItemIcon>
-                        {IconArray[index]}
-                    </ListItemIcon>
-                    <ListItemText primary={text}/>
-                </ListItem>
-                <Divider/>
-            </>
-            ))}
-        </List>
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <nav className={classes.drawer} aria-label="mailbox folders">
+        <LeftMenuDrawer handleSetMenuIndex={handleSetMenuIndex} menuIndex={menuIndex}/>    
+      </nav>
+      <main className={classes.content}>
+        {ContentsArray[menuIndex]}
+      </main>
     </div>
-    );
+  );
 }
