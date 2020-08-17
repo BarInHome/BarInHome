@@ -13,6 +13,9 @@ const theme = createMuiTheme({
           contrastText: '#ffff',
       }
     },
+    typography: {
+      fontFamily: "Oxygen",
+    }
   });
   
   export default theme;

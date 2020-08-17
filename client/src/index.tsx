@@ -21,9 +21,9 @@ ReactDOM.render(
       <ThemeProvider theme={theme}>
         
         <Switch>
-          <Route exact pate='/' component={Door}/>
-          <Route exact pate='/main' component={Main}/>
-          <Route exact pate='/mypage' component={Mypage}/>
+          <Route exact path='/' component={Door}/>
+          <Route exact path='/main' component={Main}/>
+          <Route exact path='/mypage' component={Mypage}/>
         </Switch>
         
       </ThemeProvider>
