@@ -1,12 +1,8 @@
 import React from 'react';
 
-<<<<<<< HEAD
-import AuthComponent from '../components/door/auth/AuthComponent';
-import RecommandComponent from '../components/door/recommend/RecommandComponent';
-=======
-import DoorHeader from '../components/Door/DoorHeader/DoorHeaderRoot';
-import AuthComponent from '../components/Door/Auth/AuthRoot';
-import RecommandComponent from '../components/Door/Recommand/RecommandRoot';
+import DoorHeader from '../components/header/Header';
+import AuthComponent from '../components/door/auth/AuthRoot';
+import RecommandComponent from '../components/door/recommend/RecommandRoot';
 import Description1 from '../components/Door/Description/Description1';
 import Description2 from '../components/Door/Description/Description2';
 
@@ -26,7 +22,7 @@ const useStyles = makeStyles({
         padding: '120px',
     }
   });
->>>>>>> 0b07923c14bbf8c3fa41faaf8f451365630ffd05
+
 
 
 function Door(): JSX.Element {

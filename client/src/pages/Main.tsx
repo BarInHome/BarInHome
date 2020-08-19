@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Main/Header'; 
+import Header from '../components/main/Header'; 
 
 function Main(): JSX.Element {
 
