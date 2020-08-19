@@ -8,6 +8,7 @@ import history from './history';
 import GlobalStyles from './styles/GlobalStyle';
 import theme from './styles/theme';
 import { MuiThemeProvider as ThemeProvider } from '@material-ui/core/styles';
+import {AppBar, Typography} from '@material-ui/core';
 
 // pages
 import {
@@ -19,7 +20,11 @@ ReactDOM.render(
   <BrowserRouter>
     <GlobalStyles/> 
       <ThemeProvider theme={theme}>
-        
+        <AppBar position="static">
+          <Typography variant="h3">
+            Test Header
+          </Typography>
+        </AppBar>
         <Switch>
           <Route exact path='/' component={Door}/>
           <Route exact path='/main' component={Main}/>
