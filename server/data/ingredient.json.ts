@@ -1,4 +1,5 @@
-
+ 
+const ingredientList =
 [
     {
         "idIngredient": "11",
@@ -3809,3 +3810,5 @@
         "strABV": null
     }
 ]
+
+export default ingredientList;
