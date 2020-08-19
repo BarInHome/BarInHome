@@ -13,6 +13,8 @@ import refrigeratorRouter from './routes/refrigerator/index';
 import authRouter from './routes/users/index';
 import dataRouter from './routes/data/cocktail';
 
+import mypageRouter from './routes/mypage/index';
+
 class ServerApi{
   public app : express.Express
 
@@ -66,6 +68,7 @@ class ServerApi{
     this.app.use('/', mainloginRouter);
     this.app.use('/auth', authRouter);
     this.app.use('/data', dataRouter);
+    this.app.use('/mypage',mypageRouter);
 
     this.app.use(function(req, res, next) {
       next(createError(404));
