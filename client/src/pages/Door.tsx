@@ -1,10 +1,10 @@
 import React from 'react';
 
-import DoorHeader from '../components/header/Header';
+import DoorHeader from '../components/door/doorheader/DoorHeaderRoot';
 import AuthComponent from '../components/door/auth/AuthRoot';
 import RecommandComponent from '../components/door/recommend/RecommandRoot';
-import Description1 from '../components/Door/Description/Description1';
-import Description2 from '../components/Door/Description/Description2';
+import Description1 from '../components/door/description/Description1';
+import Description2 from '../components/door/description/Description2';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid} from '@material-ui/core';
