@@ -1,5 +1,5 @@
 module.exports = {
-    'secret' :  '',
+    'secret' :  'OJ9qH6mElA',
     
     'federation' : {
       'naver' : {

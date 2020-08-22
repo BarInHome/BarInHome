@@ -24,16 +24,11 @@ function doQuery<QueryResult = any>(
     return new Promise((resolve, reject) => {
           connection.query(query, queryArray, (error: { sqlMessage: string | undefined; }, result: QueryResult) => {
             if (error) {
-                //connection.release();
-                console.log('query',query);
-                console.log('query',queryArray);
-                
+                //connection.release();                
               reject(new createError[500](error.sqlMessage));
             } else {
               //connection.release();
               //console.log("***************[Close Database Connection]***************");
-              console.log('query',query);
-              console.log('query',queryArray);
               resolve({ error, result });
             }
           });
