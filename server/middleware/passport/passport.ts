@@ -1,10 +1,15 @@
 import passport from "passport";
 import dbQuery from '../../database/doQuery';
-import { Strategy as LocalStrategy } from 'passport-local';
+import passportJWT from 'passport-jwt';
+// import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as NaverStrategy } from "passport-naver";
 import { Strategy as FacebookStrategy } from "passport-facebook";
+import { Strategy as JwtStrategy } from 'passport-jwt';
 import { OAuth2Strategy as GoogleStrategy } from "passport-google-oauth";
 import { Strategy as KakaoStrategy } from "passport-kakao";
+import { Strategy as LocalStrategy } from './strategy/LocalStrategy';
+
+import verifications from './verifications';
 
 /*
   1) Facebook : id, name            + email
@@ -25,50 +30,65 @@ passport.deserializeUser((id, done) => {
   done(undefined,id);
 });
 
-passport.use('local-login',new LocalStrategy({ usernameField: "id" ,passwordField:"pw"}, (id:string, pw:string, done: any) => { 
-  const sql = "SELECT * FROM userinfo WHERE id = ? && pw = ?";
-  const params = [id,pw];
+const ExtractJWT = passportJWT.ExtractJwt;
+passport.use('jwt' , new JwtStrategy({
+  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),     
+  secretOrKey   : 'OJ9qH6mElA',
+},()=>{
   
-  dbQuery(sql,params).
-    then((row)=>{
-      if(row.result[0]){
-        // login success
-        console.log("[LOGIN SUCCESS]");
-        return done(undefined, id);
-      }
-      else{
-        return done(false,undefined);
-      }
-    });
-}));
+}))
 
-passport.use('local-signup',new LocalStrategy({ usernameField: "id" ,passwordField:"pw"}, (id:string, pw:string, done: any) => { 
-    const sqlDupleCheck = 'SELECT * FROM userinfo WHERE id = ?';
-    dbQuery(sqlDupleCheck,[id])
-      .then((row)=>{
-        if(row.result[0]){
-          //dupeld
-          console.log("[SIGNUP ERROR] Try Again");
-          //status == 401
-          return done(false);
-        }
-        else{
-          //ok
-          const sql = 'INSERT INTO userinfo(id,pw,name) VALUES(?,?,"")';
-          const params = [id,pw];
+passport.use('local-login', new LocalStrategy(
+  verifications.localLogin
+));
 
-          dbQuery(sql,params) 
-          .then((row)=>{
-            return done(undefined,id);
-          })
-          .catch((err)=>{
-            console.log(err);
-            return done(false);
-          })
-        }
-      })
-}));
+passport.use('local-signup', new LocalStrategy(
+  verifications.localSignup
+));
 
+// passport.use('local-login',new LocalStrategy({ usernameField: "id" ,passwordField:"pw"}, (id:string, pw:string, done: any) => { 
+//   const sql = "SELECT * FROM userinfo WHERE id = ? && pw = ?";
+//   const params = [id,pw];
+  
+//   dbQuery(sql,params).
+//     then((row)=>{
+//       if(row.result[0]){
+//         // login success
+//         console.log("[LOGIN SUCCESS]");
+//         return done(undefined, id);
+//       }
+//       else{
+//         return done(false,undefined);
+//       }
+//     });
+// }));
+
+// passport.use('local-signup',new LocalStrategy({ usernameField: "id" ,passwordField:"pw"}, (id:string, pw:string, done: any) => { 
+//     const sqlDupleCheck = 'SELECT * FROM userinfo WHERE id = ?';
+//     dbQuery(sqlDupleCheck,[id])
+//       .then((row)=>{
+//         if(row.result[0]){
+//           //dupeld
+//           console.log("[SIGNUP ERROR] Try Again");
+//           //status == 401
+//           return done(false);
+//         }
+//         else{
+//           //ok
+//           const sql = 'INSERT INTO userinfo(id,pw,name) VALUES(?,?,"")';
+//           const params = [id,pw];
+
+//           dbQuery(sql,params) 
+//           .then((row)=>{
+//             return done(undefined,id);
+//           })
+//           .catch((err)=>{
+//             console.log(err);
+//             return done(false);
+//           })
+//         }
+//       })
+// }));
 
 passport.use('facebook',new FacebookStrategy({
   clientID:secret_config.federation.facebook.client_id,
