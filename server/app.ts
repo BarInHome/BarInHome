@@ -10,7 +10,8 @@ import passport from 'passport';
 import mainloginRouter from './routes/users/login';
 import cocktailRouter from './routes/cocktail/cocktail';
 import refrigeratorRouter from './routes/refrigerator/index';
-import authRouter from './routes/users/index';
+import authRouter from './routes/auth/index';
+import userRouter from './routes/users/index';
 import dataRouter from './routes/data/cocktail';
 
 import mypageRouter from './routes/mypage/index';
@@ -67,6 +68,7 @@ class ServerApi{
     this.app.use('/refrigerator', refrigeratorRouter);
     this.app.use('/', mainloginRouter);
     this.app.use('/auth', authRouter);
+    this.app.use('/users', userRouter);
     this.app.use('/data', dataRouter);
     this.app.use('/mypage',mypageRouter);
 
