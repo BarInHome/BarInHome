@@ -1,7 +1,7 @@
 //타입의 값들만 받아서 string 배열로 넘긴다
 import express from 'express';
 // import dbQuery from '../../database/doQuery';
-import typesdb from '../data/ingredientData.json'
+import ingredientList from '../../data/ingredient.json'
 
 
 const router = express.Router();  
@@ -9,8 +9,15 @@ const router = express.Router();
 router.route('/')
     .get(
         (req,res)=>{
-           
-            
+            console.log("hello");
+            let typeset = new Set<string>();
+            //typesdb 반복하면서 typeset에 넣는다
+            for(let db of ingredientList){
+                if (db.strType != null)
+                    typeset.add(db.strType);
+            } 
+            const type = [...typeset];
+            res.send(type);
         });
 
 export default router;

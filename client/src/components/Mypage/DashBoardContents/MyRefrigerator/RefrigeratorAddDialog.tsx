@@ -1,6 +1,5 @@
-// import ingredientData from '../MyPage/MyPageElements/MyRefg/ingredientData.json';
 import { fade,makeStyles, Theme,createStyles } from '@material-ui/core/styles';
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import {Button,Dialog,DialogTitle,DialogActions,DialogContent,Grid,TextField,
         FormControl,Select,Input,InputBase,InputLabel,MenuItem,AppBar
         ,Toolbar,IconButton,Box,Card,CardActionArea,CardMedia,CardContent,
@@ -11,9 +10,8 @@ import  testItems  from "./test-items";
 import RefrigeratorItem from './RefrigeratorItem';
 import { spacing } from '@material-ui/system';
 import Carousel from 'react-elastic-carousel';
-// import {Button,Dialog,DialogTitle,DialogActions,DialogContent,
-//         FormControl,Select,Input,InputLabel,MenuItem} from '@material-ui/core';
-// import usePostRequest from '../../utils/hooks/usePostRequest';
+import usePostRequest from '../../../../utils/hooks/usePostRequest'
+
 // // interface RefrigeratorInterface{
 // //     open:boolean;
 // //     handleClose:()=>void;
@@ -97,12 +95,55 @@ interface DialogProps{
     handleClose: () => void;
     defaultInfo?: any;
 }
+interface ingredientinterface{
+  ingredient:string;
+  ingredienttype:string;
+}
 
 function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
     const {
         open, handleOpen, handleClose ,
     } = props;
     const classes = useStyles();
+    const [inputingredients, setInpuingredients] = useState<ingredientinterface[]>([]);
+    const [ingredienttype, setIngredienttype] = useState<string[]>(['']);
+    const [ingredients, setIngredients] = useState<string[]>(['']);
+    const [selecttype, setselecttype] = useState<string>('');
+
+    // const handleChangeSelect1 = (event: React.ChangeEvent<{value: unknown}>) => {
+    //     setselecttype(String(event.target.value) || ''); 
+    // };
+    const {data:type, doPostRequest:typeRequest} = usePostRequest<void,string[]>('/refrigerator/types',()=>{
+        console.log('[Get types]');
+    });
+    const {data:ingredient, doPostRequest:ingredientRequest} = usePostRequest<string,string[]>('/refrigerator/ingredients',()=>{
+        console.log('[Get Ingredients]');
+    });        
+
+    useEffect(() => {
+        console.log("selecttype: "+selecttype);
+        setIngredients([]);
+        
+        ingredientRequest(selecttype);
+        if(ingredient!=null)
+            setIngredients(ingredient);
+        // let ingredientList:string[] = []
+        // for(let element of ingredientData){
+        //     if(ingredienttype==element.strType){  
+        //         console.log(element.strIngredient)
+        //         ingredientList.push(element.strIngredient);
+        //     }
+        // }
+        // console.log(ingredientList); 
+        // setIngredients(ingredientList);
+    },[selecttype]);
+
+    useEffect(() => {
+        
+        typeRequest();
+        if(type!=null)
+            setIngredienttype(type);
+    },[]);
 
     return(
         <Dialog
@@ -147,14 +188,16 @@ function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
                             <Select
                                 labelId="demo-dialog-select-label"
                                 id="demo-dialog-select"
-                                // value={ingredienttype}
+                                value={selecttype}
                                 // onChange={handleChangeSelect1}
                                 input={<Input />}
                             >
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-                            {/* {typeList} */}
+                            {ingredienttype.map((ingredientsList,index)=>{
+                            return (<MenuItem value={ingredientsList} key={index}>{ingredientsList}</MenuItem>)
+                            })}
                             </Select>
                         </FormControl>
                     </Grid>
@@ -171,7 +214,9 @@ function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-                            {/* {typeList} */}
+                            {ingredienttype.map((ingredientsList,index)=>{
+                            return (<MenuItem value={ingredientsList} key={index}>{ingredientsList}</MenuItem>)
+                            })}
                             </Select>
                         </FormControl>
                     </Grid>
