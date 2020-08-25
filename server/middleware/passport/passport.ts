@@ -136,7 +136,7 @@ passport.use('kakao',new KakaoStrategy({
   const _profile = profile._json;
   // id : string
   console.log('Kakao Login Strategy',_profile);
-
+  
   loginByThirdparty({
     'auth_type': 'kakao',
     'auth_id': _profile.id,
