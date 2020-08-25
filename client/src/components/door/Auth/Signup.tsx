@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 
 import {AuthState,AuthAction} from './Auth.reducer';
 
+import history from '../../../history';
 import useInputChange from '../../../utils/hooks/useInputChange';
 import usePostRequest from '../../../utils/hooks/usePostRequest';
 
@@ -64,6 +65,11 @@ interface AuthInterface{
   dispatch: React.Dispatch<AuthAction>;
 }
 
+interface TokenResponseInterface{
+  accessToken : string;
+  status : number;
+}
+
 export default function Signup(props:AuthInterface) {
   const {
     handleSetIsLogin, state, dispatch
@@ -75,9 +81,12 @@ export default function Signup(props:AuthInterface) {
       dispatch({type: name , value: event.target.value});
   }
 
-  const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/signup',()=>{
-      console.log('[signup success]');
-      handleSetIsLogin(true);
+  const {doPostRequest, } = usePostRequest<userInterface,TokenResponseInterface>('/auth/signup',(result)=>{
+      console.log('[SIGNUP SUCCESS]');
+      console.log(result);
+      // 토큰 처리 로직 필요
+
+      history.push('/main');
       window.location.reload();
   });
 
