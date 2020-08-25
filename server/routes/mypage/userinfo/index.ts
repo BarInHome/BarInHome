@@ -5,6 +5,8 @@ router.route('/')
     .get(
         (req,res) => {
             // user info 검색
+            res.send('ok');
+        
         }
     )
 

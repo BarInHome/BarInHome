@@ -265,6 +265,20 @@ export default function Login(props:AuthInterface):JSX.Element {
               KaKao
             </Button>
           </Grid>
+          <Grid container xs={12} className={classes.buttonWrapper} >
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                
+                variant="contained" 
+                color="secondary"
+                href="http://localhost:5000/auth/login/admin"
+                startIcon={<Email/>} 
+                >
+                관리자 계정 로그인
+                </Button>
+            </Grid>
+          </Grid>
       </div>
       <Box mt={8}>
         <Copyright />

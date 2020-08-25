@@ -21,5 +21,11 @@ module.exports = {
         'secret_id' : 'p2-SIZiIQkdeKSqN5b4Wh0id',
         'callback_url' : 'http://localhost:5000/auth/login/google/callback'
       }
+    },
+
+    'admin' : {
+      id: 'admin',
+      pw: 'admin',
+      roles: 'Admin',
     }
   };

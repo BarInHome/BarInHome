@@ -27,7 +27,7 @@ ReactDOM.render(
         </AppBar>
         <Switch>
           <Route exact path='/' component={Door}/>
-          <Route exact path='/main' component={Main}/>
+          <Route path='/main' component={Main}/>
           <Route exact path='/mypage' component={Mypage}/>
         </Switch>
         

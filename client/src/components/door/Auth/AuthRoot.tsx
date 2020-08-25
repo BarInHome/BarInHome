@@ -3,6 +3,7 @@ import React from 'react';
 import {authReducer,initialState} from './Auth.reducer';
 
 import Login from './Login';
+import Signup from './Signup';
 
 function AuthRoot():JSX.Element{
     const [isLoginPage , setIsLoginPage] = React.useState(true);
@@ -13,12 +14,19 @@ function AuthRoot():JSX.Element{
     };
 
     return( 
-        <>
+        <> 
+            {isLoginPage?
             <Login
                 handleSetIsLogin={handleSetIsLogin}
                 state={state}
                 dispatch={dispatch}
+            />:
+            <Signup
+                handleSetIsLogin={handleSetIsLogin}
+                state={state}
+                dispatch={dispatch}
             />
+            }
         </>
     );
 }

@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import path from 'path'
+import cors from 'cors';
 import createError from 'http-errors';
 import session from 'express-session';
 import passport from 'passport';
@@ -35,7 +36,7 @@ class ServerApi{
         
       }
     }));
-    /*
+    
     const whiteList = [
       'http://localhost:3000',
      ];
@@ -44,7 +45,7 @@ class ServerApi{
        credentials: true
     };
     this.app.use(cors(corsOptions));
-    */
+    
 
    
     this.app.use(logger('dev'));
