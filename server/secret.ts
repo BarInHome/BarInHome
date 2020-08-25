@@ -5,12 +5,12 @@ module.exports = {
       'naver' : {
         'client_id' : 'C3ibnS2NkJuxneW74og7',
         'secret_id' : 'ODS6sgfToU',
-        'callback_url' : 'http://localhost:5000/auth/login/naver/callback/'
+        'callback_url' : 'http://localhost:5000/auth/login/naver/callback'
       },
       'facebook' : {
         'client_id' : '1973399842803660',
         'secret_id' : '9de714121fd078539ddac4d70be0de9f',
-        'callback_url' : 'http://localhost:5000/auth/login/facebook/callback/'
+        'callback_url' : 'http://localhost:5000/auth/login/facebook/callback'
       },
       'kakao' : { 
         'client_id' : '47137eb4992ac6771d0302cd2e0dd87c',
