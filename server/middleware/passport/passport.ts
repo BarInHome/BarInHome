@@ -20,7 +20,7 @@ const ExtractJWT = passportJWT.ExtractJwt;
 */
 
 passport.use('jwt' , new JwtStrategy({
-  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),     
+  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), 
   secretOrKey   : process_env.secret,
 },verifications.token));
 

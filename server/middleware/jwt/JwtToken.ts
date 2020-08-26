@@ -12,7 +12,6 @@ async function  create(id: string , options?: any): Promise<Token>{
     return { token };
 }
 
-
 export default {
     create,
     

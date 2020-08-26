@@ -52,6 +52,10 @@ function Copyright() {
   );
 }
 
+interface Token {
+  readonly token : string;
+}
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -137,7 +141,7 @@ export default function Login(props:AuthInterface):JSX.Element {
       dispatch({type: name , value: event.target.value});
   }
 
-  const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/login',()=>{
+  const {doPostRequest} = usePostRequest<userInterface,Token>('/auth/login',()=>{
       console.log('[login success]');
       handleSetIsLogin(true);
       history.push('/main');
@@ -146,10 +150,11 @@ export default function Login(props:AuthInterface):JSX.Element {
 
   const onClickLogin = () => {
       try{
-          doPostRequest({
+          const token = doPostRequest({
             id:id,
             pw:pw
           });
+          
       }catch(e){
           console.log(e);
       }
