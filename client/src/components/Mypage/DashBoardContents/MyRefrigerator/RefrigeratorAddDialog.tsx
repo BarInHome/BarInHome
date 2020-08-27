@@ -141,6 +141,7 @@ function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
     useEffect(() => {
         
         typeRequest();
+        console.log("type"+type);
         if(type!=null)
             setIngredienttype(type);
     },[]);

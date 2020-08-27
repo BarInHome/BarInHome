@@ -6,7 +6,10 @@ const router = express.Router();
 router.post('/', passport.authenticate('local-login',{session: false}) , (req,res) => {
     JwtToken.create(req.user as string)
         .then((result) => {
-            res.send(result);
+            res.header({
+                'Authorization':`Bearer ${result.accesstoken}`,
+                'Refresh':`Bearer ${result.refreshtoken}`
+            });
         })
 });
 

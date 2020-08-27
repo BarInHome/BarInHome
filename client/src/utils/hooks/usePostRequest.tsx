@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import axios from '../axios';
-import { useCookies} from 'react-cookie';
 
 const DEFAULT_ERROR_MESSAGE = '죄송합니다.. 오류가 발생했습니다..';
 export interface UsePostRequestObject<T, P> {
@@ -9,10 +8,7 @@ export interface UsePostRequestObject<T, P> {
     error: string;
     doPostRequest: (param: T) => void;
     data: P | null;
-    setTokenHeader:()=>void;
-    refresh: string | null;
-    // doSilentRefresh:()=>void;
-    // cookies:{[name: string]:any};
+    // setTokenHeader:()=>void;
   }
 
   export default function usePostRequest<PARAM_TYPE = {[key: string]: any}, RES_DATA_TYPE = any>(
@@ -24,27 +20,28 @@ export interface UsePostRequestObject<T, P> {
   const [loading, setLoading] = React.useState<boolean | undefined>(undefined);
   const [error, setError] = React.useState('');
   const [refresh, setrefresh] = React.useState<string | null>(null);
-  const [Cookies] = useCookies(['refresh']);
+  const [access, setaccess] = React.useState<string | null>(null);
 
   //로그인했다 그 뒤에 토큰을 넣는다
   const setTokenHeader = ()=>{
-    axios.defaults.headers.common['Authorization'] = `Bearer ${data}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${access}`;
+    axios.defaults.headers.common['Refresh'] = `Bearer ${refresh}`;
     //로그인 이후에 토큰을 앞에 붙혀서 전송한다는 의미이다
     //추후에 data는 access 토큰만 들어가도록 바꾸어 주자
   }
   //로그인 할때 아예 이것도 받아서 콜백으로 넣어주자
 
-  const doSilentRefresh = () => {
-    axios.post('/silent-refresh', data,{
-      headers:{'Authorization': `Bearer ${Cookies.get(refresh)}`}
-      })
+  const doSilentRefresh = (param:PARAM_TYPE) => {
+    axios.post('/refresh/silent')
       .then((res)=>{
-        setData(res.data);
+        setaccess(res.headers('Authorization'));
+        setrefresh(res.headers('Refresh'));
         setTokenHeader();
-        setrefresh(res.headers.Authorization);
+        doPostRequest(param);
       })
       .catch(error => {
-          // ... 로그인 실패 처리//refresh에 널을 주자 login에서 null이면 예외처리 할 수 있게
+          // ... 로그인 실패 처리
+          //refresh에 널을 주자 login에서 null이면 예외처리 할 수 있게
       });
   }
 //충분 step 1 access 만료되었을때 api 돌리는데 만료오류나면 
@@ -60,8 +57,10 @@ export interface UsePostRequestObject<T, P> {
         console.log('res.data',res.data);
         setLoading(false); // 로딩 완료
         setData(res.data);
-        setrefresh(res.headers.Authorization);
         setSuccess(true);
+        setaccess(res.headers('Authorization'));
+        setrefresh(res.headers('Refresh'));
+        setTokenHeader();
         if (successCallback) { successCallback(); }
       })
       .catch((err) => {
@@ -74,7 +73,8 @@ export interface UsePostRequestObject<T, P> {
           setError(err.response.data.message || DEFAULT_ERROR_MESSAGE);
         } else if (err.response.name=='TokenExpiredError') {
           // 토큰이 만료가 된 경우 (조건문을 고쳐주자)
-          doSilentRefresh();
+          axios.defaults.headers.common['Authorization'] = `Bearer ${refresh}`;
+          doSilentRefresh(param);
         } else if (err.request) {
           // 요청이 이루어 졌으나 응답을 받지 못한 경우.
           console.log('요청이 이루어 졌으나 응답을 받지 못한 경우: ', err.request);
@@ -91,7 +91,7 @@ export interface UsePostRequestObject<T, P> {
   //https cookie only 저장 방식에서 refreshtoken 저장 방법 찾자
 
   return {
-    success, loading, error, data, doPostRequest, setTokenHeader, refresh
+    success, loading, error, data, doPostRequest, 
   };
 }
 

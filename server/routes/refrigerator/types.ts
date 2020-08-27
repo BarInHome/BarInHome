@@ -7,7 +7,7 @@ import ingredientList from '../../data/ingredient.json'
 const router = express.Router();  
 
 router.route('/')
-    .get(
+    .post(
         (req,res)=>{
             console.log("hello");
             let typeset = new Set<string>();
