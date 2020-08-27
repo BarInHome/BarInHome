@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', passport.authenticate('local-login',{session: false}) , (req,res) => {
     JwtToken.create(req.user as string)
         .then((result) => {
-            const query = 'UPDATE barinhome SET refresh = ? WHERE id = ?';
+            const query = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
             const accesstoken = result.accesstoken;
             const refreshtoken = result.refreshtoken; 
             doQuery(query,[refreshtoken,req.user])
@@ -17,7 +17,6 @@ router.post('/', passport.authenticate('local-login',{session: false}) , (req,re
                     'Refresh':`Bearer ${refreshtoken}`
                 });
             })
-            
         })
 });
 

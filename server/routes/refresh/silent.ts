@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/', (req,res) => {
     const refresh = <string>req.header('Refresh');
     const sql1='SELECT refresh,id FROM barinhome WHERE refresh = ?';
-    const sql2='UPDATE barinhome SET refresh = ? WHERE id = ?';
+    const sql2='UPDATE userinfo SET refresh = ? WHERE id = ?';
     
     jwt.verify(refresh,process_env.secret, function(err:JsonWebTokenError) {
         if(err)
