@@ -20,8 +20,9 @@ import {
 
 
 ReactDOM.render(
-  <BrowserRouter>
-    <CookiesProvider>
+  <CookiesProvider>
+    <BrowserRouter>
+    
       <GlobalStyles/> 
         <ThemeProvider theme={theme}>
           <AppBar position="static">
@@ -34,10 +35,10 @@ ReactDOM.render(
             <Route exact path='/main' component={Main}/>
             <Route exact path='/mypage' component={Mypage}/>
           </Switch>
-          
+
         </ThemeProvider>
-      </CookiesProvider>
-  </BrowserRouter>,
+    </BrowserRouter>  
+  </CookiesProvider>,
   document.getElementById('root')
 );
 

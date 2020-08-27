@@ -144,6 +144,7 @@ export default function Login(props:AuthInterface):JSX.Element {
   const {doPostRequest} = usePostRequest<userInterface,Token>('/auth/login',()=>{
       console.log('[login success]');
       handleSetIsLogin(true);
+      
       history.push('/main');
       window.location.reload();
   });
@@ -277,3 +278,5 @@ export default function Login(props:AuthInterface):JSX.Element {
     </Container>
   );
 }
+// import { useCookies,withCookies } from 'react-cookie';
+// const [cookies, setCookie, removeCookie] = useCookies(['refresh']);

@@ -19,6 +19,14 @@ const ExtractJWT = passportJWT.ExtractJwt;
   4) Kakao    : id                  + id , email
 */
 
+// passport.serializeUser((id, done) => { // Strategy 성공 시 호출됨
+//   done(null, id); // 여기의 user가 deserializeUser의 첫 번째 매개변수로 이동
+// });
+
+// passport.deserializeUser((id, done) => { // 매개변수 user는 serializeUser의 done의 인자 user를 받은 것
+//   done(null, id); // 여기의 user가 req.user가 됨
+// });
+
 passport.use('jwt' , new JwtStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), 
   secretOrKey   : process_env.secret,
