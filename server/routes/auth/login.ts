@@ -1,15 +1,23 @@
 import express from 'express';
 import passport from '../../middleware/passport/passport';
 import JwtToken from  '../../middleware/jwt/JwtToken';
+import doQuery from '../../database/doQuery';
 const router = express.Router();
 
 router.post('/', passport.authenticate('local-login',{session: false}) , (req,res) => {
     JwtToken.create(req.user as string)
         .then((result) => {
-            res.header({
-                'Authorization':`Bearer ${result.accesstoken}`,
-                'Refresh':`Bearer ${result.refreshtoken}`
-            });
+            const query = 'UPDATE barinhome SET refresh = ? WHERE id = ?';
+            const accesstoken = result.accesstoken;
+            const refreshtoken = result.refreshtoken; 
+            doQuery(query,[refreshtoken,req.user])
+            .then((result)=>{
+                res.header({
+                    'Authorization':`Bearer ${accesstoken}`,
+                    'Refresh':`Bearer ${refreshtoken}`
+                });
+            })
+            
         })
 });
 
