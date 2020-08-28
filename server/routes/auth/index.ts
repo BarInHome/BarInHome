@@ -14,7 +14,7 @@ router.post('/signup', passport.authenticate('local-signup', {session: false}) ,
     JwtToken.create(req.user as string)
         .then((result) => { 
             res.json({
-                accessToken: result.token,
+                accessToken: result.accesstoken,
                 status: 201
             })
         })

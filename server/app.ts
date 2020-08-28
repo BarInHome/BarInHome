@@ -42,7 +42,8 @@ class ServerApi{
      ];
     const corsOptions = {
        origin: whiteList,
-       credentials: true
+       credentials: true,
+       exposedHeaders: "*",
     };
     this.app.use(cors(corsOptions));
     
@@ -72,7 +73,7 @@ class ServerApi{
    // this.app.use('/users', userRouter);
     this.app.use('/data', dataRouter);
     this.app.use('/mypage',mypageRouter);
-    this.app.use('/refresh/silent',refreshRouter);
+    this.app.use('/refresh',refreshRouter);
 
     this.app.use(function(req, res, next) {
       next(createError(404));

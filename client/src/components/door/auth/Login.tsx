@@ -141,10 +141,9 @@ export default function Login(props:AuthInterface):JSX.Element {
       dispatch({type: name , value: event.target.value});
   }
 
-  const {doPostRequest} = usePostRequest<userInterface,Token>('/auth/login',()=>{
+  const {doPostRequest} = usePostRequest<userInterface,void>('/auth/login',()=>{
       console.log('[login success]');
       handleSetIsLogin(true);
-      
       history.push('/main');
       window.location.reload();
   });
