@@ -13,7 +13,7 @@ export interface UsePostRequestObject<T, P> {
 
   export default function usePostRequest<PARAM_TYPE = {[key: string]: any}, RES_DATA_TYPE = any>(
   url: string,
-  successCallback?: () => void
+  successCallback?: (param?:RES_DATA_TYPE) => void
 ): UsePostRequestObject<PARAM_TYPE, RES_DATA_TYPE> {
   const [success, setSuccess] = React.useState<true | null>(null);
   const [data, setData] = React.useState<RES_DATA_TYPE | null>(null);
@@ -50,7 +50,7 @@ export interface UsePostRequestObject<T, P> {
 
   const doPostRequest = useCallback((param: PARAM_TYPE): void => { //param넣으면 void 나온다
     setLoading(true); // 로딩 시작
-    console.log('param',param);
+    // console.log('param',param);
     axios.post<RES_DATA_TYPE>(`${url}`,
       { ...param })
       .then((res) => { // 200 번대 상태코드

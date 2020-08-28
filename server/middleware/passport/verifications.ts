@@ -8,14 +8,18 @@ import Naver from 'passport-naver';
 import FaceBook from 'passport-facebook';
 import Kakao from 'passport-kakao';
 
-//여기서 access 토큰이 기간 만료가 뜨면 기간만료라 알리고 error 띄운다
-//그럼 클라이언트에서 refresh 토큰을 보낼거고 그럼 access 토큰 발급 해준다 
-const token = (
+const tokenValidateCheck = (
     payload: any, 
     done: jwt.VerifiedCallback
 ): void => {
     const id = payload.id;
-    if(id){
+    const roles = payload.roles;
+
+    if(roles === 'Admin'){
+      done(null, id);
+    }
+    else{
+      if(id){
         const sql= "SELECT * FROM userinfo WHERE id = ?";
         doQuery(sql,[id])
             .then((row) => {
@@ -24,9 +28,10 @@ const token = (
             .catch((err) => {
                 return done(false);
             })
-    }
+      } 
     else{
         return done(false);
+      }
     }
 }
 
@@ -163,7 +168,7 @@ function loginByThirdparty(info:any, done:any) {
 export default {
     localLogin,
     localSignup,
-    token,
+    tokenValidateCheck,
     google , facebook , 
     naver , kakao,
 }

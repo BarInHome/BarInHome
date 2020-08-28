@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter , Switch, Route, Redirect } from 'react-router-dom';
 import history from './history';
-import { CookiesProvider } from 'react-cookie';
-
 
 // styled-components
 import GlobalStyles from './styles/GlobalStyle';
@@ -20,25 +18,22 @@ import {
 
 
 ReactDOM.render(
-  <CookiesProvider>
-    <BrowserRouter>
-    
-      <GlobalStyles/> 
-        <ThemeProvider theme={theme}>
-          <AppBar position="static">
-            <Typography variant="h3">
-              Test Header
-            </Typography>
-          </AppBar>
-          <Switch>
-            <Route exact path='/' component={Door}/>
-            <Route exact path='/main' component={Main}/>
-            <Route exact path='/mypage' component={Mypage}/>
-          </Switch>
-
-        </ThemeProvider>
-    </BrowserRouter>  
-  </CookiesProvider>,
+  <BrowserRouter>
+    <GlobalStyles/> 
+      <ThemeProvider theme={theme}>
+        <AppBar position="static">
+          <Typography variant="h3">
+            Test Header
+          </Typography>
+        </AppBar>
+        <Switch>
+          <Route exact path='/' component={Door}/>
+          <Route path='/main' component={Main}/>
+          <Route exact path='/mypage' component={Mypage}/>
+        </Switch>
+        
+      </ThemeProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

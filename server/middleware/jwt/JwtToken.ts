@@ -6,12 +6,20 @@ interface Token {
     readonly accesstoken : string;
     readonly refreshtoken : string;
 }
+export interface payload {
+    sub : string;
+    roles : string;
+}
 
-async function  create(id: string , options?: any): Promise<Token>{
-    const accesstoken: string = jwt.sign( {id: id}, process_env.secret, { expiresIn:  '48h'} ); 
-    // token save;
-    const refreshtoken: string = jwt.sign( {}, process_env.secret, { expiresIn:  '48h'} ); 
-    return {accesstoken,refreshtoken};
+
+async function create(id: string , roles= 'user'): Promise<Token>{
+    const payload: payload = {
+        sub : id,
+        roles: roles,
+    }
+    const accesstoken: string = jwt.sign( payload, process_env.secret, { expiresIn:  '1h'} );
+    const refreshtoken: string = jwt.sign( {}, process_env.secret, { expiresIn:  '48h'} );
+    return { accesstoken,refreshtoken };
 }
 
 export default {

@@ -11,7 +11,13 @@ import verifications from './verifications';
 
 const process_env = require('../../secret');
 const ExtractJWT = passportJWT.ExtractJwt;
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
 
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 /*
   1) Facebook : id, name            + email
   2) Google   : id, name, email     
@@ -30,7 +36,7 @@ const ExtractJWT = passportJWT.ExtractJwt;
 passport.use('jwt' , new JwtStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), 
   secretOrKey   : process_env.secret,
-},verifications.token));
+},verifications.tokenValidateCheck));
 
 passport.use('local-login', new LocalStrategy({
     usernameField: "id" ,
@@ -79,7 +85,7 @@ passport.use('google',new GoogleStrategy({
 
   loginByThirdparty({
     'auth_type': 'google',
-    'auth_id': _profile.email,
+    'auth_id': _profile.sub,
     'auth_name': _profile.name,
     'auth_email': _profile.email
   }, done);
@@ -114,7 +120,7 @@ passport.use('kakao',new KakaoStrategy({
   const _profile = profile._json;
   // id : string
   console.log('Kakao Login Strategy',_profile);
-
+  
   loginByThirdparty({
     'auth_type': 'kakao',
     'auth_id': _profile.id,
