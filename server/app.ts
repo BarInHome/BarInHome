@@ -14,8 +14,8 @@ import refrigeratorRouter from './routes/refrigerator/index';
 import authRouter from './routes/auth/index';
 //import userRouter from './routes/users/index';
 import dataRouter from './routes/data/cocktail';
-
 import mypageRouter from './routes/mypage/index';
+import refreshRouter from './routes/refresh/index';
 
 class ServerApi{
   public app : express.Express
@@ -42,7 +42,8 @@ class ServerApi{
      ];
     const corsOptions = {
        origin: whiteList,
-       credentials: true
+       credentials: true,
+       exposedHeaders: "*",
     };
     this.app.use(cors(corsOptions));
     
@@ -72,6 +73,7 @@ class ServerApi{
    // this.app.use('/users', userRouter);
     this.app.use('/data', dataRouter);
     this.app.use('/mypage',mypageRouter);
+    this.app.use('/refresh',refreshRouter);
 
     this.app.use(function(req, res, next) {
       next(createError(404));

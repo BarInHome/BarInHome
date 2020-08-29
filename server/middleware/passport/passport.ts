@@ -26,7 +26,7 @@ passport.deserializeUser(function(user, done) {
 */
 
 passport.use('jwt' , new JwtStrategy({
-  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),     
+  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), 
   secretOrKey   : process_env.secret,
 },verifications.tokenValidateCheck));
 

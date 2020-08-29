@@ -1,13 +1,25 @@
 import express from 'express';
 import passport from '../../middleware/passport/passport';
 import JwtToken from  '../../middleware/jwt/JwtToken';
+import doQuery from '../../database/doQuery';
 const process_env = require('../../secret');
 const router = express.Router();
 
 router.post('/', passport.authenticate('local-login',{session: false}) , (req,res) => {
     JwtToken.create(req.user as string)
         .then((result) => {
-            res.send(result);
+            const query = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
+            const accesstoken = result.accesstoken;
+            const refreshtoken = result.refreshtoken; 
+            console.log(accesstoken+"\n"+refreshtoken);
+            doQuery(query,[refreshtoken,req.user])
+            .then((result)=>{
+                res.header({
+                    'Authorization':`Bearer ${accesstoken}`
+                });
+                res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
+                res.send();
+            })
         })
 });
 
@@ -16,7 +28,7 @@ router.get('/facebook/callback', passport.authenticate('facebook'), (req,res) =>
     console.log("[Facebook Login Success]",req.user);
     JwtToken.create(req.user as string)
         .then((result) => {
-            res.redirect(`http://localhost:3000/main?accessToken=${result.token}`);
+            res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
         })
         .catch((err) => {
             res.send(false);
@@ -29,7 +41,7 @@ router.get('/google/callback', passport.authenticate('google'), (req,res) => {
 
     JwtToken.create(req.user as string)
         .then((result) => {
-            res.redirect(`http://localhost:3000/main?accessToken=${result.token}`);
+            res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
         })
         .catch((err) => {
             res.send(false);
@@ -42,7 +54,7 @@ router.get('/naver/callback', passport.authenticate('naver'), (req,res) => {
   
       JwtToken.create(req.user as string)
         .then((result) => {
-            res.redirect(`http://localhost:3000/main?accessToken=${result.token}`);
+            res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
         })
         .catch((err) => {
             res.send(false);
@@ -55,7 +67,7 @@ router.get('/kakao/callback', passport.authenticate('kakao'), (req,res) => {
     
     JwtToken.create(req.user as string)
         .then((result) => {
-            res.redirect(`http://localhost:3000/main?accessToken=${result.token}`);
+            res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
         })
         .catch((err) => {
             res.send(false);
@@ -71,7 +83,7 @@ router.get('/admin',(req, res) => {
             JwtToken.create(process_env.admin.id, process_env.admin.roles)
                 .then((result) => {
                     console.log('[Admin User Login]',result);
-                    res.redirect(`http://localhost:3000/main?accessToken=${result.token}`);
+                    res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
                 })
                 .catch((err) => {
                     console.log('[Admin User Login Faild..]');

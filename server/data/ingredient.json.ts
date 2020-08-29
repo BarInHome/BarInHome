@@ -1,11 +1,10 @@
- 
 const ingredientList =
 [
     {
         "idIngredient": "11",
         "strIngredient": "Aftershock",
         "strDescription": "This cinnamon flavoured liqueur has proved immensely popular since its introduction. Normally drunk as a shooter.",
-        "strType": "Spirit",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": "30"
     },
@@ -13,7 +12,7 @@ const ingredientList =
         "idIngredient": "14",
         "strIngredient": "Allspice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Spice",
         "strAlcohol": "No",
         "strABV": null
     },
@@ -29,7 +28,7 @@ const ingredientList =
         "idIngredient": "22",
         "strIngredient": "Anise",
         "strDescription": null,
-        "strType": null,
+        "strType": "Spice",
         "strAlcohol": "No",
         "strABV": null
     },
@@ -37,7 +36,7 @@ const ingredientList =
         "idIngredient": "28",
         "strIngredient": "Apple Juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -45,7 +44,7 @@ const ingredientList =
         "idIngredient": "2",
         "strIngredient": "Gin",
         "strDescription": "Gin is a distilled alcoholic drink that derives its predominant flavour from juniper berries (Juniperus communis). Gin is one of the broadest categories of spirits, all of various origins, styles, and flavour profiles, that revolve around juniper as a common ingredient.\r\n\r\nFrom its earliest origins in the Middle Ages, the drink has evolved from a herbal medicine to an object of commerce in the spirits industry. Gin emerged in England after the introduction of the jenever, a Dutch liquor which originally had been a medicine. Although this development had been taking place since early 17th century, gin became widespread after the William of Orange-led 1688 Glorious Revolution and subsequent import restrictions on French brandy.\r\n\r\nGin today is produced in subtly different ways, from a wide range of herbal ingredients, giving rise to a number of distinct styles and brands. After juniper, gin tends to be flavoured with botanical/herbal, spice, floral or fruit-flavours or often a combination. It is most commonly consumed mixed with tonic water. Gin is also often used as a base spirit to produce flavoured gin-based liqueurs such as, for example, Sloe gin, traditionally by the addition of fruit, flavourings and sugar.",
-        "strType": "Gin",
+        "strType": "Spirit",
         "strAlcohol": "Yes",
         "strABV": "40"
     },
@@ -53,7 +52,7 @@ const ingredientList =
         "idIngredient": "33",
         "strIngredient": "Apricot Nectar",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -66,18 +65,10 @@ const ingredientList =
         "strABV": "40"
     },
     {
-        "idIngredient": "19",
-        "strIngredient": "Angelica Root",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": "No",
-        "strABV": null
-    },
-    {
         "idIngredient": "25",
         "strIngredient": "Apfelkorn",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": "18"
     },
@@ -85,7 +76,7 @@ const ingredientList =
         "idIngredient": "17",
         "strIngredient": "Almond",
         "strDescription": null,
-        "strType": null,
+        "strType": "Nuts",
         "strAlcohol": "No",
         "strABV": null
     },
@@ -93,7 +84,7 @@ const ingredientList =
         "idIngredient": "62",
         "strIngredient": "Blackberry Schnapps",
         "strDescription": "Schnapps (/ʃnɑːps/ or /ʃnæps/) or schnaps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and \"flavored liqueurs\" made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits.\n\nThe English loanword \"schnapps\" is derived from the colloquial German word Schnaps [ʃnaps] (About this sound listen) (plural: Schnäpse) which is used in reference to spirit drinks. The word Schnaps stems from Low German language and is related to the German term \"schnappen\", which refers to the fact that the spirit or liquor drink is usually consumed in a quick slug from a small glass (i.e., a shot glass). In British English, a corresponding term is \"dram\" [of liquor].",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -101,7 +92,7 @@ const ingredientList =
         "idIngredient": "70",
         "strIngredient": "Blueberry Schnapps",
         "strDescription": "Schnapps (/ʃnɑːps/ or /ʃnæps/) or schnaps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and \"flavored liqueurs\" made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits.\n\nThe English loanword \"schnapps\" is derived from the colloquial German word Schnaps [ʃnaps] (About this sound listen) (plural: Schnäpse) which is used in reference to spirit drinks. The word Schnaps stems from Low German language and is related to the German term \"schnappen\", which refers to the fact that the spirit or liquor drink is usually consumed in a quick slug from a small glass (i.e., a shot glass). In British English, a corresponding term is \"dram\" [of liquor].",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -133,7 +124,7 @@ const ingredientList =
         "idIngredient": "104",
         "strIngredient": "Cherry Juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -141,7 +132,7 @@ const ingredientList =
         "idIngredient": "35",
         "strIngredient": "Aquavit",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -157,15 +148,7 @@ const ingredientList =
         "idIngredient": "54",
         "strIngredient": "Berries",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "95",
-        "strIngredient": "Celery",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -189,7 +172,7 @@ const ingredientList =
         "idIngredient": "46",
         "strIngredient": "Banana Syrup",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -197,7 +180,7 @@ const ingredientList =
         "idIngredient": "48",
         "strIngredient": "Barenjager",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -208,14 +191,6 @@ const ingredientList =
         "strType": "Beer",
         "strAlcohol": "Yes",
         "strABV": "4"
-    },
-    {
-        "idIngredient": "57",
-        "strIngredient": "Black Pepper",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
     },
     {
         "idIngredient": "61",
@@ -245,7 +220,7 @@ const ingredientList =
         "idIngredient": "83",
         "strIngredient": "Campari",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -253,7 +228,7 @@ const ingredientList =
         "idIngredient": "85",
         "strIngredient": "Candy",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -261,15 +236,7 @@ const ingredientList =
         "idIngredient": "87",
         "strIngredient": "Caramel Coloring",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "88",
-        "strIngredient": "Carbonated Soft Drink",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -277,7 +244,7 @@ const ingredientList =
         "idIngredient": "103",
         "strIngredient": "Cherry Heering",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -285,7 +252,7 @@ const ingredientList =
         "idIngredient": "86",
         "strIngredient": "Cantaloupe",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -293,7 +260,7 @@ const ingredientList =
         "idIngredient": "100",
         "strIngredient": "Cherry Brandy",
         "strDescription": null,
-        "strType": null,
+        "strType": "Brandy",
         "strAlcohol": null,
         "strABV": null
     },
@@ -301,7 +268,7 @@ const ingredientList =
         "idIngredient": "102",
         "strIngredient": "Cherry Grenadine",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -309,7 +276,7 @@ const ingredientList =
         "idIngredient": "115",
         "strIngredient": "Chocolate Syrup",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -318,14 +285,6 @@ const ingredientList =
         "strIngredient": "Coca-Cola",
         "strDescription": "Coca-Cola, or Coke, is a carbonated soft drink[1] produced by The Coca-Cola Company. Originally intended as a patent medicine, it was invented in the late 19th century by John Pemberton and was bought out by businessman Asa Griggs Candler, whose marketing tactics led Coca-Cola to its dominance of the world soft-drink market throughout the 20th century. The drink's name refers to two of its original ingredients, which were kola nuts (a source of caffeine) and coca leaves. The current formula of Coca-Cola remains a trade secret, although a variety of reported recipes and experimental recreations have been published.\r\n\r\nThe Coca-Cola Company produces concentrate, which is then sold to licensed Coca-Cola bottlers throughout the world. The bottlers, who hold exclusive territory contracts with the company, produce the finished product in cans and bottles from the concentrate, in combination with filtered water and sweeteners. A typical 12-US-fluid-ounce (350 ml) can contains 38 grams (1.3 oz) of sugar (usually in the form of high fructose corn syrup). The bottlers then sell, distribute, and merchandise Coca-Cola to retail stores, restaurants, and vending machines throughout the world. The Coca-Cola Company also sells concentrate for soda fountains of major restaurants and foodservice distributors.\r\n\r\nThe Coca-Cola Company has on occasion introduced other cola drinks under the Coke name. The most common of these is Diet Coke, along with others including Caffeine-Free Coca-Cola, Diet Coke Caffeine-Free, Coca-Cola Cherry, Coca-Cola Zero, Coca-Cola Vanilla, and special versions with lemon, lime, and coffee. Based on Interbrand's \"best global brand\" study of 2015, Coca-Cola was the world's third most valuable brand, after Apple and Google. In 2013, Coke products were sold in over 200 countries worldwide, with consumers downing more than 1.8 billion company beverage servings each day.",
         "strType": "Soft Drink",
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "130",
-        "strIngredient": "Cocktail Onion",
-        "strDescription": null,
-        "strType": null,
         "strAlcohol": null,
         "strABV": null
     },
@@ -341,7 +300,7 @@ const ingredientList =
         "idIngredient": "149",
         "strIngredient": "Corn Syrup",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -357,7 +316,7 @@ const ingredientList =
         "idIngredient": "168",
         "strIngredient": "Crown Royal",
         "strDescription": null,
-        "strType": null,
+        "strType": "Whiskey",
         "strAlcohol": null,
         "strABV": null
     },
@@ -381,7 +340,7 @@ const ingredientList =
         "idIngredient": "15",
         "strIngredient": "Almond Extract",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": "No",
         "strABV": null
     },
@@ -389,7 +348,7 @@ const ingredientList =
         "idIngredient": "36",
         "strIngredient": "Asafoetida",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -397,7 +356,7 @@ const ingredientList =
         "idIngredient": "56",
         "strIngredient": "Bitters",
         "strDescription": null,
-        "strType": null,
+        "strType": "Bitter",
         "strAlcohol": null,
         "strABV": null
     },
@@ -405,7 +364,7 @@ const ingredientList =
         "idIngredient": "60",
         "strIngredient": "Blackberries",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -421,15 +380,7 @@ const ingredientList =
         "idIngredient": "89",
         "strIngredient": "Carbonated Water",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "147",
-        "strIngredient": "Coriander",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -437,7 +388,7 @@ const ingredientList =
         "idIngredient": "171",
         "strIngredient": "Cucumber",
         "strDescription": null,
-        "strType": null,
+        "strType": "Vegetable",
         "strAlcohol": null,
         "strABV": null
     },
@@ -453,7 +404,7 @@ const ingredientList =
         "idIngredient": "64",
         "strIngredient": "Blackcurrant Schnapps",
         "strDescription": "Schnapps (/ʃnɑːps/ or /ʃnæps/) or schnaps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and \"flavored liqueurs\" made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits.\n\nThe English loanword \"schnapps\" is derived from the colloquial German word Schnaps [ʃnaps] (About this sound listen) (plural: Schnäpse) which is used in reference to spirit drinks. The word Schnaps stems from Low German language and is related to the German term \"schnappen\", which refers to the fact that the spirit or liquor drink is usually consumed in a quick slug from a small glass (i.e., a shot glass). In British English, a corresponding term is \"dram\" [of liquor].",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -461,7 +412,7 @@ const ingredientList =
         "idIngredient": "77",
         "strIngredient": "Brown Sugar",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -477,7 +428,7 @@ const ingredientList =
         "idIngredient": "79",
         "strIngredient": "Butter",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -485,7 +436,7 @@ const ingredientList =
         "idIngredient": "106",
         "strIngredient": "Cherry",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -493,7 +444,7 @@ const ingredientList =
         "idIngredient": "112",
         "strIngredient": "Chocolate Ice-cream",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -509,7 +460,7 @@ const ingredientList =
         "idIngredient": "121",
         "strIngredient": "Cinnamon Schnapps",
         "strDescription": "Schnapps (/ʃnɑːps/ or /ʃnæps/) or schnaps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and \"flavored liqueurs\" made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits.\n\nThe English loanword \"schnapps\" is derived from the colloquial German word Schnaps [ʃnaps] (About this sound listen) (plural: Schnäpse) which is used in reference to spirit drinks. The word Schnaps stems from Low German language and is related to the German term \"schnappen\", which refers to the fact that the spirit or liquor drink is usually consumed in a quick slug from a small glass (i.e., a shot glass). In British English, a corresponding term is \"dram\" [of liquor].",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -517,7 +468,7 @@ const ingredientList =
         "idIngredient": "122",
         "strIngredient": "Cinnamon",
         "strDescription": null,
-        "strType": null,
+        "strType": "Spice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -525,7 +476,7 @@ const ingredientList =
         "idIngredient": "132",
         "strIngredient": "Coconut Cream",
         "strDescription": null,
-        "strType": null,
+        "strType": "Cream",
         "strAlcohol": null,
         "strABV": null
     },
@@ -541,7 +492,7 @@ const ingredientList =
         "idIngredient": "164",
         "strIngredient": "Creme De Cacao",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -565,7 +516,7 @@ const ingredientList =
         "idIngredient": "163",
         "strIngredient": "Creme De Banane",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -597,23 +548,7 @@ const ingredientList =
         "idIngredient": "16",
         "strIngredient": "Almond Flavoring",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": "No",
-        "strABV": null
-    },
-    {
-        "idIngredient": "173",
-        "strIngredient": "Cumin Seed",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "21",
-        "strIngredient": "Anis",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": "No",
         "strABV": null
     },
@@ -621,7 +556,7 @@ const ingredientList =
         "idIngredient": "192",
         "strIngredient": "Egg White",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -629,7 +564,7 @@ const ingredientList =
         "idIngredient": "188",
         "strIngredient": "Dried Oregano",
         "strDescription": null,
-        "strType": null,
+        "strType": "Herb",
         "strAlcohol": null,
         "strABV": null
     },
@@ -637,7 +572,7 @@ const ingredientList =
         "idIngredient": "193",
         "strIngredient": "Egg Yolk",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -645,7 +580,7 @@ const ingredientList =
         "idIngredient": "180",
         "strIngredient": "Dark Soy Sauce",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -653,7 +588,7 @@ const ingredientList =
         "idIngredient": "23",
         "strIngredient": "Anisette",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": "No",
         "strABV": null
     },
@@ -661,7 +596,7 @@ const ingredientList =
         "idIngredient": "27",
         "strIngredient": "Apple Cider",
         "strDescription": null,
-        "strType": "Cider",
+        "strType": "Beverage",
         "strAlcohol": "Yes",
         "strABV": "5"
     },
@@ -669,7 +604,7 @@ const ingredientList =
         "idIngredient": "34",
         "strIngredient": "Apricot",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -685,7 +620,7 @@ const ingredientList =
         "idIngredient": "30",
         "strIngredient": "Apple",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -709,7 +644,7 @@ const ingredientList =
         "idIngredient": "49",
         "strIngredient": "Basil",
         "strDescription": null,
-        "strType": null,
+        "strType": "Herb",
         "strAlcohol": null,
         "strABV": null
     },
@@ -717,7 +652,7 @@ const ingredientList =
         "idIngredient": "65",
         "strIngredient": "Blackcurrant Squash",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -725,7 +660,7 @@ const ingredientList =
         "idIngredient": "63",
         "strIngredient": "Blackcurrant Cordial",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -741,7 +676,7 @@ const ingredientList =
         "idIngredient": "175",
         "strIngredient": "Cynar",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -749,7 +684,7 @@ const ingredientList =
         "idIngredient": "176",
         "strIngredient": "Daiquiri Mix",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -757,7 +692,7 @@ const ingredientList =
         "idIngredient": "194",
         "strIngredient": "Egg",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -765,7 +700,7 @@ const ingredientList =
         "idIngredient": "51",
         "strIngredient": "Beef Stock",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -773,7 +708,7 @@ const ingredientList =
         "idIngredient": "53",
         "strIngredient": "Benedictine",
         "strDescription": null,
-        "strType": null,
+        "strType": "Herb Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -789,7 +724,7 @@ const ingredientList =
         "idIngredient": "31",
         "strIngredient": "Applejack",
         "strDescription": "Applejack is a strong apple-flavored alcoholic beverage produced from apples, popular in the American colonial period. The name derives from \"jacking\", a term for \"increasing\" (alcohol content) and specifically for \"freeze distilling\", the traditional method of producing the drink.\r\n\r\nIn colonial New Jersey, applejack was used as currency to pay road construction crews during the colonial period, leading to the slang name 'Jersey Lightning'. The oldest licensed applejack distillery in the United States, Laird & Company of Scobeyville, New Jersey, was until recently the country's only remaining producer of applejack.\r\n\r\nBecause freeze distillation is a low-infrastructure method of production compared to evaporative distillation, and doesn't, for example, require burning firewood to create heat, hard cider and applejack were historically easy to produce, though more expensive than grain alcohol, and hence were important drinks in the colonial era and the early years of the United States, particularly in cold northern areas without access to clean water.\r\n\r\nApplejack was historically made by concentrating cider through the traditional method of freeze distillation: The alcoholic fruit beer produced after the fall harvest was left outside during the winter. Periodically the frozen chunks of ice which had formed were removed, thus concentrating the unfrozen alcohol in the remaining liquid. Starting with the fermented juice, with an alcohol content of less than ten percent, the concentrated result can contain 25-40% alcohol.\r\n\r\nWhen commercial production began, applejack was also starting to be produced through evaporative distillation. Modern commercially produced applejack is no longer produced by jacking but rather by blending apple brandy and neutral spirits.",
-        "strType": "Beverage",
+        "strType": "Apple Brandy",
         "strAlcohol": "Yes",
         "strABV": "40"
     },
@@ -797,7 +732,7 @@ const ingredientList =
         "idIngredient": "69",
         "strIngredient": "Blueberries",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -805,7 +740,7 @@ const ingredientList =
         "idIngredient": "47",
         "strIngredient": "Banana",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -813,7 +748,7 @@ const ingredientList =
         "idIngredient": "68",
         "strIngredient": "Blue Maui",
         "strDescription": null,
-        "strType": null,
+        "strType": "Schnapps",
         "strAlcohol": null,
         "strABV": null
     },
@@ -821,7 +756,7 @@ const ingredientList =
         "idIngredient": "82",
         "strIngredient": "Calvados",
         "strDescription": null,
-        "strType": null,
+        "strType": "Apple Brandy",
         "strAlcohol": null,
         "strABV": null
     },
@@ -831,14 +766,6 @@ const ingredientList =
         "strDescription": null,
         "strType": "Whiskey",
         "strAlcohol": "Yes",
-        "strABV": null
-    },
-    {
-        "idIngredient": "90",
-        "strIngredient": "Cardamom",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
         "strABV": null
     },
     {
@@ -861,7 +788,7 @@ const ingredientList =
         "idIngredient": "210",
         "strIngredient": "Food Coloring",
         "strDescription": null,
-        "strType": null,
+        "strType": "Coloring",
         "strAlcohol": null,
         "strABV": null
     },
@@ -869,7 +796,7 @@ const ingredientList =
         "idIngredient": "131",
         "strIngredient": "Cocoa Powder",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -893,7 +820,7 @@ const ingredientList =
         "idIngredient": "144",
         "strIngredient": "Cold Water",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -909,7 +836,7 @@ const ingredientList =
         "idIngredient": "161",
         "strIngredient": "Cream",
         "strDescription": null,
-        "strType": null,
+        "strType": "Cream",
         "strAlcohol": null,
         "strABV": null
     },
@@ -917,7 +844,7 @@ const ingredientList =
         "idIngredient": "166",
         "strIngredient": "Creme De Noyaux",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -925,7 +852,7 @@ const ingredientList =
         "idIngredient": "191",
         "strIngredient": "Dubonnet Rouge",
         "strDescription": null,
-        "strType": null,
+        "strType": "Aperitif",
         "strAlcohol": null,
         "strABV": null
     },
@@ -933,7 +860,7 @@ const ingredientList =
         "idIngredient": "208",
         "strIngredient": "Flaked Almonds",
         "strDescription": null,
-        "strType": null,
+        "strType": "Nut",
         "strAlcohol": null,
         "strABV": null
     },
@@ -941,7 +868,7 @@ const ingredientList =
         "idIngredient": "215",
         "strIngredient": "Fresca",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -949,7 +876,7 @@ const ingredientList =
         "idIngredient": "101",
         "strIngredient": "Cherry Cola",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -965,7 +892,7 @@ const ingredientList =
         "idIngredient": "126",
         "strIngredient": "Cloves",
         "strDescription": null,
-        "strType": null,
+        "strType": "Spice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -973,7 +900,7 @@ const ingredientList =
         "idIngredient": "134",
         "strIngredient": "Coconut Milk",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -981,7 +908,7 @@ const ingredientList =
         "idIngredient": "200",
         "strIngredient": "Espresso",
         "strDescription": null,
-        "strType": null,
+        "strType": "Coffee",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1013,7 +940,7 @@ const ingredientList =
         "idIngredient": "124",
         "strIngredient": "Clamato Juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1029,7 +956,7 @@ const ingredientList =
         "idIngredient": "158",
         "strIngredient": "Cream of Coconut",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1037,7 +964,7 @@ const ingredientList =
         "idIngredient": "257",
         "strIngredient": "Hawaiian punch",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1045,7 +972,7 @@ const ingredientList =
         "idIngredient": "154",
         "strIngredient": "Cranberries",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1061,7 +988,7 @@ const ingredientList =
         "idIngredient": "247",
         "strIngredient": "Green Ginger Wine",
         "strDescription": null,
-        "strType": null,
+        "strType": "Wine",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1077,7 +1004,7 @@ const ingredientList =
         "idIngredient": "260",
         "strIngredient": "Honey",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1093,7 +1020,7 @@ const ingredientList =
         "idIngredient": "160",
         "strIngredient": "Cream Soda",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1101,7 +1028,7 @@ const ingredientList =
         "idIngredient": "207",
         "strIngredient": "Firewater",
         "strDescription": null,
-        "strType": null,
+        "strType": "Whiskey",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1109,7 +1036,7 @@ const ingredientList =
         "idIngredient": "172",
         "strIngredient": "Cumin Powder",
         "strDescription": null,
-        "strType": null,
+        "strType": "Spice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1117,7 +1044,7 @@ const ingredientList =
         "idIngredient": "230",
         "strIngredient": "Ginger",
         "strDescription": null,
-        "strType": null,
+        "strType": "Vegetable",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1133,7 +1060,7 @@ const ingredientList =
         "idIngredient": "93",
         "strIngredient": "Cayenne Pepper",
         "strDescription": null,
-        "strType": null,
+        "strType": "Spice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1149,7 +1076,7 @@ const ingredientList =
         "idIngredient": "212",
         "strIngredient": "Frangelico",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1157,7 +1084,7 @@ const ingredientList =
         "idIngredient": "145",
         "strIngredient": "Condensed Milk",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1165,7 +1092,7 @@ const ingredientList =
         "idIngredient": "217",
         "strIngredient": "Fresh Lemon Juice",
         "strDescription": "The lemon, Citrus limon (L.) Osbeck, is a species of small evergreen tree in the flowering plant family Rutaceae, native to Asia.\r\n\r\nThe tree's ellipsoidal yellow fruit is used for culinary and non-culinary purposes throughout the world, primarily for its juice, which has both culinary and cleaning uses. The pulp and rind (zest) are also used in cooking and baking. The juice of the lemon is about 5% to 6% citric acid, with a pH of around 2.2, giving it a sour taste. The distinctive sour taste of lemon juice makes it a key ingredient in drinks and foods such as lemonade and lemon meringue pie.\r\n",
-        "strType": "Juice",
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1194,14 +1121,6 @@ const ingredientList =
         "strABV": null
     },
     {
-        "idIngredient": "231",
-        "strIngredient": "Glycerine",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "246",
         "strIngredient": "Green Creme de Menthe",
         "strDescription": null,
@@ -1213,7 +1132,7 @@ const ingredientList =
         "idIngredient": "155",
         "strIngredient": "Cranberry Juice",
         "strDescription": "Cranberry juice is the juice of the cranberry. The term, used on its own, usually refers to a sweetened version.\r\n\r\nA cup of standard 100% cranberry juice, amounting to 248 grams or 8 ounces, is a rich source of antioxidants, vitamin C and salicylic acid. It also supplies calcium, magnesium, manganese, phosphorus, and potassium minerals. Cranberry juice is classified as an acidic drink with a typical pH between 2.3 and 2.5.\r\n\r\nIn 2010 a study conducted by the Worcester Polytechnic Institute in Massachusetts found that the ingredients in cranberry juice limit the ability of E. coli bacteria (the main cause of UTIs) to cling to other bacteria. Without other bacteria, E. coli's ability to grow and reproduce is limited. The researchers concluded that cranberry juice helps prevent UTIs, but stopped short of saying the juice cures them. According to WebMD, which reported on the study, study researcher Terri Anne Camesano said people should not self-treat urinary tract infections, and anyone who suspects they have an infection should see a doctor, but drinking cranberry juice may be an easy, inexpensive way to help keep E. coli at bay.\r\n\r\nThere is some evidence that although long-term use of cranberry juice can help prevent symptomatic urinary tract infections, people do not persist in taking it over long periods.[4] There is no significant difference between cranberry juices and capsules. It is thought to prevent adhesion of bacteria such as E. coli to the urinary tract, by inducing changes to their fimbriae.\r\n\r\nThe proanthocyanidins found in cranberry juice can prevent bacteria from adhering to the epithelial tissue that line many interior parts of the human body. These adhering bacteria can cause breakdown and inflammation of the epithelial lining of the urinary tract, leading to urinary tract infections.\r\n",
-        "strType": "Juice",
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1229,7 +1148,7 @@ const ingredientList =
         "idIngredient": "162",
         "strIngredient": "Creme De Almond",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1237,7 +1156,7 @@ const ingredientList =
         "idIngredient": "216",
         "strIngredient": "Fresh Basil",
         "strDescription": null,
-        "strType": "Spice",
+        "strType": "Herb",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1245,7 +1164,7 @@ const ingredientList =
         "idIngredient": "240",
         "strIngredient": "Grape juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1277,7 +1196,7 @@ const ingredientList =
         "idIngredient": "205",
         "strIngredient": "Fennel Seeds",
         "strDescription": null,
-        "strType": null,
+        "strType": "Spice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1293,7 +1212,7 @@ const ingredientList =
         "idIngredient": "252",
         "strIngredient": "Ground Ginger",
         "strDescription": null,
-        "strType": null,
+        "strType": "Spice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1317,7 +1236,7 @@ const ingredientList =
         "idIngredient": "181",
         "strIngredient": "Demerara Sugar",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1325,7 +1244,7 @@ const ingredientList =
         "idIngredient": "248",
         "strIngredient": "Green Olives",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1333,7 +1252,7 @@ const ingredientList =
         "idIngredient": "261",
         "strIngredient": "Hooch",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1341,7 +1260,7 @@ const ingredientList =
         "idIngredient": "167",
         "strIngredient": "Creme Fraiche",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1349,7 +1268,7 @@ const ingredientList =
         "idIngredient": "277",
         "strIngredient": "Jelly",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1373,7 +1292,7 @@ const ingredientList =
         "idIngredient": "190",
         "strIngredient": "Dubonnet Blanc",
         "strDescription": null,
-        "strType": null,
+        "strType": "Wine",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1381,7 +1300,7 @@ const ingredientList =
         "idIngredient": "127",
         "strIngredient": "Club Soda",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1389,7 +1308,7 @@ const ingredientList =
         "idIngredient": "195",
         "strIngredient": "Eggnog",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1413,7 +1332,7 @@ const ingredientList =
         "idIngredient": "293",
         "strIngredient": "Lemon Juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1421,7 +1340,7 @@ const ingredientList =
         "idIngredient": "264",
         "strIngredient": "Hot Chocolate",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1429,7 +1348,7 @@ const ingredientList =
         "idIngredient": "284",
         "strIngredient": "Kirschwasser",
         "strDescription": null,
-        "strType": null,
+        "strType": "Brandy",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1442,27 +1361,11 @@ const ingredientList =
         "strABV": "18"
     },
     {
-        "idIngredient": "211",
-        "strIngredient": "Forbidden Fruit",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "223",
         "strIngredient": "Galliano",
         "strDescription": "Liquore Galliano L'Autentico, known more commonly as Galliano, is a sweet herbal liqueur, created in 1896 by Italian distiller and brandy producer Arturo Vaccari of Livorno, Tuscany and named after Giuseppe Galliano, an Italian hero of the First Italo-Ethiopian War.\r\n\r\nGalliano has numerous natural ingredients including star anise, Mediterranean anise, juniper berry, musk yarrow, lavender, peppermint, cinnamon, and Galliano's hallmark vanilla flavour. Galliano uses vanillin for flavouring and sugar and glucose syrup for sweetening. Caramel and tartrazine are used to achieve Galliano's bright yellow colour. Neutral alcohol is infused with the pressings from the herbs except for the vanilla. The liquid is distilled and then infused with separately pressed vanilla. In the final stage, distilled water, refined sugar and pure neutral alcohol are blended with the base. Galliano has been formulated at both 60 proof (30% by volume) and 84.6 proof (42.3% by volume).\r\n\r\nGalliano is sweet with vanilla-anise flavour and subtle citrus and woodsy herbal undernotes. The vanilla top note differentiates Galliano from other anise-flavoured liqueurs such as Sambuca, Pernod, or Anisette. It is used both as a digestivo (meant for drinking after heavy meals), and as an ingredient for cocktails, most notably the Harvey Wallbanger, Yellow Bird (cocktail), Golden Cadillac, and Golden Dream.\r\n\r\nThe Galliano brand is currently owned by Dutch distiller Lucas Bols, and marketed through its worldwide distribution joint venture, Maxxium. Galliano is packaged in a distinctively shaped bottle, reminiscent of a classical Roman column. Several other liqueurs are also produced under the Galliano brand name, including a black Sambuca, a white Sambuca and an amaretto, which are predominantly distributed in Australasia,[3] where the products are popular as shots. Galliano also makes Galliano Ristretto coffee-flavored liqueur and Galliano Balsamico, a balsamic vinegar-infused liqueur. Both Galliano Autentico and Galliano Vanilla, as used in the Harvey Wallbanger, are available.",
         "strType": "Liqueur",
         "strAlcohol": "Yes",
-        "strABV": null
-    },
-    {
-        "idIngredient": "224",
-        "strIngredient": "Garlic Sauce",
-        "strDescription": null,
-        "strType": "Sauce",
-        "strAlcohol": null,
         "strABV": null
     },
     {
@@ -1490,14 +1393,6 @@ const ingredientList =
         "strABV": "44"
     },
     {
-        "idIngredient": "266",
-        "strIngredient": "Hot Sauce",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "278",
         "strIngredient": "Jagermeister",
         "strDescription": "Jägermeister (/ˈjeɪɡərˌmaɪstər/, YAY-gər-my-stər, German: [ˈjɛːɡɐˌmaɪstɐ], stylized Jägermeiſter) is a digestif made with 56 herbs and spices at a strength of 35% alcohol by volume (61 degrees proof, or US 70 proof). It is the flagship product of Mast-Jägermeister SE, headquartered in Wolfenbüttel, Germany.",
@@ -1509,7 +1404,7 @@ const ingredientList =
         "idIngredient": "297",
         "strIngredient": "Lemon-lime soda",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1517,7 +1412,7 @@ const ingredientList =
         "idIngredient": "243",
         "strIngredient": "Grapes",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1533,7 +1428,7 @@ const ingredientList =
         "idIngredient": "286",
         "strIngredient": "Kiwi",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1541,15 +1436,7 @@ const ingredientList =
         "idIngredient": "295",
         "strIngredient": "Lemon soda",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "303",
-        "strIngredient": "Licorice Root",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1557,23 +1444,7 @@ const ingredientList =
         "idIngredient": "304",
         "strIngredient": "Light Cream",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "239",
-        "strIngredient": "Granulated Sugar",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "258",
-        "strIngredient": "Hazelnut liqueur",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1581,7 +1452,7 @@ const ingredientList =
         "idIngredient": "296",
         "strIngredient": "Lemon vodka",
         "strDescription": null,
-        "strType": null,
+        "strType": "Vodka",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1589,7 +1460,7 @@ const ingredientList =
         "idIngredient": "307",
         "strIngredient": "Lime juice cordial",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1597,7 +1468,7 @@ const ingredientList =
         "idIngredient": "308",
         "strIngredient": "Lime Juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1605,7 +1476,7 @@ const ingredientList =
         "idIngredient": "199",
         "strIngredient": "Erin Cream",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1613,7 +1484,7 @@ const ingredientList =
         "idIngredient": "241",
         "strIngredient": "Grape soda",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1629,7 +1500,7 @@ const ingredientList =
         "idIngredient": "288",
         "strIngredient": "Kummel",
         "strDescription": null,
-        "strType": null,
+        "strType": "Spice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1637,7 +1508,7 @@ const ingredientList =
         "idIngredient": "245",
         "strIngredient": "Green Chartreuse",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1645,7 +1516,7 @@ const ingredientList =
         "idIngredient": "287",
         "strIngredient": "Kool-Aid",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1661,7 +1532,7 @@ const ingredientList =
         "idIngredient": "313",
         "strIngredient": "Limeade",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1669,7 +1540,7 @@ const ingredientList =
         "idIngredient": "314",
         "strIngredient": "Madeira",
         "strDescription": null,
-        "strType": null,
+        "strType": "Wine",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1693,7 +1564,7 @@ const ingredientList =
         "idIngredient": "325",
         "strIngredient": "Marjoram leaves",
         "strDescription": null,
-        "strType": null,
+        "strType": "Herb",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1709,7 +1580,7 @@ const ingredientList =
         "idIngredient": "324",
         "strIngredient": "Margarita mix",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1725,7 +1596,7 @@ const ingredientList =
         "idIngredient": "326",
         "strIngredient": "Marshmallows",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1741,7 +1612,7 @@ const ingredientList =
         "idIngredient": "276",
         "strIngredient": "Jello",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1765,7 +1636,7 @@ const ingredientList =
         "idIngredient": "319",
         "strIngredient": "Mango",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1773,7 +1644,7 @@ const ingredientList =
         "idIngredient": "322",
         "strIngredient": "Maraschino Cherry",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1789,7 +1660,7 @@ const ingredientList =
         "idIngredient": "337",
         "strIngredient": "Mint",
         "strDescription": "Lamiaceae (/ˌleɪmiˈeɪsiˌaɪ/ or /ˌleɪmiˈeɪsiiː/) or Labiatae is a family of flowering plants commonly known as the mint or deadnettle family. Many of the plants are aromatic in all parts and include widely used culinary herbs, such as basil, mint, rosemary, sage, savory, marjoram, oregano, hyssop, thyme, lavender, and perilla. Some species are shrubs, trees (such as teak), or, rarely, vines. Many members of the family are widely cultivated, not only for their aromatic qualities but also their ease of cultivation, since they are readily propagated by stem cuttings. Besides those grown for their edible leaves, some are grown for decorative foliage, such as Coleus. Others are grown for seed, such as Salvia hispanica (chia), or for their edible tubers, such as Plectranthus edulis, Plectranthus esculentus, Plectranthus rotundifolius, and Stachys affinis (Chinese artichoke).\r\n\r\nThe family has a cosmopolitan distribution. The enlarged Lamiaceae contains about 236 genera and has been stated to contain 6,900 to 7,200 species, but the World Checklist lists 7,534. The largest genera are Salvia (900), Scutellaria (360), Stachys (300), Plectranthus (300), Hyptis (280), Teucrium (250), Vitex (250), Thymus (220), and Nepeta (200). Clerodendrum was once a genus of over 400 species, but by 2010, it had been narrowed to about 150.\r\n\r\nThe family has traditionally been considered closely related to the Verbenaceae; in the 1990s, phylogenetic studies suggested that many genera classified in the Verbenaceae should be classified in the Lamiaceae  or to other families in the order Lamiales.\r\n\r\nThe alternate family name Labiatae refers to the fact that the flowers typically have petals fused into an upper lip and a lower lip (labia in Latin). The flowers are bilaterally symmetrical with five united petals and five united sepals. They are usually bisexual and verticillastrate (a flower cluster that looks like a whorl of flowers, but actually consists of two crowded clusters). Although this is still considered an acceptable alternative name, most botanists now use the name Lamiaceae in referring to this family. The leaves emerge oppositely, each pair at right angles to the previous one (decussate) or whorled. The stems are frequently square in cross section, but this is not found in all members of the family, and is sometimes found in other plant families.",
-        "strType": "Flower",
+        "strType": "Herb",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1799,14 +1670,6 @@ const ingredientList =
         "strDescription": "Schnapps (/ʃnɑːps/ or /ʃnæps/) or schnaps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and \"flavored liqueurs\" made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits.\n\nThe English loanword \"schnapps\" is derived from the colloquial German word Schnaps [ʃnaps] (About this sound listen) (plural: Schnäpse) which is used in reference to spirit drinks. The word Schnaps stems from Low German language and is related to the German term \"schnappen\", which refers to the fact that the spirit or liquor drink is usually consumed in a quick slug from a small glass (i.e., a shot glass). In British English, a corresponding term is \"dram\" [of liquor].",
         "strType": "Liqueur",
         "strAlcohol": "Yes",
-        "strABV": null
-    },
-    {
-        "idIngredient": "344",
-        "strIngredient": "Nutmeg",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
         "strABV": null
     },
     {
@@ -1829,7 +1692,7 @@ const ingredientList =
         "idIngredient": "352",
         "strIngredient": "Orange Juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1837,7 +1700,7 @@ const ingredientList =
         "idIngredient": "329",
         "strIngredient": "Melon Vodka",
         "strDescription": null,
-        "strType": null,
+        "strType": "Vodka",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1845,7 +1708,7 @@ const ingredientList =
         "idIngredient": "327",
         "strIngredient": "Maui",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1869,7 +1732,7 @@ const ingredientList =
         "idIngredient": "350",
         "strIngredient": "Orange Bitters",
         "strDescription": null,
-        "strType": null,
+        "strType": "Bitter",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1877,7 +1740,7 @@ const ingredientList =
         "idIngredient": "333",
         "strIngredient": "Milk",
         "strDescription": "Milk is a white liquid produced by the mammary glands of mammals. It is the primary source of nutrition for infant mammals (including humans who breastfeed) before they are able to digest other types of food. Early-lactation milk contains colostrum, which carries the mother's antibodies to its young and can reduce the risk of many diseases. It contains many other nutrients including protein and lactose.\r\n\r\nAs an agricultural product, milk is extracted from non-human mammals during or soon after pregnancy. Dairy farms produced about 730 million tonnes of milk in 2011, from 260 million dairy cows. India is the world's largest producer of milk, and is the leading exporter of skimmed milk powder, yet it exports few other milk products. The ever increasing rise in domestic demand for dairy products and a large demand-supply gap could lead to India being a net importer of dairy products in the future. The United States, India, China and Brazil are the world's largest exporters of milk and milk products. China and Russia were the world's largest importers of milk and milk products until 2016 when both countries became self-sufficient, contributing to a worldwide glut of milk.\r\n\r\nThroughout the world, there are more than six billion consumers of milk and milk products. Over 750 million people live in dairy farming households.",
-        "strType": "Drink",
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1893,7 +1756,7 @@ const ingredientList =
         "idIngredient": "271",
         "strIngredient": "Iced tea",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1901,7 +1764,7 @@ const ingredientList =
         "idIngredient": "55",
         "strIngredient": "Bitter lemon",
         "strDescription": null,
-        "strType": null,
+        "strType": "Bitter",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1917,7 +1780,7 @@ const ingredientList =
         "idIngredient": "310",
         "strIngredient": "Lime Peel",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1925,7 +1788,7 @@ const ingredientList =
         "idIngredient": "177",
         "strIngredient": "Dark Chocolate",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1933,7 +1796,7 @@ const ingredientList =
         "idIngredient": "365",
         "strIngredient": "Papaya juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1949,7 +1812,7 @@ const ingredientList =
         "idIngredient": "203",
         "strIngredient": "Fanta",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1957,7 +1820,7 @@ const ingredientList =
         "idIngredient": "366",
         "strIngredient": "Papaya",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1981,7 +1844,7 @@ const ingredientList =
         "idIngredient": "354",
         "strIngredient": "Orange Peel",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -1997,7 +1860,7 @@ const ingredientList =
         "idIngredient": "356",
         "strIngredient": "Orange Soda",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2013,7 +1876,7 @@ const ingredientList =
         "idIngredient": "361",
         "strIngredient": "Oreo cookie",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2021,7 +1884,7 @@ const ingredientList =
         "idIngredient": "357",
         "strIngredient": "Orange spiral",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2037,7 +1900,7 @@ const ingredientList =
         "idIngredient": "317",
         "strIngredient": "Mandarin",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2045,7 +1908,7 @@ const ingredientList =
         "idIngredient": "373",
         "strIngredient": "Passion fruit syrup",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2061,7 +1924,7 @@ const ingredientList =
         "idIngredient": "320",
         "strIngredient": "Maple syrup",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2085,7 +1948,7 @@ const ingredientList =
         "idIngredient": "265",
         "strIngredient": "Hot Damn",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2109,7 +1972,7 @@ const ingredientList =
         "idIngredient": "378",
         "strIngredient": "Peach Nectar",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2125,7 +1988,7 @@ const ingredientList =
         "idIngredient": "330",
         "strIngredient": "Mezcal",
         "strDescription": null,
-        "strType": null,
+        "strType": "Mezcal",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2133,7 +1996,7 @@ const ingredientList =
         "idIngredient": "242",
         "strIngredient": "Grapefruit Juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2141,7 +2004,7 @@ const ingredientList =
         "idIngredient": "389",
         "strIngredient": "Pepsi Cola",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2149,7 +2012,7 @@ const ingredientList =
         "idIngredient": "338",
         "strIngredient": "Mountain Dew",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2165,7 +2028,7 @@ const ingredientList =
         "idIngredient": "387",
         "strIngredient": "Peppermint extract",
         "strDescription": null,
-        "strType": null,
+        "strType": "Herb",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2173,7 +2036,7 @@ const ingredientList =
         "idIngredient": "336",
         "strIngredient": "Mint syrup",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2189,7 +2052,7 @@ const ingredientList =
         "idIngredient": "391",
         "strIngredient": "Peychaud bitters",
         "strDescription": null,
-        "strType": null,
+        "strType": "Bitter",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2197,7 +2060,7 @@ const ingredientList =
         "idIngredient": "151",
         "strIngredient": "Cornstarch",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2205,7 +2068,7 @@ const ingredientList =
         "idIngredient": "347",
         "strIngredient": "Olive",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2213,7 +2076,7 @@ const ingredientList =
         "idIngredient": "346",
         "strIngredient": "Olive Oil",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2221,7 +2084,7 @@ const ingredientList =
         "idIngredient": "383",
         "strIngredient": "Peanut Oil",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2229,7 +2092,7 @@ const ingredientList =
         "idIngredient": "268",
         "strIngredient": "Hpnotiq",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2261,7 +2124,7 @@ const ingredientList =
         "idIngredient": "169",
         "strIngredient": "Crystal Light",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2269,7 +2132,7 @@ const ingredientList =
         "idIngredient": "178",
         "strIngredient": "Dark Creme De Cacao",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2277,7 +2140,7 @@ const ingredientList =
         "idIngredient": "270",
         "strIngredient": "Ice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2285,7 +2148,7 @@ const ingredientList =
         "idIngredient": "402",
         "strIngredient": "Plain Chocolate",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2298,34 +2161,10 @@ const ingredientList =
         "strABV": "38"
     },
     {
-        "idIngredient": "390",
-        "strIngredient": "Pernod",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "394",
         "strIngredient": "Pineapple rum",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "396",
-        "strIngredient": "Pineapple-orange-banana juice",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "364",
-        "strIngredient": "Oyster Sauce",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Rum",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2357,7 +2196,7 @@ const ingredientList =
         "idIngredient": "422",
         "strIngredient": "Red Chili Flakes",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2365,7 +2204,7 @@ const ingredientList =
         "idIngredient": "318",
         "strIngredient": "Mandarine napoleon",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2373,15 +2212,7 @@ const ingredientList =
         "idIngredient": "294",
         "strIngredient": "Lemon Peel",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "426",
-        "strIngredient": "Rhubarb",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2389,7 +2220,7 @@ const ingredientList =
         "idIngredient": "376",
         "strIngredient": "Peach juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2397,7 +2228,7 @@ const ingredientList =
         "idIngredient": "418",
         "strIngredient": "Raspberry syrup",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2405,7 +2236,7 @@ const ingredientList =
         "idIngredient": "435",
         "strIngredient": "Rumple Minze",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2418,18 +2249,10 @@ const ingredientList =
         "strABV": null
     },
     {
-        "idIngredient": "411",
-        "strIngredient": "Purple passion",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "114",
         "strIngredient": "Chocolate Milk",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2453,7 +2276,7 @@ const ingredientList =
         "idIngredient": "443",
         "strIngredient": "Schweppes Lemon",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2461,7 +2284,7 @@ const ingredientList =
         "idIngredient": "448",
         "strIngredient": "Sherbet",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2485,7 +2308,7 @@ const ingredientList =
         "idIngredient": "455",
         "strIngredient": "Soda Water",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2517,7 +2340,7 @@ const ingredientList =
         "idIngredient": "429",
         "strIngredient": "Rock Salt",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2533,7 +2356,7 @@ const ingredientList =
         "idIngredient": "393",
         "strIngredient": "Pineapple Juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2541,7 +2364,7 @@ const ingredientList =
         "idIngredient": "398",
         "strIngredient": "Pink lemonade",
         "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2549,15 +2372,7 @@ const ingredientList =
         "idIngredient": "392",
         "strIngredient": "Pina colada mix",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "459",
-        "strIngredient": "Soy Milk",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2565,7 +2380,7 @@ const ingredientList =
         "idIngredient": "99",
         "strIngredient": "Cherries",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2573,15 +2388,7 @@ const ingredientList =
         "idIngredient": "306",
         "strIngredient": "Lillet",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "461",
-        "strIngredient": "Soya Milk",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Wine",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2589,15 +2396,7 @@ const ingredientList =
         "idIngredient": "464",
         "strIngredient": "Spiced Rum",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "414",
-        "strIngredient": "Raspberry Jam",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Rum",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2605,15 +2404,7 @@ const ingredientList =
         "idIngredient": "466",
         "strIngredient": "Sprite",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "386",
-        "strIngredient": "Pepper",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2621,7 +2412,7 @@ const ingredientList =
         "idIngredient": "409",
         "strIngredient": "Powdered Sugar",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2637,7 +2428,7 @@ const ingredientList =
         "idIngredient": "471",
         "strIngredient": "Strawberry juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2653,15 +2444,7 @@ const ingredientList =
         "idIngredient": "367",
         "strIngredient": "Parfait amour",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "460",
-        "strIngredient": "Soy Sauce",
-        "strDescription": null,
-        "strType": null,
+        "strType": "liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2669,7 +2452,7 @@ const ingredientList =
         "idIngredient": "457",
         "strIngredient": "Sour Mix",
         "strDescription": "Sour mix (also known as sweet and sour mix) is a mixer that is yellow-green in color and is used in many cocktails. It is made from approximately equal parts lemon and/or lime juice and simple syrup and shaken vigorously with ice. This produces a pearly-white liquid with a pronounced flavor.\r\n\r\nOptionally, egg-whites may be added to make the liquid slightly foamy.\r\n\r\nSour mix can be mixed with liquor(s) to make a sour drink; most common are vodka sour (vodka) and whiskey sour (whiskey).\r\n\r\nPre-mixed versions are available, and are in use in many bars. These typically consist of a powder which must be rehydrated by adding water prior to use.",
-        "strType": "Soft Drink",
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2677,23 +2460,15 @@ const ingredientList =
         "idIngredient": "472",
         "strIngredient": "Strawberry liqueur",
         "strDescription": null,
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
-        "strABV": null
-    },
-    {
-        "idIngredient": "298",
-        "strIngredient": "lemon-lime",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
         "strABV": null
     },
     {
         "idIngredient": "476",
         "strIngredient": "Sugar",
         "strDescription": "Sugar is the generic name for sweet-tasting, soluble carbohydrates, many of which are used in food.",
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2701,23 +2476,7 @@ const ingredientList =
         "idIngredient": "413",
         "strIngredient": "Raspberry cordial",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "468",
-        "strIngredient": "Squirt",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "479",
-        "strIngredient": "Swedish punsch",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2738,18 +2497,10 @@ const ingredientList =
         "strABV": null
     },
     {
-        "idIngredient": "421",
-        "strIngredient": "Red Chile Flakes",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "484",
         "strIngredient": "Tang",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2765,15 +2516,7 @@ const ingredientList =
         "idIngredient": "405",
         "strIngredient": "Plums",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "481",
-        "strIngredient": "Sweet Cream",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2781,7 +2524,7 @@ const ingredientList =
         "idIngredient": "483",
         "strIngredient": "Tabasco Sauce",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2789,7 +2532,7 @@ const ingredientList =
         "idIngredient": "473",
         "strIngredient": "Strawberry Schnapps",
         "strDescription": "Schnapps (/ʃnɑːps/ or /ʃnæps/) or schnaps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and \"flavored liqueurs\" made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits.\n\nThe English loanword \"schnapps\" is derived from the colloquial German word Schnaps [ʃnaps] (About this sound listen) (plural: Schnäpse) which is used in reference to spirit drinks. The word Schnaps stems from Low German language and is related to the German term \"schnappen\", which refers to the fact that the spirit or liquor drink is usually consumed in a quick slug from a small glass (i.e., a shot glass). In British English, a corresponding term is \"dram\" [of liquor].",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -2797,7 +2540,7 @@ const ingredientList =
         "idIngredient": "253",
         "strIngredient": "Guava juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2813,7 +2556,7 @@ const ingredientList =
         "idIngredient": "321",
         "strIngredient": "Maraschino cherry juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2829,15 +2572,7 @@ const ingredientList =
         "idIngredient": "433",
         "strIngredient": "Rosewater",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "432",
-        "strIngredient": "Roses sweetened lime juice",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Beverage",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2845,23 +2580,15 @@ const ingredientList =
         "idIngredient": "482",
         "strIngredient": "Sweet Vermouth",
         "strDescription": "Vermouth (/vərˈmuːθ/ ver-MOOTH; also UK: /ˈvɜːrməθ/;) is an aromatized, fortified wine flavored with various botanicals (roots, barks, flowers, seeds, herbs, and spices).\r\n\r\nThe modern versions of the beverage were first produced in the mid to late 18th century in Turin, Italy. While vermouth was traditionally used for medicinal purposes, its true claim to fame is as an aperitif, with fashionable cafes in Turin serving it to guests around the clock. However, in the late 19th century it became popular with bartenders as a key ingredient in many classic cocktails that have survived to date, such as the Martini, the Manhattan, the Rob Roy, and the Negroni. In addition to being consumed as an aperitif or cocktail ingredient, vermouth is sometimes used as an alternative white wine in cooking.\r\n\r\nHistorically, there have been two main types of vermouth: sweet and dry. Responding to demand and competition, vermouth manufacturers have created additional styles, including extra-dry white, sweet white (bianco), red, amber (ambre or rosso), and rosé. Vermouth is produced by starting with a base of a neutral grape wine or unfermented wine must. Each manufacturer adds additional alcohol and a proprietary mixture of dry ingredients, consisting of aromatic herbs, roots, and barks, to the base wine, base wine plus spirit or spirit only – which may be redistilled before adding to the wine or unfermented wine must. After the wine is aromatized and fortified, the vermouth is sweetened with either cane sugar or caramelized sugar, depending on the style. Italian and French companies produce most of the vermouth consumed throughout the world, although the United States and the United Kingdom are also producers.",
-        "strType": "Fortified Wine",
+        "strType": "Wine",
         "strAlcohol": "Yes",
-        "strABV": null
-    },
-    {
-        "idIngredient": "500",
-        "strIngredient": "Tuaca",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
         "strABV": null
     },
     {
         "idIngredient": "415",
         "strIngredient": "Raspberry Juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2869,23 +2596,7 @@ const ingredientList =
         "idIngredient": "439",
         "strIngredient": "Salt",
         "strDescription": "Table salt or common salt is a mineral composed primarily of sodium chloride (NaCl), a chemical compound belonging to the larger class of salts; salt in its natural form as a crystalline mineral is known as rock salt or halite. Salt is present in vast quantities in seawater, where it is the main mineral constituent. The open ocean has about 35 grams (1.2 oz) of solids per litre, a salinity of 3.5%.\r\n\r\nSalt is essential for life in general, and saltiness is one of the basic human tastes. The tissues of animals contain larger quantities of salt than do plant tissues. Salt is one of the oldest and most ubiquitous food seasonings, and salting is an important method of food preservation.\r\n\r\nSome of the earliest evidence of salt processing dates to around 8,000 years ago, when people living in the area of present-day Romania boiled spring water to extract salts; a salt-works in China dates to approximately the same period. Salt was also prized by the ancient Hebrews, the Greeks, the Romans, the Byzantines, the Hittites, Egyptians, and the Indians. Salt became an important article of trade and was transported by boat across the Mediterranean Sea, along specially built salt roads, and across the Sahara on camel caravans. The scarcity and universal need for salt have led nations to go to war over it and use it to raise tax revenues. Salt is used in religious ceremonies and has other cultural significance.\r\n\r\nSalt is processed from salt mines, and by the evaporation of seawater (sea salt) and mineral-rich spring water in shallow pools. Its major industrial products are caustic soda and chlorine; salt is used in many industrial processes including the manufacture of polyvinyl chloride, plastics, paper pulp and many other products. Of the annual global production of around two hundred million tonnes of salt, only about 6% is used for human consumption. Other uses include water conditioning processes, de-icing highways, and agricultural use. Edible salt is sold in forms such as sea salt and table salt which usually contains an anti-caking agent and may be iodised to prevent iodine deficiency. As well as its use in cooking and at the table, salt is present in many processed foods.\r\n\r\nSodium is an essential nutrient for human health via its role as an electrolyte and osmotic solute. Excessive salt consumption may increase the risk of cardiovascular diseases, such as hypertension, in children and adults. Such health effects of salt have long been studied. Accordingly, numerous world health associations and experts in developed countries recommend reducing consumption of popular salty foods. The World Health Organization recommends that adults should consume less than 2,000 mg of sodium, equivalent to 5 grams of salt per day.",
-        "strType": "Mineral",
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "486",
-        "strIngredient": "Tea",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "399",
-        "strIngredient": "Pisang Ambon",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2898,18 +2609,10 @@ const ingredientList =
         "strABV": null
     },
     {
-        "idIngredient": "488",
-        "strIngredient": "Tequila rose",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "504",
         "strIngredient": "Vanilla liqueur",
         "strDescription": null,
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -2917,7 +2620,7 @@ const ingredientList =
         "idIngredient": "372",
         "strIngredient": "Passion fruit juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2949,31 +2652,15 @@ const ingredientList =
         "idIngredient": "514",
         "strIngredient": "Watermelon schnapps",
         "strDescription": "Schnapps (/ʃnɑːps/ or /ʃnæps/) or schnaps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and \"flavored liqueurs\" made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits.\n\nThe English loanword \"schnapps\" is derived from the colloquial German word Schnaps [ʃnaps] (About this sound listen) (plural: Schnäpse) which is used in reference to spirit drinks. The word Schnaps stems from Low German language and is related to the German term \"schnappen\", which refers to the fact that the spirit or liquor drink is usually consumed in a quick slug from a small glass (i.e., a shot glass). In British English, a corresponding term is \"dram\" [of liquor].",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
-        "strABV": null
-    },
-    {
-        "idIngredient": "462",
-        "strIngredient": "Soya Sauce",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
         "strABV": null
     },
     {
         "idIngredient": "136",
         "strIngredient": "Coconut Syrup",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "94",
-        "strIngredient": "Celery Salt",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2981,7 +2668,7 @@ const ingredientList =
         "idIngredient": "116",
         "strIngredient": "Chocolate",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2989,7 +2676,7 @@ const ingredientList =
         "idIngredient": "515",
         "strIngredient": "Whipped Cream",
         "strDescription": "Whipped cream is cream that is whipped by a whisk or mixer until it is light and fluffy. Whipped cream is often sweetened and sometimes flavored with vanilla. Whipped cream is often called Chantilly cream or crème Chantilly (pronounced [kʁɛm ʃɑ̃tiji]).\r\n\r\nWhipped cream is an aerated colloid produced when air is incorporated into cream containing at least 35% fat. During whipping, partially coalesced fat molecules create a stabilized network which traps air bubbles. The resulting colloid is roughly double the volume of the original cream. If, however, the whipping is continued, the fat droplets will stick together destroying the colloid and forming butter. Lower-fat cream (or milk) does not whip well, while higher-fat cream produces a more stable foam.\r\n\r\nCream is usually whipped with a whisk, an electric or hand mixer, or a food processor. Results are best when the equipment and ingredients are cold.\r\n\r\nWhipped cream is often flavored with sugar, vanilla, coffee, chocolate, orange, and so on. Many 19th-century recipes recommend adding gum tragacanth to stabilize whipped cream; a few include whipped egg whites. Various other substances, including gelatin and diphosphate (E450), are used in commercial stabilizers.\r\n\r\nWhipped cream may also be made in a whipping siphon, typically using nitrous oxide as the gas, as carbon dioxide tends to give a sour taste.[10] The siphon may have replaceable cartridges or be sold as a pre-pressurized retail package. The gas dissolves in the butterfat under pressure, and when the pressure is released, produces bubbles and thus whipped cream.",
-        "strType": "Cream",
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -2997,7 +2684,7 @@ const ingredientList =
         "idIngredient": "467",
         "strIngredient": "Squeezed Orange",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3005,7 +2692,7 @@ const ingredientList =
         "idIngredient": "269",
         "strIngredient": "Ice-Cream",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3013,7 +2700,7 @@ const ingredientList =
         "idIngredient": "520",
         "strIngredient": "White Creme de Menthe",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3021,7 +2708,7 @@ const ingredientList =
         "idIngredient": "508",
         "strIngredient": "Vanilla",
         "strDescription": null,
-        "strType": null,
+        "strType": "Herb",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3029,7 +2716,7 @@ const ingredientList =
         "idIngredient": "474",
         "strIngredient": "Strawberry syrup",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3045,7 +2732,7 @@ const ingredientList =
         "idIngredient": "527",
         "strIngredient": "Wildberry schnapps",
         "strDescription": "Schnapps (/ʃnɑːps/ or /ʃnæps/) or schnaps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and \"flavored liqueurs\" made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits.\n\nThe English loanword \"schnapps\" is derived from the colloquial German word Schnaps [ʃnaps] (About this sound listen) (plural: Schnäpse) which is used in reference to spirit drinks. The word Schnaps stems from Low German language and is related to the German term \"schnappen\", which refers to the fact that the spirit or liquor drink is usually consumed in a quick slug from a small glass (i.e., a shot glass). In British English, a corresponding term is \"dram\" [of liquor].",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -3066,30 +2753,6 @@ const ingredientList =
         "strABV": null
     },
     {
-        "idIngredient": "478",
-        "strIngredient": "Surge",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "529",
-        "strIngredient": "Worcestershire Sauce",
-        "strDescription": "Worcestershire sauce (/ˈwʊstərʃər/ (About this sound listen)), (Merriam-Webster: \\ˈwu̇s-tə(r)-ˌshir-, -shər- also -ˌshī(-ə)r-\\ ), frequently shortened to Worcester sauce (/ˈwʊstər/)[citation needed], is a fermented liquid condiment of complex mixture originally created by the Worcester chemists John Wheeley Lea and William Henry Perrins, who went on to form the company Lea & Perrins. The ingredients are allowed to mature for 18 months before being blended and bottled in Worcester, where the exact recipe is kept a secret.\r\n\r\nLea and Perrins devised the recipe in the 1830s, however it was not to their liking and was set aside and forgotten about. It was not until the barrels were rediscovered many months later that the taste had mellowed into what is now known as Worcestershire sauce. A high court decided on 26 July 1876 that Lea & Perrins did not have the rights to the term Worcestershire sauce, and so the name is not trademarked. Lea & Perrins claims to be The Original Worcestershire sauce and may be the leading global brand of Worcestershire sauce[citation needed], but other brands offer similar recipes. Some may be vegetarian or vegan, and may add other spices.\r\n\r\nWorcestershire sauce is complex and unique in its flavour and aroma, and frequently used to enhance some food and drink recipes. For example, it is often an ingredient in Welsh rarebit, Caesar salad, Oysters Kirkpatrick, deviled eggs, and sometimes an ingredient in chili con carne, beef stew or other beef dishes. The sauce is also used to flavour cocktails such as the Bloody Mary or Caesar.",
-        "strType": "Sauce",
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "530",
-        "strIngredient": "Wormwood",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "497",
         "strIngredient": "Tonic Water",
         "strDescription": "Tonic water (or Indian tonic water) is a carbonated soft drink in which quinine is dissolved. Originally used as a prophylactic against malaria, tonic water usually now has a significantly lower quinine content and is consumed for its distinctive bitter flavour. It is often used in mixed drinks, particularly in gin and tonic.\r\n\r\nThe quinine was added to the drink as a prophylactic against malaria, since it was originally intended for consumption in tropical areas of South Asia and Africa, where the disease is endemic. Quinine powder was so bitter that British officials stationed in early 19th Century India and other tropical posts began mixing the powder with soda and sugar, and a basic tonic water was created. The first commercial tonic water was produced in 1858. The mixed drink gin and tonic also originated in British colonial India, when the British population would mix their medicinal quinine tonic with gin.\r\n\r\nSince 2010, at least four tonic syrups have been released in the United States. Consumers add carbonated water to the syrup to make tonic water; this allows drinkers to vary the intensity of the flavour.",
@@ -3106,14 +2769,6 @@ const ingredientList =
         "strABV": null
     },
     {
-        "idIngredient": "456",
-        "strIngredient": "Sour Apple Pucker",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "485",
         "strIngredient": "Tawny port",
         "strDescription": null,
@@ -3122,26 +2777,10 @@ const ingredientList =
         "strABV": null
     },
     {
-        "idIngredient": "537",
-        "strIngredient": "Caramel Sauce",
-        "strDescription": "Caramel (/ˈkærəmɛl/ or r-) is a medium to dark-brown confectionery product made by heating a variety of sugars. It can be used as a flavoring in puddings and desserts, as a filling in bonbons, or as a topping for ice cream and custard.\r\n\r\nThe process of caramelization consists of heating sugar slowly to around 170 °C (340 °F). As the sugar heats, the molecules break down and re-form into compounds with a characteristic color and flavor.\r\n\r\nA variety of candies, desserts, and confections are made with caramel: brittles, nougats, pralines, crème brûlée, crème caramel, and caramel apples. Ice creams sometimes are flavored with or contain swirls of caramel.",
-        "strType": "Sauce",
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "538",
-        "strIngredient": "Chocolate Sauce",
-        "strDescription": "Chocolate syrup is a sweet, chocolate-flavored condiment. It is often used as a topping or dessert sauce for various desserts, such as ice cream, or mixed with milk to make chocolate milk or blended with milk and ice cream to make a chocolate milkshake. Chocolate syrup is sold in a variety of consistencies, ranging from a thin liquid that can be drizzled from a bottle to a thick sauce that needs to be spooned onto the dessert item.\n\nChocolate syrup is also used to top puddings and cakes. Some restaurants use an artistic drizzling of chocolate syrup to decorate servings of cheesecake or cake, along with other decorations such as cocoa powder, powdered sugar or chocolate shavings. Some brands of chocolate syrup are marketed as chocolate milk syrup (e.g., Nestle Quik). Other brands are marketed as ice cream sundae toppings.",
-        "strType": "Sauce",
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "540",
         "strIngredient": "Peach Bitters",
         "strDescription": "A bitters is traditionally an alcoholic preparation flavored with botanical matter such that the end result is characterized by a bitter, sour, or bittersweet flavor. Numerous longstanding brands of bitters were originally developed as patent medicines, but are now sold as digestifs and cocktail flavorings.\r\n\r\nThe botanical ingredients used in preparing bitters have historically consisted of aromatic herbs, bark, roots, and/or fruit for their flavour and medicinal properties. Some of the more common ingredients are cascarilla, cassia, gentian, orange peel, and cinchona bark.\r\n\r\nMost bitters contain both water and alcohol, the latter of which functions as a solvent for botanical extracts as well as a preservative. The alcoholic strength of bitters varies widely across different brands and styles.",
-        "strType": "bitter",
+        "strType": "Bitter",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3149,7 +2788,7 @@ const ingredientList =
         "idIngredient": "490",
         "strIngredient": "Tia Maria",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3157,7 +2796,7 @@ const ingredientList =
         "idIngredient": "492",
         "strIngredient": "Tomato Juice",
         "strDescription": "Tomato juice is a juice made from tomatoes, usually used as a beverage, either plain or in cocktails such as a Bloody Mary or Michelada.\r\n\r\nIn Canada, tomato juice is unconcentrated and pasteurized, made from fine tomato pulp from ripe and whole tomatoes. The stems and skins must be removed without adding water to the final juice product. It may also contain a sweetening agent, citric acid and salt.",
-        "strType": "Soft Drink",
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3165,31 +2804,7 @@ const ingredientList =
         "idIngredient": "475",
         "strIngredient": "Sugar Syrup",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "531",
-        "strIngredient": "Yeast",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "477",
-        "strIngredient": "Sunny delight",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "452",
-        "strIngredient": "Sirup of roses",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3207,14 +2822,6 @@ const ingredientList =
         "strDescription": "Martini is a brand of Italian vermouth, named after the Martini & Rossi Distilleria Nazionale di Spirito di Vino, in Turin.\r\n\r\nClemente Michel, Carlo Re, Carlo Agnelli and Eligio Baudino started the company in 1847, as a vermouth bottling plant in Pessione. A few years later Alessandro Martini joined the team, becoming the director in 1863 along with Teofilo Sola and Luigi Rossi (who was the inventor of a vermouth). In 1863 they changed the company name to Martini, Sola & Cia. They started exporting bottles of vermouth around the world. New York city was given its first crates in 1867. At the time the firm was awarded several prizes, which are still recorded on the bottles: Dublin (1865), Paris (1867 and 1878), Vienna (1873) and Philadelphia (1876). Just thirty years after its creation, Martini was available in the United States, Brazil, Argentina, Greece, Portugal, Belgium, Egypt and other countries. In 1879 the Sola family sold its interests to the remaining partners, who renamed the company Martini & Rossi, as it stands today.\r\n\r\nThe brand may have given the American martini vermouth and gin cocktail its name (an early recipe for which is known from 1888), though other speculations on the cocktail's etymology exist.\r\n\r\nIn 1892 the business was taken over by Rossi's four sons; control passed to his grandsons in 1930. In 1929 the Martini Ball & Bar logo was registered for the first time. Restructuring was carried out in 1977 resulting in the creation of the General Beverage Corporation. In 1992 Martini & Rossi merged with Bacardi. “Martini is the world's fourth most powerful ‘spirit’ brand” according to a survey of the market in 2006.\r\n\r\nIn 1970 and 1971 Martini together with Rossi supported the so-called \"Ladies Football World Championships\". These tournaments were entirely independent from FIFA and the common national soccer associations. They were held in Rome and in Mexico.",
         "strType": "Vermouth",
         "strAlcohol": "Yes",
-        "strABV": null
-    },
-    {
-        "idIngredient": "502",
-        "strIngredient": "Vanilla extract",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
         "strABV": null
     },
     {
@@ -3237,7 +2844,7 @@ const ingredientList =
         "idIngredient": "549",
         "strIngredient": "Rosemary",
         "strDescription": "Rosmarinus officinalis, commonly known as rosemary, is a woody, perennial herb with fragrant, evergreen, needle-like leaves and white, pink, purple, or blue flowers, native to the Mediterranean region.\r\n\r\nIt is a member of the mint family Lamiaceae, which includes many other herbs. The name \"rosemary\" derives from the Latin for \"dew\" (ros) and \"sea\" (marinus), or \"dew of the sea\".[2] The plant is also sometimes called anthos, from the ancient Greek word ἄνθος, meaning \"flower\".[3] Rosemary has a fibrous root system.",
-        "strType": "Garnish",
+        "strType": "Herb",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3253,7 +2860,7 @@ const ingredientList =
         "idIngredient": "499",
         "strIngredient": "Tropicana",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3261,7 +2868,7 @@ const ingredientList =
         "idIngredient": "506",
         "strIngredient": "Vanilla syrup",
         "strDescription": null,
-        "strType": null,
+        "strType": "Syrup",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3277,7 +2884,7 @@ const ingredientList =
         "idIngredient": "505",
         "strIngredient": "Vanilla schnapps",
         "strDescription": "Schnapps (/ʃnɑːps/ or /ʃnæps/) or schnaps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and \"flavored liqueurs\" made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits.\n\nThe English loanword \"schnapps\" is derived from the colloquial German word Schnaps [ʃnaps] (About this sound listen) (plural: Schnäpse) which is used in reference to spirit drinks. The word Schnaps stems from Low German language and is related to the German term \"schnappen\", which refers to the fact that the spirit or liquor drink is usually consumed in a quick slug from a small glass (i.e., a shot glass). In British English, a corresponding term is \"dram\" [of liquor].",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -3287,14 +2894,6 @@ const ingredientList =
         "strDescription": null,
         "strType": "Whiskey",
         "strAlcohol": "Yes",
-        "strABV": null
-    },
-    {
-        "idIngredient": "541",
-        "strIngredient": "Mini-snickers bars",
-        "strDescription": "Snickers is a brand name chocolate bar made by the American company Mars, Incorporated. Consisting of nougat topped with caramel and peanuts, enrobed in milk chocolate, Snickers has annual global sales of $2 billion.\r\n\r\nIn the United Kingdom, the Isle of Man, and Ireland, Snickers was sold under the brand name Marathon until July 19, 1990. Snickers brand Marathon energy bars have since been sold in some markets.\r\n\r\nIn 1930 Mars introduced Snickers, named after the favorite horse of the Mars family. The Snickers chocolate bar consists of nougat, peanuts, and caramel with a chocolate coating. The bar was marketed under the name \"Marathon\" in the UK and Ireland until July 19, 1990, when Mars decided to align the UK product with the global Snickers name (Mars had marketed and discontinued an unrelated bar named Marathon in the United States during the 1970s). There are also several other Snickers products such as Snickers mini, dark chocolate, ice cream bars, Snickers with almonds, Snickers with hazelnuts, Snickers peanut butter bars, Snickers protein and Snickers with Extra Caramel.",
-        "strType": "Confectionery\r\n\r\n",
-        "strAlcohol": null,
         "strABV": null
     },
     {
@@ -3309,7 +2908,7 @@ const ingredientList =
         "idIngredient": "521",
         "strIngredient": "White grape juice",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit Juice",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3325,7 +2924,7 @@ const ingredientList =
         "idIngredient": "519",
         "strIngredient": "White chocolate liqueur",
         "strDescription": null,
-        "strType": null,
+        "strType": "Liqueur",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3365,7 +2964,7 @@ const ingredientList =
         "idIngredient": "522",
         "strIngredient": "White port",
         "strDescription": "Port wine (also known as vinho do Porto, Portuguese pronunciation: [ˌviɲuduˈpoɾtu], Porto, and usually simply port) is a Portuguese fortified wine produced exclusively in the Douro Valley in the northern provinces of Portugal. It is typically a sweet, red wine, often served as a dessert wine, though it also comes in dry, semi-dry, and white varieties. Fortified wines in the style of port are also produced outside Portugal, most notably in Australia, France, South Africa, Canada, India, Argentina, and the United States. Under European Union Protected Designation of Origin guidelines, only the product from Portugal may be labelled as port or Porto. In the United States, wines labelled \"port\" may come from anywhere in the world, while the names \"Oporto\", \"Porto\", and \"Vinho do Porto\" have been recognised as foreign, non-generic names for Port wines originating in Portugal.",
-        "strType": "Port",
+        "strType": "Wine",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -3373,15 +2972,7 @@ const ingredientList =
         "idIngredient": "441",
         "strIngredient": "Sarsaparilla",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "524",
-        "strIngredient": "White Vinegar",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3389,7 +2980,7 @@ const ingredientList =
         "idIngredient": "503",
         "strIngredient": "Vanilla Ice-Cream",
         "strDescription": null,
-        "strType": null,
+        "strType": "Others",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3408,14 +2999,6 @@ const ingredientList =
         "strType": "Wine",
         "strAlcohol": "Yes",
         "strABV": "14"
-    },
-    {
-        "idIngredient": "511",
-        "strIngredient": "Vinegar",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
     },
     {
         "idIngredient": "557",
@@ -3541,7 +3124,7 @@ const ingredientList =
         "idIngredient": "575",
         "strIngredient": "Creme de Mure",
         "strDescription": "Home-made blackberry liqueur, a warming, sweet drink for the winter months",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": "16"
     },
@@ -3581,7 +3164,7 @@ const ingredientList =
         "idIngredient": "564",
         "strIngredient": "Singani",
         "strDescription": "Singani is distilled from white Muscat of Alexandria grapes. It is produced only in the Bolivian high valleys and is considered the national liquor of Bolivia and a cultural patrimony. Its character and production methods are closest to eau-de-vie but it is classified as a brandy for purposes of international trade. Singani has been declared a Domain of Origin (Denominación de Origen or DO) and a Geographical Indication (GI) by the Bolivian government.\r\n\r\nSingani has been produced since the 16th century shortly after the Spanish arrived in South America. It was first distilled by monastic orders who needing wine for mass found it expedient to also distill. Most sources say the name singani derives from a pre-Columbian village of that name near the mission that first distilled the liquor.\r\n\r\nBolivian regulations in recent decades have codified what has long been practiced, and today the vineyards from which singani is made are to be planted at elevations of 5,250 feet or higher. Singani is thereby known as an altitude product in Bolivian legal terms, the official phrase \"of altitude\" being also applied to Bolivian wines and grapevine cultivars. Although there are vineyards at elevations much higher than the official minimum, they are difficult to manage, and most production comes from plantations at around 6,000 feet above sea level close to where the wineries and distillation facilities are located.",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -3589,15 +3172,7 @@ const ingredientList =
         "idIngredient": "395",
         "strIngredient": "Pineapple vodka",
         "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "423",
-        "strIngredient": "Red Hot Chili Flakes",
-        "strDescription": null,
-        "strType": null,
+        "strType": "Vodka",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3626,26 +3201,10 @@ const ingredientList =
         "strABV": null
     },
     {
-        "idIngredient": "403",
-        "strIngredient": "Plain Flour",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
-        "idIngredient": "412",
-        "strIngredient": "Raisins",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
-        "strABV": null
-    },
-    {
         "idIngredient": "578",
         "strIngredient": "St. Germain",
         "strDescription": "St-Germain is made from fresh, hand-picked elderflower blossoms gathered each Spring throughout Europe\r\nUp to 1000 fresh elderflowers make a bottle of St-Germain\r\nSt-Germain Elderflower Liqueur - made in France using French savoir-faire with with no preservatives or stabilisers.",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -3653,7 +3212,7 @@ const ingredientList =
         "idIngredient": "565",
         "strIngredient": "Arrack",
         "strDescription": "Arrack, also spelt arak,[1] is a distilled alcoholic drink typically produced in the Indian Subcontinent and Southeast Asia, made from either the fermented sap of coconut flowers, sugarcane, grain (e.g. red rice) or fruit, depending upon the country of origin. The clear distillate may be blended, aged in wooden barrels, or repeatedly distilled and filtered depending upon the taste and color objectives of the manufacturer. Arrack is not to be confused with arak, an anise-flavored alcoholic beverage traditionally consumed in Eastern Mediterranean and North African countries.",
-        "strType": "Liquor",
+        "strType": "Liqueur",
         "strAlcohol": "Yes",
         "strABV": null
     },
@@ -3685,7 +3244,7 @@ const ingredientList =
         "idIngredient": "453",
         "strIngredient": "Sloe Gin",
         "strDescription": "Sloe gin is a red liqueur made with gin and sloe (blackthorn) drupes, which are a small fruit relative of the plum. Sloe gin has an alcohol content between 15 and 30 percent by volume. However, the European Union has established a minimum of 25% ABV for sloe gin to be named as such. The traditional way of making sloe gin is to soak the sloes in gin. Sugar is required to ensure the sloe juice is extracted from the fruit.\r\n\r\nMany commercial sloe gins today are made by flavouring less expensive neutral grain spirits, although some manufacturers still use the traditional method. Currently, Spirit Works Distillery out of Sebastopol in Sonoma County, California is the only traditional producer of Sloe Gin in the US. Other U.S. distilleries use close relatives of the sloe, such as the Aronia berry or beach plum, to produce a domestic version of sloe gin. ",
-        "strType": "Liqueur",
+        "strType": "Gin",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3733,7 +3292,7 @@ const ingredientList =
         "idIngredient": "444",
         "strIngredient": "Schweppes Russchian",
         "strDescription": null,
-        "strType": null,
+        "strType": "Soft Drink",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3789,7 +3348,7 @@ const ingredientList =
         "idIngredient": "494",
         "strIngredient": "Tomato",
         "strDescription": null,
-        "strType": null,
+        "strType": "Fruit",
         "strAlcohol": null,
         "strABV": null
     },
@@ -3799,14 +3358,6 @@ const ingredientList =
         "strDescription": "Vermouth (/vərˈmuːθ/ ver-MOOTH, also UK: /ˈvɜːrməθ/) is an aromatized, fortified wine flavored with various botanicals (roots, barks, flowers, seeds, herbs, and spices).\r\n\r\nThe modern versions of the beverage were first produced in the mid to late 18th century in Turin, Italy. While vermouth was traditionally used for medicinal purposes, its true claim to fame is as an aperitif, with fashionable cafes in Turin serving it to guests around the clock. However, in the late 19th century it became popular with bartenders as a key ingredient in many classic cocktails that have survived to date, such as the Martini, the Manhattan, the Rob Roy, and the Negroni. In addition to being consumed as an aperitif or cocktail ingredient, vermouth is sometimes used as an alternative white wine in cooking.\r\n\r\nVermouth served in a fashionable cafe in Turin.\r\nVermouth served in a fashionable cafe in Turin.\r\nHistorically, there have been two main types of vermouth: sweet and dry. Responding to demand and competition, vermouth manufacturers have created additional styles, including extra-dry white, sweet white (bianco), red, amber (ambre or rosso), and rosé.\r\n\r\nVermouth is produced by starting with a base of a neutral grape wine or unfermented wine must. Each manufacturer adds additional alcohol and a proprietary mixture of dry ingredients, consisting of aromatic herbs, roots, and barks, to the base wine, base wine plus spirit or spirit only – which may be redistilled before adding to the wine or unfermented wine must. After the wine is aromatized and fortified, the vermouth is sweetened with either cane sugar or caramelized sugar, depending on the style.\r\n\r\nItalian and French companies produce most of the vermouth consumed throughout the world, although the United States and the United Kingdom are also producers.",
         "strType": "Fortified Wine",
         "strAlcohol": "Yes",
-        "strABV": null
-    },
-    {
-        "idIngredient": "348",
-        "strIngredient": "Onion",
-        "strDescription": null,
-        "strType": null,
-        "strAlcohol": null,
         "strABV": null
     }
 ]

@@ -1,8 +1,6 @@
 import React from 'react';
-import {CardMedia , Typography, Paper, Button} from '@material-ui/core';
+import {CardMedia , Typography, Paper} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core';
-import  testItems  from "../Recommand/test-items";
-
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -42,7 +40,6 @@ function DoorHeaderRoot():JSX.Element {
             <Typography variant="h2" className={classes.title} align="center">
                 Bar In Home
             </Typography>
-           
             
         </div>
     );

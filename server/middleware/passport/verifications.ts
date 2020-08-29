@@ -14,6 +14,7 @@ const tokenValidateCheck = (
 ): void => {
     const id = payload.id;
     const roles = payload.roles;
+    console.log(id);
 
     if(roles === 'Admin'){
       done(null, id);
@@ -23,10 +24,12 @@ const tokenValidateCheck = (
         const sql= "SELECT * FROM userinfo WHERE id = ?";
         doQuery(sql,[id])
             .then((row) => {
-                if(row.result[0]) return done(null , id);
+              console.log("success");
+              if(row.result[0]) return done(null , id);
             })
             .catch((err) => {
-                return done(false);
+              console.log("fail");
+              return done(false);
             })
       } 
     else{

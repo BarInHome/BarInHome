@@ -1,27 +1,27 @@
 
 import React from 'react';
-import {Icon} from '@material-ui/core';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
+import {Icon} from '../../../../node_modules/@material-ui/core';
+import Avatar from '../../../../node_modules/@material-ui/core/Avatar';
+import Button from '../../../../node_modules/@material-ui/core/Button';
+import CssBaseline from '../../../../node_modules/@material-ui/core/CssBaseline';
+import TextField from '../../../../node_modules/@material-ui/core/TextField';
 //import FormControlLabel from '@material-ui/core/FormControlLabel';
 //import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import Link from '../../../../node_modules/@material-ui/core/Link';
+import Grid from '../../../../node_modules/@material-ui/core/Grid';
+import Container from '../../../../node_modules/@material-ui/core/Container';
+import Box from '../../../../node_modules/@material-ui/core/Box';
 //import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import {Facebook,Public,Email, ContactSupport} from '@material-ui/icons';
+import Typography from '../../../../node_modules/@material-ui/core/Typography';
+import {Facebook,Public,Email, ContactSupport} from '../../../../node_modules/@material-ui/icons';
 import googleLogo from '../../../../public/images/google_icon.png';
-import { makeStyles } from '@material-ui/core/styles';
-import {AuthState,AuthAction} from '../Auth.reducer';
+import { makeStyles } from '../../../../node_modules/@material-ui/core/styles';
+import {AuthState,AuthAction} from './Auth.reducer';
 
 import usePostRequest from '../../../utils/hooks/usePostRequest';
 import useGetRequest from '../../../utils/hooks/useGetRequest';
 
-import history from '../.././../history';
+import history from '../../../history';
 
 
 /*
@@ -50,6 +50,10 @@ function Copyright() {
       {'.'}
     </Typography>
   );
+}
+
+interface Token {
+  readonly token : string;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -137,7 +141,7 @@ export default function Login(props:AuthInterface):JSX.Element {
       dispatch({type: name , value: event.target.value});
   }
 
-  const {doPostRequest} = usePostRequest<userInterface,boolean>('/auth/login',()=>{
+  const {doPostRequest} = usePostRequest<userInterface,void>('/auth/login',()=>{
       console.log('[login success]');
       handleSetIsLogin(true);
       history.push('/main');
@@ -146,10 +150,11 @@ export default function Login(props:AuthInterface):JSX.Element {
 
   const onClickLogin = () => {
       try{
-          doPostRequest({
+          const token = doPostRequest({
             id:id,
             pw:pw
           });
+          
       }catch(e){
           console.log(e);
       }
@@ -265,6 +270,20 @@ export default function Login(props:AuthInterface):JSX.Element {
               KaKao
             </Button>
           </Grid>
+          <Grid container xs={12} className={classes.buttonWrapper} >
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                
+                variant="contained" 
+                color="secondary"
+                href="http://localhost:5000/auth/login/admin"
+                startIcon={<Email/>} 
+                >
+                관리자 계정 로그인
+                </Button>
+            </Grid>
+          </Grid>
       </div>
       <Box mt={8}>
         <Copyright />
@@ -272,3 +291,5 @@ export default function Login(props:AuthInterface):JSX.Element {
     </Container>
   );
 }
+// import { useCookies,withCookies } from 'react-cookie';
+// const [cookies, setCookie, removeCookie] = useCookies(['refresh']);

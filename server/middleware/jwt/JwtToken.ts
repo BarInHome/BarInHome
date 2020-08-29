@@ -3,23 +3,25 @@ import doQuery from '../../database/doQuery';
 
 const process_env = require('../../secret');
 interface Token {
-    readonly token : string;
+    readonly accesstoken : string;
+    readonly refreshtoken : string;
 }
 export interface payload {
     sub : string;
     roles : string;
 }
 
+
 async function create(id: string , roles= 'user'): Promise<Token>{
     const payload: payload = {
         sub : id,
         roles: roles,
     }
-    const token: string = jwt.sign( payload, process_env.secret, { expiresIn:  '48h'} );
-    return { token };
+    const accesstoken: string = jwt.sign( payload, process_env.secret, { expiresIn:  '1h'} );
+    const refreshtoken: string = jwt.sign( {}, process_env.secret, { expiresIn:  '48h'} );
+    return { accesstoken,refreshtoken };
 }
 
 export default {
-    create,
-    
+    create
 }

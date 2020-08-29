@@ -1,7 +1,9 @@
 import express from 'express';
 import passport from '../../middleware/passport/passport';
-const router = express.Router();
+import create from '../../middleware/jwt/JwtToken';
+import session from 'express-session';
 
+const router = express.Router();
 /*
   passport - local , DB 연결 완료
 */
@@ -10,7 +12,9 @@ router.route('/')
         passport.authenticate('local-login',{
         }),(req,res)=>{
           console.log('[Login Success]');
+          console.log(req.user);
           res.sendStatus(200);
+          // res.send(create(req.user));
         });
 
 router.route('/check')
