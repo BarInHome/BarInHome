@@ -137,7 +137,7 @@ function loginByThirdparty(info:any, done:any) {
         const sql_insert = `
           INSERT INTO userinfo(id,pw,name,kind,email) VALUES(?,?,?,?,?)
         `;
-
+        
         dbQuery(sql_insert,[info.auth_id,info.auth_type+'PW',info.auth_name,info.auth_type,info.auth_email])
           .then((row)=>{
             console.log('info.auth_id',info.auth_id);

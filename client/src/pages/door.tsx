@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import DoorHeader from '../components/door/doorheader/DoorHeaderRoot';
 import AuthComponent from '../components/door/auth/AuthRoot';
 import RecommandComponent from '../components/door/recommend/RecommandRoot';
@@ -22,8 +22,6 @@ const useStyles = makeStyles({
         padding: '120px',
     }
   });
-
-
 
 function Door(): JSX.Element {
     const classes = useStyles();
@@ -49,4 +47,4 @@ function Door(): JSX.Element {
     );
 }
 
-export default Door;
+export default withRouter(Door);

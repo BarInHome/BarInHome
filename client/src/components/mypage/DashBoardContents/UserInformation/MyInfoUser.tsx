@@ -9,7 +9,9 @@ import Button from '@material-ui/core/Button';
 //import ChangeUserInfoDialog from '../../../Dialogs/ChangeUserInfoDialog';
 
 import useDialog from '../../../../utils/hooks/useDialog';
-import usePostRequest from '../../../../utils/hooks/usePostRequest';
+import useGetRequest from '../../../../utils/hooks/useGetRequest';
+import useState from 'react';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -55,17 +57,17 @@ interface userInterface{
 export default function MyInfoUser(): JSX.Element {
     const classes = useStyles();
     const {open,handleOpen,handleClose} = useDialog();
-    const defaultInfo = {
-      name : "김법우",
-      email : "qjqdn1568@naver.com",
-      id : "qjqdn1568"
-    }
-    const {loading, data, doPostRequest} = usePostRequest<void,userInterface>('/auth/info');
-
-    React.useEffect(()=>{
-      doPostRequest();
-      console.log("dfdf")
-    },[doPostRequest])
+    const [userdata,setUserData] = React.useState<userInterface|null>({
+      name: '',
+      id: '',
+      email: '',
+    });
+    const {loading,data} = useGetRequest<void,userInterface>('/mypage/userinfo');
+    
+    React.useEffect(() => {
+      setUserData(data);
+      console.log(data);
+    },[data]);
 
     return(
           <Grid item xs={6} >

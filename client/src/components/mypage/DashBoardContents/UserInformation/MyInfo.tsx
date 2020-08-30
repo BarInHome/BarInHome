@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 export default function MyInfo(): JSX.Element {
     const classes = useStyles();
 

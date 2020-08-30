@@ -6,7 +6,12 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-
+import { Paper } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Badge from '@material-ui/core/Badge';
+import Box from '@material-ui/core/Box';
+import theme from '../../../../styles/theme';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -31,37 +36,75 @@ const useStyles = makeStyles((theme: Theme) => ({
       media: {
         height: 200,
       },
+    selectCard: {
+        color: theme.palette.secondary.main,
+        
+    }
   }));
 
 interface RefrigeItemInterface{
-    image: any;
-    title: string;
-    excerpt : string;
+    index?: number;
+    name: string;
+    type: string;
+    alcohol: string;
+    handleSelectedIngredients?:  (index: number, PushOrPop: boolean) => void; 
 }
 
 export default function RefrigeratorItem(props:RefrigeItemInterface): JSX.Element {
     const {
-        image, title, excerpt,
+        index, name, type, alcohol , handleSelectedIngredients
     } = props;
     const classes = useStyles();
 
+
+    // 카드 액션 -> 박스 클릭시 테두리o -> 테두리 x , 테두리 x -> 테두리 o
+    const [boxBorder, setBoxBorder] = React.useState<number|null>(null);
+    const handlebBoxBorder = () => {
+        console.log(index);
+        
+        if(boxBorder){ // 선택 -> 비선택
+            setBoxBorder(null);
+            if(index!=undefined && handleSelectedIngredients)
+                handleSelectedIngredients(index,false);
+        }
+        else{
+            setBoxBorder(1); // 비선택 -> 선택
+            if(index!=undefined && handleSelectedIngredients)
+                handleSelectedIngredients(index,true);
+        }
+    }   
+
     return (
+        <Box border={boxBorder} borderRadius="5px" className={classes.selectCard}>
         <Card className={classes.rootCard}>
-            <CardActionArea>
-                <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="140"
-                    image={image}
-                    title="Contemplative Reptile"
-                />
-                    <CardContent>
-                        <Typography gutterBottom variant="subtitle1">
-                            {title}
-                        </Typography>
-                        <Typography component="p">{excerpt}</Typography>
-                    </CardContent>
-                </CardActionArea>
+            <CardActionArea onClick={handlebBoxBorder}>     
+                <CardContent>
+                    <Grid container spacing={2} direction="column">
+                        <Grid item >
+                            <Button variant="outlined" >
+                                <Typography gutterBottom variant="h6">
+                                    {name}
+                                </Typography>
+                            </Button>
+                        </Grid>
+                        <Grid item container spacing={2} direction="row" justify="center">
+                            <Typography gutterBottom variant="body1" align="center">
+                                Type - {type}
+                            </Typography>
+                        </Grid>
+                        {alcohol? 
+                            <Grid item container spacing={2} direction="row" justify="center">
+                                <Typography gutterBottom variant="body1" align="center">
+                                    ALC - {alcohol}
+                                </Typography>
+                            </Grid>
+                        : ''}    
+                    </Grid>
+                </CardContent>
+                
+            </CardActionArea>
+            
         </Card>
+        </Box>
     );
 }

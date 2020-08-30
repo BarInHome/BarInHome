@@ -92,7 +92,7 @@ const localSignup = (
                console.log(err);
                return done(false);
             })
-           }
+        }
    })
 };   
 
@@ -152,7 +152,7 @@ function loginByThirdparty(info:any, done:any) {
         const sql_insert = `
           INSERT INTO userinfo(id,pw,name,kind,email) VALUES(?,?,?,?,?)
         `;
-
+        
         doQuery(sql_insert,[info.auth_id,info.auth_type+'PW',info.auth_name,info.auth_type,info.auth_email])
           .then((row)=>{
             return done(null,info.auth_id);  
