@@ -103,6 +103,42 @@ const Helper = {
             status: Status.SERVER_ERROR
         });
     },
+
+    mysqlError: function(req: express.Request, res: express.Response, error: any) {
+        if(error instanceof Error){
+            error = {
+                message: error.message,
+                stacktrace: error.stack
+            };
+        };
+
+        const body = {
+            message: statusMessage(Status.DATABASE_ERROR),
+            error: error
+        };
+
+        jsonResponse(res, body, {
+            status: Status.DATABASE_ERROR
+        });
+    },
+
+    missingToken: function(req: express.Request, res: express.Response, error: any) {
+        if(error instanceof Error){
+            error = {
+                message: error.message,
+                stacktrace: error.stack
+            };
+        };
+
+        const body = {
+            message: statusMessage(Status.MISSING_TOKEN),
+            error: error
+        };
+
+        jsonResponse(res, body, {
+            status: Status.MISSING_TOKEN
+        });
+    }
 };
 
 export default {

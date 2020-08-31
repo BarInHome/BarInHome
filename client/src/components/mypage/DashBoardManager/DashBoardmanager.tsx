@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -15,10 +15,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-
+import {UseGetRequestObject} from '../../../utils/hooks/useGetRequest';
 import LeftMenuDrawer from './Menu/LeftMenuDrawer';
 import MyRefrigerator from '../DashBoardContents/MyRefrigerator/RefrigeratorBoard';
 import UserInformation from '../DashBoardContents/UserInformation/MyInfo';
+import useGetRequest from '../../../utils/hooks/useGetRequest';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -65,15 +67,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 export default function MyPage() {
   const classes = useStyles();
-  
   /*    Page Selector
        0 : 내 냉장고
        1 : 내 정보
        2 : 추후 추가
   */
+  
   const [menuIndex, setMenuIndex] = React.useState(0);
   const handleSetMenuIndex = (index:number) => {
       setMenuIndex(index);

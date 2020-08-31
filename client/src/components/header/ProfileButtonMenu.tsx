@@ -12,6 +12,8 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
+import { usePostRequest } from '../../utils';
+import history from '../../history';
 
 const StyledMenu = withStyles({
   paper: {
@@ -46,6 +48,12 @@ const StyledMenuItem = withStyles((theme) => ({
 
 export default function ProfileButtonMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const {doPostRequest} = usePostRequest<void,boolean>('/auth/logout',() => {
+    console.log('Logout ... ');
+    history.push('/');
+    window.location.reload();
+  });
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -56,7 +64,7 @@ export default function ProfileButtonMenu() {
 
   // logout 버튼 로직 필요
   const handleLogout = () => {
-
+    doPostRequest();
   }
 
   return (
@@ -81,7 +89,7 @@ export default function ProfileButtonMenu() {
         </StyledMenuItem>
 
         <StyledMenuItem 
-            
+            onClick={handleLogout}
         >
           <ListItemIcon>
             <ExitToApp fontSize="small" /> 

@@ -37,7 +37,7 @@ export interface UsePostRequestObject<T, P> {
   const doPostRequest = useCallback((param: PARAM_TYPE): void => { //param넣으면 void 나온다
     setLoading(true); // 로딩 시작
     // console.log('param',param);
-    if (cookies['access']){axios.defaults.headers.common['Authorization'] = `Bearer ${cookies['access']}`;}
+    // if (cookies['access']){axios.defaults.headers.common['Authorization'] = `Bearer ${cookies['access']}`;}
     axios.post<RES_DATA_TYPE>(`${url}`,
       { ...param })
       .then((res) => { // 200 번대 상태코드
@@ -45,7 +45,7 @@ export interface UsePostRequestObject<T, P> {
         setLoading(false); // 로딩 완료
         setData(res.data);
         setSuccess(true);
-        setCookie('access', res.headers['authorization'].substring(7), { path: '/'});
+        // setCookie('access', res.headers['authorization'].substring(7), { path: '/'});
         if (successCallback) { successCallback(); }
       })
       .catch((err) => {

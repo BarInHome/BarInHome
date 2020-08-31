@@ -13,6 +13,9 @@ import Carousel from 'react-elastic-carousel';
 import usePostRequest from '../../../../utils/hooks/usePostRequest'
 import { Alert,AlertTitle } from '@material-ui/lab';
 
+import {typeList, alcoholList} from './constant/index';
+import { render } from '@testing-library/react';
+
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
     root: {
@@ -79,68 +82,15 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 }));
 
-const typeList = [  
-'Liqueur',
-'Spice',
-'Fruit Juice',
-'Spirit',
-'Beverage',
-'Vodka',
-'Nuts',
-'Syrup',
-'Brandy',
-'Rum',
-'Fruit',
-'Wine',
-'Beer',
-'Others',
-'Soft Drink',
-'Whiskey',
-'Bitter',
-'Vegetable',
-'Sambuca',
-'Cream',
-'Sherry',
-'Whisky',
-'Herb',
-'Herb Liqueur',
-'Apple Brandy',
-'Schnapps',
-'Cider',
-'Coloring',
-'Aperitif',
-'Nut',
-'Coffee',
-'Juice',
-'Stout',
-'Liquor',
-'Fortified Wine',
-'Tequila',
-'Mezcal',
-'Rice wine',
-'liqueur',
-'Fortified wine',
-'Vermouth',
-'aperitif',
-'Cordial',
-'Water',
-'Garnish',
-'Confectionery',
-'Mixer',
-'Flower',
-'Gin',
-'Liquer'];
 
-const alcholList = [
-    'No',
-    'Yes'
-];
 
 interface DialogProps{
     open: boolean;
     handleOpen: () => void;
     handleClose: () => void;
     defaultInfo?: any;
+    request: () => void;
+    setChangeFlag: any;
 }
 
 interface IngredientFilter {
@@ -159,15 +109,17 @@ interface Ingredient{
 
 function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
     const {
-        open, handleClose ,
+        open, handleClose ,request,setChangeFlag
     } = props;
-    const classes = useStyles();
+    const classes = useStyles();    
     const [ingredientsList, setIngredientsList ] = React.useState<Ingredient[]>();
     const [selectedType , setSelectedType ] =  React.useState<string>('');
     const [selectedAlchol , setSelectedAlchol ] =  React.useState<string>('');      
     const {data, doPostRequest} = usePostRequest<IngredientFilter,any[]>('/mypage/refrigerator/search');
     const selectedIngredients:any[] = [];
-    const addRequest = usePostRequest('/mypage/refrigerator/add');
+    const addRequest = usePostRequest('/mypage/refrigerator/add',() => {
+        window.location.reload();
+    });
     
     React.useEffect(() => {
         if(selectedType!=undefined && selectedAlchol!= undefined){
@@ -176,7 +128,7 @@ function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
                 strAlcohol: selectedAlchol
             });
         }
-    },[selectedType,selectedAlchol]);
+    },[selectedType, selectedAlchol, doPostRequest]);
 
     React.useEffect(() => {
         if(data != undefined)
@@ -205,7 +157,7 @@ function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
         //         This is a success alert — <strong>check it out!</strong>
         //     </Alert>
         // );
-       
+        
         addRequest.doPostRequest(selectedIngredients);
         handleClose();
     }
@@ -284,8 +236,8 @@ function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-                            {alcholList.map((alcholList,index)=>{
-                            return (<MenuItem value={alcholList} key={index}>{alcholList}</MenuItem>)
+                            {alcoholList.map((alcoholList,index)=>{
+                            return (<MenuItem value={alcoholList} key={index}>{alcoholList}</MenuItem>)
                             })}
                             </Select>
                         </FormControl>

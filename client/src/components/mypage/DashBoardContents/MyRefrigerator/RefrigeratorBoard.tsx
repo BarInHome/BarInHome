@@ -15,7 +15,8 @@ import Paper from '@material-ui/core/Paper';
 import useDialog from '../../../../utils/hooks/useDialog';
 import RefrigeratorAddDialog from './RefrigeratorAddDialog';
 import useGetRequest from '../../../../utils/hooks/useGetRequest';
-
+import {UseGetRequestObject} from '../../../../utils/hooks/useGetRequest';
+import { usePostRequest } from '../../../../utils';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -32,27 +33,47 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   }));
 
-interface Ingredient{
-    strIngredient: string;
-    strType: string;
-    strAlcohol: string;
+  interface Ingredient{
+    idIngredient:string;
+    strDescription:string|null;
+    strIngredient : string|null;
+    strType : string|null;
+    strAlcohol : string|null;
+    strABV:string|null;
 }
 
+
 function RefrigeratorBoard():JSX.Element{
+    
     const classes = useStyles();
     const {open , handleOpen, handleClose } = useDialog();
-    const [myIngredientsList, setMyIngredientsList] = React.useState<Ingredient[]>();
-    const {data, doGetRequest} = useGetRequest('/mypage/refrigerator/findAll');
-
-    React.useEffect(() => {
-        doGetRequest();
-    },[])
-
-    React.useEffect(() => {
-        setMyIngredientsList(data);
-        console.log(data);
+    const findAllRequest = useGetRequest('/mypage/refrigerator/findAll');
+    const deleteRequest = usePostRequest('/mypage/refrigerator/delete',() => {
         window.location.reload();
-    },[data]);
+    });
+    const [myIngredientsList, setMyIngredientsList] = React.useState<Ingredient[]>(findAllRequest.data as Ingredient[]);
+    const [changeFlag, setChangeFlag] = React.useState(false);
+    const selectedIngredients:any[] = [];
+    React.useEffect(() => {
+        setMyIngredientsList(findAllRequest.data as Ingredient[]);
+    },[findAllRequest.data]);
+
+
+    const handleSelectedIngredients = (index: number, PushOrPop: boolean) => {
+        if(PushOrPop){
+            if(myIngredientsList != undefined)
+                selectedIngredients.push(myIngredientsList[index]);
+            console.log('selectedIngredients PUSH',selectedIngredients);
+        }
+        else{
+            selectedIngredients.splice(selectedIngredients.indexOf(index),1);
+            console.log('selectedIngredients POP',selectedIngredients);
+        }
+    }
+
+    const handleDeleteButton = () => {
+        deleteRequest.doPostRequest(selectedIngredients);
+    }
 
     return (
         <div>
@@ -74,15 +95,18 @@ function RefrigeratorBoard():JSX.Element{
                                 variant="contained"
                                 color="secondary"
                                 size="large"
+                                onClick={handleDeleteButton}
                             >
                                 삭제하기
                             </Button>
                         </Grid>
                     </Grid>
                     <Grid item container justify="center" spacing={5}>
-                        {myIngredientsList!=undefined && myIngredientsList.map((item,index)  => (   
+                        {myIngredientsList!= undefined && myIngredientsList.map((item,index)  => (   
                         <Grid item>
                             <RefrigeratorItem
+                                index={index}
+                                handleSelectedIngredients={handleSelectedIngredients}
                                 name={item.strIngredient as string}
                                 type={item.strType as string}
                                 alcohol={item.strAlcohol as string}  
@@ -93,7 +117,9 @@ function RefrigeratorBoard():JSX.Element{
                 </Paper>
             </Grid>
             <RefrigeratorAddDialog
-                open={open}
+                setChangeFlag={setChangeFlag}
+                request={findAllRequest.doGetRequest}
+                open={open} 
                 handleOpen={handleOpen}
                 handleClose={handleClose}
             />
