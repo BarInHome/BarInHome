@@ -2,11 +2,14 @@ export const Status = {
     OK: 200,          
     BAD_REQUEST: 400,
     UNAUTHORIZED: 401,
+    MISSING_TOKEN: 402,
     FORBIDDEN: 403,
     NOT_FOUND: 404,
     UNSUPPORTED_ACTION: 405,
+    DATABASE_ERROR: 410,
     VALIDATION_FAILED: 422,
     SERVER_ERROR: 500,
+    
 };
 
 export const statusMessage = (status: number) => {
@@ -25,5 +28,9 @@ export const statusMessage = (status: number) => {
             return 'Validation Failed';
         case Status.SERVER_ERROR:
             return 'Internal Server Error';
+        case Status.DATABASE_ERROR:
+            return 'Database Error';
+        case Status.MISSING_TOKEN:
+            return 'Missing Access Token'    
     }
 }
