@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 
 import useDialog from '../../../../utils/hooks/useDialog';
 import RefrigeratorAddDialog from './RefrigeratorAddDialog';
+import useGetRequest from '../../../../utils/hooks/useGetRequest';
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -31,9 +32,27 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   }));
 
+interface Ingredient{
+    strIngredient: string;
+    strType: string;
+    strAlcohol: string;
+}
+
 function RefrigeratorBoard():JSX.Element{
     const classes = useStyles();
     const {open , handleOpen, handleClose } = useDialog();
+    const [myIngredientsList, setMyIngredientsList] = React.useState<Ingredient[]>();
+    const {data, doGetRequest} = useGetRequest('/mypage/refrigerator/findAll');
+
+    React.useEffect(() => {
+        doGetRequest();
+    },[])
+
+    React.useEffect(() => {
+        setMyIngredientsList(data);
+        console.log(data);
+        window.location.reload();
+    },[data]);
 
     return (
         <div>
@@ -61,12 +80,12 @@ function RefrigeratorBoard():JSX.Element{
                         </Grid>
                     </Grid>
                     <Grid item container justify="center" spacing={5}>
-                        {testItems.map(testItems => (   
-                        <Grid item key={testItems.title}>
+                        {myIngredientsList!=undefined && myIngredientsList.map((item,index)  => (   
+                        <Grid item>
                             <RefrigeratorItem
-                                image={testItems.image}
-                                title={testItems.title}
-                                excerpt={testItems.excerpt}    
+                                name={item.strIngredient as string}
+                                type={item.strType as string}
+                                alcohol={item.strAlcohol as string}  
                             />
                         </Grid>
                         ))}
@@ -78,7 +97,6 @@ function RefrigeratorBoard():JSX.Element{
                 handleOpen={handleOpen}
                 handleClose={handleClose}
             />
-
         </div>
             
     );

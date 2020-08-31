@@ -8,10 +8,10 @@ router.route('/')
     .post(
         (req,res)=>{
             let ingredients:string[] = []; 
-            for(let element of ingredientsdb){
-                if(element.strType == req.body.ingredeinttype)
-                    ingredients.push(element.strIngredient)
-            }
+            // for(let element of ingredientsdb){
+            //     if(element.strType == req.body.ingredeinttype)
+            //         ingredients.push(element.strIngredient)
+            // }
             res.send(ingredients);
         });
 

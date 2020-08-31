@@ -11,20 +11,7 @@ import RefrigeratorItem from './RefrigeratorItem';
 import { spacing } from '@material-ui/system';
 import Carousel from 'react-elastic-carousel';
 import usePostRequest from '../../../../utils/hooks/usePostRequest'
-
-// // interface RefrigeratorInterface{
-// //     open:boolean;
-// //     handleClose:()=>void;
-// //     handleOpen:()=>void;
-// //     setIngredienttype:React.Dispatch<React.SetStateAction<string>>;
-// //     setIngredient:React.Dispatch<React.SetStateAction<string>>;
-// //     ingredient:string;
-// //     ingredienttype:string;
-// // }
-// interface ingredientinterface{
-//   ingredient:string;
-//   ingredienttype:string;
-// }
+import { Alert,AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
@@ -43,6 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     grow: {
         flexGrow: 1,
+    },
+    dialogWrapper: {
+        minHeight: '300px',
     },
     search: {
         position: 'relative',
@@ -89,62 +79,136 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 }));
 
+const typeList = [  
+'Liqueur',
+'Spice',
+'Fruit Juice',
+'Spirit',
+'Beverage',
+'Vodka',
+'Nuts',
+'Syrup',
+'Brandy',
+'Rum',
+'Fruit',
+'Wine',
+'Beer',
+'Others',
+'Soft Drink',
+'Whiskey',
+'Bitter',
+'Vegetable',
+'Sambuca',
+'Cream',
+'Sherry',
+'Whisky',
+'Herb',
+'Herb Liqueur',
+'Apple Brandy',
+'Schnapps',
+'Cider',
+'Coloring',
+'Aperitif',
+'Nut',
+'Coffee',
+'Juice',
+'Stout',
+'Liquor',
+'Fortified Wine',
+'Tequila',
+'Mezcal',
+'Rice wine',
+'liqueur',
+'Fortified wine',
+'Vermouth',
+'aperitif',
+'Cordial',
+'Water',
+'Garnish',
+'Confectionery',
+'Mixer',
+'Flower',
+'Gin',
+'Liquer'];
+
+const alcholList = [
+    'No',
+    'Yes'
+];
+
 interface DialogProps{
     open: boolean;
     handleOpen: () => void;
     handleClose: () => void;
     defaultInfo?: any;
 }
-interface ingredientinterface{
-  ingredient:string;
-  ingredienttype:string;
+
+interface IngredientFilter {
+    strType: string;
+    strAlcohol: string; 
+}
+
+interface Ingredient{
+    idIngredient:string;
+    strDescription:string|null;
+    strIngredient : string|null;
+    strType : string|null;
+    strAlcohol : string|null;
+    strABV:string|null;
 }
 
 function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
     const {
-        open, handleOpen, handleClose ,
+        open, handleClose ,
     } = props;
     const classes = useStyles();
-    const [inputingredients, setInpuingredients] = useState<ingredientinterface[]>([]);
-    const [ingredienttype, setIngredienttype] = useState<string[]>(['']);
-    const [ingredients, setIngredients] = useState<string[]>(['']);
-    const [selecttype, setselecttype] = useState<string>('');
+    const [ingredientsList, setIngredientsList ] = React.useState<Ingredient[]>();
+    const [selectedType , setSelectedType ] =  React.useState<string>('');
+    const [selectedAlchol , setSelectedAlchol ] =  React.useState<string>('');      
+    const {data, doPostRequest} = usePostRequest<IngredientFilter,any[]>('/mypage/refrigerator/search');
+    const selectedIngredients:any[] = [];
+    const addRequest = usePostRequest('/mypage/refrigerator/add');
+    
+    React.useEffect(() => {
+        if(selectedType!=undefined && selectedAlchol!= undefined){
+            doPostRequest({
+                strType: selectedType,
+                strAlcohol: selectedAlchol
+            });
+        }
+    },[selectedType,selectedAlchol]);
 
-    // const handleChangeSelect1 = (event: React.ChangeEvent<{value: unknown}>) => {
-    //     setselecttype(String(event.target.value) || ''); 
-    // };
-    const {data:type, doPostRequest:typeRequest} = usePostRequest<void,string[]>('/refrigerator/types',()=>{
-        console.log('[Get types]');
-    });
-    const {data:ingredient, doPostRequest:ingredientRequest} = usePostRequest<string,string[]>('/refrigerator/ingredients',()=>{
-        console.log('[Get Ingredients]');
-    });        
+    React.useEffect(() => {
+        if(data != undefined)
+            setIngredientsList(data);
+    },[data]);
 
-    useEffect(() => {
-        console.log("selecttype: "+selecttype);
-        setIngredients([]);
-        
-        ingredientRequest(selecttype);
-        if(ingredient!=null)
-            setIngredients(ingredient);
-        // let ingredientList:string[] = []
-        // for(let element of ingredientData){
-        //     if(ingredienttype==element.strType){  
-        //         console.log(element.strIngredient)
-        //         ingredientList.push(element.strIngredient);
-        //     }
-        // }
-        // console.log(ingredientList); 
-        // setIngredients(ingredientList);
-    },[selecttype]);
+    // 선택된 재료들을 다시 눌렀을때 발생하는 로직 정의
+    const handleSelectedIngredients = (index: number, PushOrPop: boolean) => {
+        if(PushOrPop){
+            if(ingredientsList != undefined)
+                selectedIngredients.push(ingredientsList[index]);
+            console.log('selectedIngredients PUSH',selectedIngredients);
+        }
+        else{
+            selectedIngredients.splice(selectedIngredients.indexOf(index),1);
+            console.log('selectedIngredients POP',selectedIngredients);
+        }
+    }
 
-    useEffect(() => {
-        
-        typeRequest();
-        console.log("type"+type);
-        if(type!=null)
-            setIngredienttype(type);
-    },[]);
+    // 추가하기 버튼 클릭 -> 선택된 리스트 추가post 요청
+    // 정말 추가 할 것인지 한번더 알터로 묻는 로직 추가 작성 필요
+    const handleAddButton = () => {
+        // return(    
+        //     <Alert severity="success">
+        //         <AlertTitle>Success</AlertTitle>
+        //         This is a success alert — <strong>check it out!</strong>
+        //     </Alert>
+        // );
+       
+        addRequest.doPostRequest(selectedIngredients);
+        handleClose();
+    }
 
     return(
         <Dialog
@@ -169,7 +233,7 @@ function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
                                 inputProps={{ 'aria-label': 'search' }}
                                 />
                             </div>
-                            <Button variant="contained" color="secondary">
+                            <Button variant="contained" color="secondary" >
                                 추가하기
                             </Button>
                         <div className={classes.grow} />
@@ -181,77 +245,74 @@ function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
                     </Toolbar>
                 </AppBar>
             </div>
-            <DialogContent>
+            <DialogContent className={classes.dialogWrapper}>
                 <Grid container className={classes.root} spacing={2} xs={12} direction="row" justify="center" alignItems="center">
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         <FormControl className={classes.formControl}>
                             <InputLabel id="demo-dialog-select-label">재료타입</InputLabel>
                             <Select
                                 labelId="demo-dialog-select-label"
                                 id="demo-dialog-select"
-                                value={selecttype}
+                                value={selectedType}
                                 // onChange={handleChangeSelect1}
+                                onChange={(event: React.ChangeEvent<{ value: unknown }>) => {
+                                    setSelectedType(event.target.value as string);
+                                }}
                                 input={<Input />}
                             >
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-                            {ingredienttype.map((ingredientsList,index)=>{
-                            return (<MenuItem value={ingredientsList} key={index}>{ingredientsList}</MenuItem>)
+                            {typeList.map((typeList,index)=>{
+                            return (<MenuItem value={typeList} key={index}>{typeList}</MenuItem>)
                             })}
                             </Select>
                         </FormControl>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-dialog-select-label">재료타입</InputLabel>
+                            <InputLabel id="demo-dialog-select-label">도수</InputLabel>
                             <Select
                                 labelId="demo-dialog-select-label"
                                 id="demo-dialog-select"
-                                // value={ingredienttype}
-                                // onChange={handleChangeSelect1}
+                                value={selectedAlchol}
+                                onChange={(event: React.ChangeEvent<{ value: unknown }>) => {
+                                    setSelectedAlchol(event.target.value as string);
+                                }}
                                 input={<Input />}
                             >
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-                            {ingredienttype.map((ingredientsList,index)=>{
-                            return (<MenuItem value={ingredientsList} key={index}>{ingredientsList}</MenuItem>)
+                            {alcholList.map((alcholList,index)=>{
+                            return (<MenuItem value={alcholList} key={index}>{alcholList}</MenuItem>)
                             })}
                             </Select>
                         </FormControl>
                     </Grid>
-                    <Grid item xs={3}>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-dialog-select-label">재료타입</InputLabel>
-                            <Select
-                                labelId="demo-dialog-select-label"
-                                id="demo-dialog-select"
-                                // value={ingredienttype}
-                                // onChange={handleChangeSelect1}
-                                input={<Input />}
-                            >
-                            <MenuItem value="">
-                            <em>None</em>
-                            </MenuItem>
-                            {/* {typeList} */}
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={3} >
+                    <Grid item xs={2} >
                         <Box mt={2} ml={5}>
-                            <Button variant="contained" color="secondary" className={classes.formControl}>
+                            <Button variant="contained" color="secondary" className={classes.formControl} onClick={handleAddButton}>
                                     추가하기    
                             </Button>
                         </Box>          
                     </Grid>
+                    <Grid item xs={2} >
+                        <Box mt={2} ml={5}>
+                            <Button variant="contained" color="secondary" className={classes.formControl}>
+                                    초기화    
+                            </Button>
+                        </Box>          
+                    </Grid>
                     <Grid item container justify="center" spacing={5}>
-                        {testItems.map(testItems => (   
-                        <Grid item key={testItems.title}>
+                        {ingredientsList!=undefined && ingredientsList.map((item,index)  => (   
+                        <Grid item>
                             <RefrigeratorItem
-                                image={testItems.image}
-                                title={testItems.title}
-                                excerpt={testItems.excerpt}    
+                                index={index}
+                                handleSelectedIngredients={handleSelectedIngredients}
+                                name={item.strIngredient as string}
+                                type={item.strType as string}
+                                alcohol={item.strAlcohol as string}  
                             />
                         </Grid>
                         ))}
@@ -263,21 +324,10 @@ function RefrigeratorAddDialog(props:DialogProps):JSX.Element{
                     </Grid> */}
                 </Grid>
             </DialogContent>
-            <DialogActions>
-                <Button autoFocus onClick={handleClose} variant="contained" color="primary">
-                    Previous
-                </Button>
-                <Button autoFocus onClick={handleClose} variant="contained" color="primary">
-                    Next
-                </Button>
-            </DialogActions>
        </Dialog>
     );
 }
-
 export default RefrigeratorAddDialog;
-
-
 // export default function RefrigeratorDialog(props:any) {
 //     const {open,handleClose,setIngredienttype,setIngredient,ingredient,ingredienttype}=props;
 //     const classes = useStyles();

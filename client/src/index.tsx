@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter , Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter , Switch, Route, Redirect,Router } from 'react-router-dom';
 import history from './history';
 import { CookiesProvider } from 'react-cookie';
 
@@ -9,33 +9,26 @@ import { CookiesProvider } from 'react-cookie';
 import GlobalStyles from './styles/GlobalStyle';
 import theme from './styles/theme';
 import { MuiThemeProvider as ThemeProvider } from '@material-ui/core/styles';
-import {AppBar, Typography} from '@material-ui/core';
-
+import Header from './components/header/Header';
 
 // pages
 import {
   Door, Main, Mypage
 } from './pages';
 
-
 ReactDOM.render(
   <CookiesProvider>
-    <BrowserRouter>
+    <Router history={history}>
       <GlobalStyles/> 
         <ThemeProvider theme={theme}>
-          <AppBar position="static">
-            <Typography variant="h3">
-              Test Header
-            </Typography>
-          </AppBar>
+          <Header/>
           <Switch>
             <Route exact path='/' component={Door}/>
             <Route path='/main' component={Main}/>
             <Route exact path='/mypage' component={Mypage}/>
           </Switch>
-          
         </ThemeProvider>
-    </BrowserRouter>
+    </Router>
   </CookiesProvider>,
   document.getElementById('root')
 );

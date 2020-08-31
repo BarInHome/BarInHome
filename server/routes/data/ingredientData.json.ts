@@ -1,4 +1,16 @@
-const ingredientList =
+interface IngredientList {
+    [index: number] : Ingredient;
+}
+interface Ingredient{
+    idIngredient:string;
+    strDescription:string|null;
+    strIngredient : string|null;
+    strType : string|null;
+    strAlcohol : string|null;
+    strABV:string|null;
+}
+
+const ingredientList: IngredientList =
 [
     {
         "idIngredient": "11",

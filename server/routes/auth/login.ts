@@ -6,6 +6,7 @@ const process_env = require('../../secret');
 const router = express.Router();
 
 
+
 router.post('/', passport.authenticate('local-login',{session: false}) , (req,res) => {
     JwtToken.create(req.user as string)
         .then((result) => {

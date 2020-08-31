@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/main/Header'; 
 import CocktailRecIngre from '../components/main/CocktailRecIngre';
-
+import { withRouter } from 'react-router-dom';
 
 function Main(): JSX.Element {
 
@@ -13,4 +13,4 @@ function Main(): JSX.Element {
     );
 }
 
-export default Main;
+export default withRouter(Main);
