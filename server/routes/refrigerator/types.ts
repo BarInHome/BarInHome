@@ -26,8 +26,9 @@ export default router;
 // 
 
 // db에 넣었을때 사용할 라인
-            // const query = 'SELECT DISTINCT strType from '//여기에 db 만들고 난 다음에 값 넣자
-            // dbQuery(query)
+            // const id = "자운"
+            // const query = 'SELECT * from WHERE id = ?'//여기에 db 만들고 난 다음에 값 넣자
+            // dbQuery(query,[id])
             // .then((result)=>{
             //     res.send(result);
             // })

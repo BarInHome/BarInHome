@@ -5,14 +5,11 @@ import doQuery from '../../database/doQuery';
 const process_env = require('../../secret');
 const router = express.Router();
 
-
-
 router.post('/', passport.authenticate('local-login',{session: false}) , (req,res) => {
     JwtToken.create(req.user as string)
         .then((result) => {
             const query = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
-            const accesstoken = result.accesstoken;
-            const refreshtoken = result.refreshtoken; 
+            const {accesstoken,refreshtoken} = result; 
             console.log(accesstoken+"\n"+refreshtoken);
             doQuery(query,[refreshtoken,req.user])
             .then((result)=>{
@@ -30,6 +27,11 @@ router.get('/facebook/callback', passport.authenticate('facebook'), (req,res) =>
     console.log("[Facebook Login Success]",req.user);
     JwtToken.create(req.user as string)
         .then((result) => {
+            const {accesstoken,refreshtoken} = result; 
+            res.header({
+                'Authorization':`Bearer ${accesstoken}`
+            });
+            res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
             res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
         })
         .catch((err) => {
@@ -43,6 +45,11 @@ router.get('/google/callback', passport.authenticate('google'), (req,res) => {
 
     JwtToken.create(req.user as string)
         .then((result) => {
+            const {accesstoken,refreshtoken} = result; 
+            res.header({
+                'Authorization':`Bearer ${accesstoken}`
+            });
+            res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
             res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
         })
         .catch((err) => {
@@ -56,6 +63,11 @@ router.get('/naver/callback', passport.authenticate('naver'), (req,res) => {
   
       JwtToken.create(req.user as string)
         .then((result) => {
+            const {accesstoken,refreshtoken} = result; 
+            res.header({
+                'Authorization':`Bearer ${accesstoken}`
+            });
+            res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
             res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
         })
         .catch((err) => {
@@ -69,6 +81,11 @@ router.get('/kakao/callback', passport.authenticate('kakao'), (req,res) => {
     
     JwtToken.create(req.user as string)
         .then((result) => {
+            const {accesstoken,refreshtoken} = result; 
+            res.header({
+                'Authorization':`Bearer ${accesstoken}`
+            });
+            res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
             res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
         })
         .catch((err) => {
@@ -85,6 +102,11 @@ router.get('/admin',(req, res) => {
             JwtToken.create(process_env.admin.id, process_env.admin.roles)
                 .then((result) => {
                     console.log('[Admin User Login]',result);
+                    const {accesstoken,refreshtoken} = result; 
+                    res.header({
+                        'Authorization':`Bearer ${accesstoken}`
+                    });
+                    res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
                     res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
                 })
                 .catch((err) => {
