@@ -53,9 +53,9 @@ interface poscocktail{
 function CocktailRecIngre():JSX.Element {
     const classes = useStyles();  
     const {open , handleOpen, handleClose } = useDialog();
-    const [poscocktail, setposcocktail ] = React.useState<poscocktailinfo[]>();
-    const [implecocktail, setimplecocktail ] = React.useState<poscocktailinfo[]>();
-    const [selectcocktail, setselectcocktail ] = React.useState<poscocktailinfo>();
+    const [poscocktail, setposcocktail ] = React.useState<poscocktailinfo[]>([]);
+    const [implecocktail, setimplecocktail ] = React.useState<poscocktailinfo[]>([]);
+    const [selectcocktail, setselectcocktail ] = React.useState<poscocktailinfo>({} as poscocktailinfo);
     
     const {data, doPostRequest} = usePostRequest<void,poscocktail>('/main',() => {
       console.log("request !");
