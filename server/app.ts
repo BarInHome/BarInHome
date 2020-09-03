@@ -9,13 +9,13 @@ import session from 'express-session';
 import passport from 'passport';
 //import passportConfig from './passport/passport';
 import mainloginRouter from './routes/users/login';
-import cocktailRouter from './routes/cocktail/cocktail';
+import cocktailRouter from './routes/main/cocktail';
 import refrigeratorRouter from './routes/refrigerator/index';
 import authRouter from './routes/auth/index';
 //import userRouter from './routes/users/index';
 import dataRouter from './routes/data/cocktail';
 import mypageRouter from './routes/mypage/index';
-import refreshRouter from './routes/refresh/index';
+import refreshRouter from './routes/auth/refresh/index';
 
 class ServerApi{
   public app : express.Express

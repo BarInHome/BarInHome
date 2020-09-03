@@ -6,18 +6,21 @@ import { createStyles, makeStyles,Theme, withStyles, WithStyles } from '@materia
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Rating from '@material-ui/lab/Rating';
-interface cocktailinterface{
-    ingrediet:string[];
-    measure:string[];
-    instruct:string;
-    cocktailname:string;
-}
+
+interface poscocktailinfo{
+    strdrink:string;
+    strdrinkthumb:string;
+    stringredient:string[];
+    strmeasure:string[];
+    strinstructions:string;
+    flag?:boolean[];
+} 
 
 interface DialogProps{
     open: boolean;
     handleOpen: () => void;
     handleClose: () => void;
-    cocktailInfo?:cocktailinterface;
+    cocktailInfo?:poscocktailinfo;
     defaultInfo?: any;
 }
 
@@ -86,7 +89,7 @@ const rows = [
 ];
 
 function Cocktaildialog(props:DialogProps):JSX.Element {
-    const {open,handleOpen,handleClose}=props
+    const {open,handleOpen,handleClose,cocktailInfo}=props
     const [value, setValue] = React.useState<number | null>(0);
     const classes = useStyles();
 
@@ -102,7 +105,7 @@ function Cocktaildialog(props:DialogProps):JSX.Element {
             <AppBar position="static">
                 <Toolbar>
                 <Typography variant="h6" className={classes.title}>
-                    칵테일설명
+                    {cocktailInfo!=undefined && cocktailInfo.strdrink}
                 </Typography>
                 <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
                     <CloseIcon />
@@ -181,10 +184,7 @@ function Cocktaildialog(props:DialogProps):JSX.Element {
                     </Grid>  
                     <Grid item xs={6}>
                         <Typography variant="h5" gutterBottom>
-                            cocktail recipe cocktail recipe cocktail recipe cocktail recipe
-                            cocktail recipe cocktail recipe cocktail recipe cocktail recipe
-                            cocktail recipe cocktail recipe cocktail recipe cocktail recipe
-                            cocktail recipe cocktail recipe cocktail recipe cocktail recipe 
+                            {cocktailInfo!=undefined && cocktailInfo.strinstructions}
                         </Typography>
                     </Grid> 
                     <Grid item xs={6}>

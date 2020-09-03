@@ -12,10 +12,12 @@ import verifications from './verifications';
 const process_env = require('../../secret');
 const ExtractJWT = passportJWT.ExtractJwt;
 passport.serializeUser(function(user, done) {
+  console.log('serialize ',user);  
   done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
+  console.log('deserialize ',user);
   done(null, user);
 });
 /*

@@ -74,7 +74,7 @@ router.route('/search')
                 }
                 
                 if(searchFiled.length < 1) response.Helper.ok(req,res,null);
-
+                
                 for(let i = 0; i < ingredientList.length ; ++i){    // JSON 파일에서 정제된 조건문과 최대로 일치하는 값들을 추출, 저장
                     let matchCount = 0; 
                     for(let j = 0; j < searchFiled.length; ++j){
