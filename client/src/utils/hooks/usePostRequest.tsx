@@ -42,6 +42,7 @@ export interface UsePostRequestObject<T, P> {
       { ...param })
       .then((res) => { // 200 번대 상태코드
         // const refresh:string = res.headers['refresh'].substring(7);
+        console.log(res.data);
         setLoading(false); // 로딩 완료
         setData(res.data);
         setSuccess(true);

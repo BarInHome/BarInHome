@@ -1,9 +1,9 @@
 import express from 'express';
 import jwt, { JsonWebTokenError, VerifyCallback } from 'jsonwebtoken';
-import JwtToken from '../../middleware/jwt/JwtToken'
-import dbQuery from '../../database/doQuery';
+import JwtToken from '../../../middleware/jwt/JwtToken'
+import dbQuery from '../../../database/doQuery';
 
-const process_env = require('../../secret');
+const process_env = require('../../../secret');
 const router = express.Router();
 
 router.post('/', (req,res) => {

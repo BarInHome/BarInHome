@@ -12,10 +12,12 @@ import verifications from './verifications';
 const process_env = require('../../secret');
 const ExtractJWT = passportJWT.ExtractJwt;
 passport.serializeUser(function(user, done) {
+  console.log('serialize ',user);  
   done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
+  console.log('deserialize ',user);
   done(null, user);
 });
 /*
@@ -44,6 +46,7 @@ passport.use('local-signup', new LocalStrategy({
   verifications.localSignup
 ));
 
+//앱 ID : 599964347345827, 시크릿 7391265785241f0f958f2cc8522025ce
 passport.use('facebook',new FacebookStrategy({
   clientID:process_env.federation.facebook.client_id,
   clientSecret: process_env.federation.facebook.secret_id,
@@ -148,7 +151,7 @@ function loginByThirdparty(info:any, done:any) {
           })
       }
       else{
-        console.log('row.result[0].id)',row.result[0].id);
+        console.log('row.result[0].id)',row.result[0].id);  
         done(null,row.result[0].id);
       }
     })  

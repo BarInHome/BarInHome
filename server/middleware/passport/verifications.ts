@@ -45,7 +45,7 @@ const localLogin = (
     done: (error: any, user?: any, options?: passport.IVerifyOptions) => void
   ): void => {
     console.log('[Local Login Varification]');
-
+    console.log(username);
     const id = username ; const pw = password;
     const sql = "SELECT * FROM userinfo WHERE id = ? && pw = ?";
     const params = [id,pw];
@@ -53,10 +53,12 @@ const localLogin = (
     doQuery(sql,params).
         then((row)=>{
             if(row.result[0]){
-                return done(false, id);
+              console.log("local login verification");
+              console.log(id);
+              return done(null, id);
             }
             else{
-                return done(false, null);
+              return done(false, null);
             }
         });
     };
