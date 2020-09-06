@@ -30,9 +30,10 @@ interface Ingredient{
     input   :   userid --> req.user
     output  :   Ingredient[]
 */
+
 router.route('/findAll')
     .get(
-        (req,res) => {
+        verifyToken, (req,res) => {
             const sql_findall = `
                 SELECT * FROM refrigerator WHERE userid = ?
             `;
@@ -62,7 +63,7 @@ router.route('/findAll')
 */
 router.route('/search')
     .post(  
-        async (req,res) => { 
+       verifyToken,  async (req,res) => { 
             const result: Ingredient[] = [];                // return 할 배열
             const searchFiled = Object.entries(req.body);   // 주어진 조건을 key - value 쌍의 배열로 맵핑
 
@@ -111,9 +112,9 @@ router.route('/search')
 
 router.route('/add') 
     .post(
-        (req,res) => {
+        verifyToken, (req,res) => {
+            console.log('[Add Request ... ]',req.user);
             const addList: Ingredient[] = Object.values(req.body);
-            console.log(addList);
 
             if(addList.length > 0){
                 let sql_add = `INSERT into refrigerator (userid,idIngredient,strIngredient,strDescription,strType,strAlcohol,strABV) VALUES`;
@@ -135,10 +136,12 @@ router.route('/add')
                             response.Helper.ok(req,res,true);
                         })
                         .catch((err) => {
+                            console.log(err);
                             response.Helper.mysqlError(req,res,err);
                         })
                 }
                 catch(err){
+                    console.log(err);
                     response.Helper.serverError(req,res,err);
                 }
             }
@@ -160,14 +163,14 @@ router.route('/add')
 
 router.route('/delete')
     .post(
-        (req,res) => {
+        verifyToken, (req,res) => {
             const deleteList: Ingredient[] = Object.values(req.body);
-            console.log('[request data ...]',deleteList);
+            console.log('[Delete Request ...]',req.user);
 
             if(deleteList.length > 0){
                 let sql_delete = `
                     DELETE FROM refrigerator 
-                    WHERE userId = ${req.user} 
+                    WHERE userid = ?
                     AND idIngredient 
                     IN (
                 `;
@@ -184,11 +187,12 @@ router.route('/delete')
                         sql_values.push(deleteList[i].idIngredient as string);
                     }   
                     console.log(sql_delete);
-                    doQuery(sql_delete,sql_values)
+                    doQuery(sql_delete,[req.user, ...sql_values])
                         .then(() => {
                             response.Helper.ok(req,res,true);
                         })
                         .catch((err) => {
+                            console.log(err);
                             response.Helper.mysqlError(req,res,err);
                         })
                 }

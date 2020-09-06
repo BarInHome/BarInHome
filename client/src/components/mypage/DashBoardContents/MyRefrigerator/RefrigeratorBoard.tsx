@@ -49,15 +49,20 @@ function RefrigeratorBoard():JSX.Element{
     const {open , handleOpen, handleClose } = useDialog();
     const findAllRequest = useGetRequest('/mypage/refrigerator/findAll');
     const deleteRequest = usePostRequest('/mypage/refrigerator/delete',() => {
-        window.location.reload();
+        setChangeFlag(true);
     });
     const [myIngredientsList, setMyIngredientsList] = React.useState<Ingredient[]>(findAllRequest.data as Ingredient[]);
     const [changeFlag, setChangeFlag] = React.useState(false);
     const selectedIngredients:any[] = [];
+
     React.useEffect(() => {
         setMyIngredientsList(findAllRequest.data as Ingredient[]);
-    },[findAllRequest.data]);
+    },[findAllRequest.data,]);
 
+    React.useEffect(() => {
+        findAllRequest.doGetRequest();
+        setMyIngredientsList(findAllRequest.data as Ingredient[]);
+    },[changeFlag])
 
     const handleSelectedIngredients = (index: number, PushOrPop: boolean) => {
         if(PushOrPop){
