@@ -17,8 +17,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Home from '@material-ui/icons/Home';
 import Kitchen from '@material-ui/icons/Kitchen';
-import history from '../../history';
+// import history from '../../history';
 import ProfileButtonMenu from './ProfileButtonMenu';
+import { useHistory } from 'react-router-dom';
 
  const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -86,7 +87,7 @@ import ProfileButtonMenu from './ProfileButtonMenu';
 
 export default function Header() {
   const classes = useStyles();
-  
+  const history = useHistory();
   return (
     <div className={classes.grow}>
       <AppBar position="static"  elevation={2}>
@@ -117,14 +118,14 @@ export default function Header() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
-                onClick={()=>{history.push('/main'); window.location.reload()}}
+                onClick={()=>{history.push('/main');}}
             >
                 <Home
                     fontSize='large'
                 />
             </IconButton>
             <IconButton 
-                onClick={()=>{history.push('/mypage'); window.location.reload()}}
+                onClick={()=>{history.push('/mypage');}}
             >
                 <Kitchen
                     fontSize='large'

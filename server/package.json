@@ -22,6 +22,7 @@
     "@types/passport-kakao": "^0.2.0",
     "@types/passport-local": "^1.0.33",
     "@types/passport-naver": "^0.2.0",
+    "@types/universal-cookie": "^2.2.0",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "certbot": "^5.0.3",
@@ -46,6 +47,8 @@
     "passport-kakao": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-naver": "^1.0.6",
+    "react-cookies": "^0.1.1",
+    "universal-cookie": "^4.0.3",
     "yarn": "^1.22.4"
   },
   "devDependencies": {

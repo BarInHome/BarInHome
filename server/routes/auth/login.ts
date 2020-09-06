@@ -2,23 +2,30 @@ import express from 'express';
 import passport from '../../middleware/passport/passport';
 import JwtToken from  '../../middleware/jwt/JwtToken';
 import doQuery from '../../database/doQuery';
+import response from '../../middleware/responseHelper/helper';
 const process_env = require('../../secret');
 const router = express.Router();
 
 router.post('/', passport.authenticate('local-login',{session: false}) , (req,res) => {
     JwtToken.create(req.user as string)
         .then((result) => {
-            const query = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
+            const sql_refreshUpdate = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
             const {accesstoken,refreshtoken} = result; 
-            console.log(accesstoken+"\n"+refreshtoken);
-            doQuery(query,[refreshtoken,req.user])
-            .then((result)=>{
-                res.header({
-                    'Authorization':`Bearer ${accesstoken}`
-                });
-                res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
-                res.send();
-            })
+            
+            doQuery(sql_refreshUpdate, [refreshtoken, req.user])
+                .then((result)=>{
+                    res.header({
+                    'access_token': accesstoken,
+                    });
+                    res.cookie('refresh_token', refreshtoken, { httpOnly:true });
+                    response.Helper.ok(req,res,true);
+                })
+                .catch((err) => {
+                    response.Helper.unauthorized(req,res);
+                })
+        })
+        .catch((err) => {
+            response.Helper.serverError(req,res,err);
         })
 });
 
@@ -29,13 +36,13 @@ router.get('/facebook/callback', passport.authenticate('facebook'), (req,res) =>
         .then((result) => {
             const {accesstoken,refreshtoken} = result; 
             res.header({
-                'Authorization':`Bearer ${accesstoken}`
+                access_token: accesstoken
             });
-            res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
-            res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
+            res.cookie('refresh_token',refreshtoken,{ httpOnly:true });
+            res.redirect(`http://localhost:3000/main`);
         })
         .catch((err) => {
-            res.send(false);
+            response.Helper.serverError(req,res,err);
         })
     });
 
@@ -47,33 +54,33 @@ router.get('/google/callback', passport.authenticate('google'), (req,res) => {
         .then((result) => {
             const {accesstoken,refreshtoken} = result; 
             res.header({
-                'Authorization':`Bearer ${accesstoken}`
+                access_token: accesstoken
             });
-            res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
-            res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
+            res.cookie('refresh_token',refreshtoken,{ httpOnly:true });
+            res.redirect(`http://localhost:3000/main`);
         })
         .catch((err) => {
-            res.send(false);
+            response.Helper.serverError(req,res,err);
         })
     });
 
 router.get('/naver',passport.authenticate('naver',{ session: false,scope: ['public_profile', 'email'] }));
 router.get('/naver/callback', passport.authenticate('naver'), (req,res) => {
-      console.log("[Naver Login Success]",req.user);
+    console.log("[Naver Login Success]",req.user);
   
-      JwtToken.create(req.user as string)
-        .then((result) => {
-            const {accesstoken,refreshtoken} = result; 
-            res.header({
-                'Authorization':`Bearer ${accesstoken}`
-            });
-            res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
-            res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
-        })
-        .catch((err) => {
-            res.send(false);
-        })
-    });
+    JwtToken.create(req.user as string)
+      .then((result) => {
+          const {accesstoken,refreshtoken} = result; 
+          res.header({
+              access_token: accesstoken
+          });
+          res.cookie('refresh_token',refreshtoken,{ httpOnly:true });
+          res.redirect(`http://localhost:3000/main`);
+      })
+      .catch((err) => {
+          response.Helper.serverError(req,res,err);
+      })
+  });
 
 router.get('/kakao',passport.authenticate('kakao',{session: false}),);
 router.get('/kakao/callback', passport.authenticate('kakao'), (req,res) => {
@@ -83,13 +90,13 @@ router.get('/kakao/callback', passport.authenticate('kakao'), (req,res) => {
         .then((result) => {
             const {accesstoken,refreshtoken} = result; 
             res.header({
-                'Authorization':`Bearer ${accesstoken}`
+                access_token: accesstoken
             });
-            res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
-            res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
+            res.cookie('refresh_token',refreshtoken,{ httpOnly:true });
+            res.redirect(`http://localhost:3000/main`);
         })
         .catch((err) => {
-            res.send(false);
+            response.Helper.serverError(req,res,err);
         })
     });
 
@@ -99,23 +106,21 @@ router.get('/admin',(req, res) => {
     const adminPw = 'admin';
     if( adminId === process_env.admin.id&&
         adminPw === process_env.admin.pw){
-            JwtToken.create(process_env.admin.id, process_env.admin.roles)
+            JwtToken.create(req.user as string)
                 .then((result) => {
-                    console.log('[Admin User Login]',result);
                     const {accesstoken,refreshtoken} = result; 
                     res.header({
-                        'Authorization':`Bearer ${accesstoken}`
+                        access_token: accesstoken
                     });
-                    res.cookie('refresh_token',`Bearer ${refreshtoken}`,{httpOnly:true});
-                    res.redirect(`http://localhost:3000/main?accessToken=${result.accesstoken}`);
+                    res.cookie('refresh_token',refreshtoken,{ httpOnly:true });
+                    res.redirect(`http://localhost:3000/main`);
                 })
                 .catch((err) => {
-                    console.log('[Admin User Login Faild..]');
-                    res.send(false).status(401);
+                    response.Helper.serverError(req,res,err);
                 })
         }
     else{
-        res.send(false).status(401);
+        response.Helper.unauthorized(req,res);
     }
 });
 

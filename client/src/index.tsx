@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter , Switch, Route, Redirect,Router } from 'react-router-dom';
-import history from './history';
-import { CookiesProvider } from 'react-cookie';
 
 // styled-components
 import GlobalStyles from './styles/GlobalStyle';
@@ -17,19 +15,18 @@ import {
 } from './pages';
 
 ReactDOM.render(
-  <CookiesProvider>
-    <Router history={history}>
+    <BrowserRouter>
       <GlobalStyles/> 
         <ThemeProvider theme={theme}>
-          <Header/>
+        <Header/>
           <Switch>
             <Route exact path='/' component={Door}/>
             <Route path='/main' component={Main}/>
             <Route exact path='/mypage' component={Mypage}/>
           </Switch>
         </ThemeProvider>
-    </Router>
-  </CookiesProvider>,
+    </BrowserRouter>
+  ,
   document.getElementById('root')
 );
 

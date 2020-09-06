@@ -7,13 +7,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitToApp from '@material-ui/icons/ExitToApp';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import { usePostRequest } from '../../utils';
-import history from '../../history';
+import { useHistory } from 'react-router-dom';
+import cookie from 'react-cookies';
 
 const StyledMenu = withStyles({
   paper: {
@@ -47,11 +46,12 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 export default function ProfileButtonMenu() {
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const {doPostRequest} = usePostRequest<void,boolean>('/auth/logout',() => {
-    console.log('Logout ... ');
+    console.log('[Logout ... ]');
+    cookie.remove('access_token');
     history.push('/');
-    window.location.reload();
   });
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {

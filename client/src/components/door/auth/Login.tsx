@@ -22,8 +22,10 @@ import usePostRequest from '../../../utils/hooks/usePostRequest';
 import useGetRequest from '../../../utils/hooks/useGetRequest';
 
 import history from '../../../history';
-
-
+import { useSelector, useDispatch } from 'react-redux';
+import { useSampleState, useSampleDispatch } from '../../../modules/globalContext';
+import { useHistory } from 'react-router-dom';
+import cookie from 'react-cookies';
 /*
   1) Facebook : id, name            + email
   2) Google   : id, name, email     
@@ -81,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonWrapper: {
     justifyContent: "space-between",
+    padding: '0'
   },
   facebook: {
     background: "#4267b2",
@@ -136,16 +139,16 @@ export default function Login(props:AuthInterface):JSX.Element {
   } = props;
   const classes = useStyles();
   const {id,pw} = state;
+  const history = useHistory();
 
   const handleChange = (name:any) => (event: React.ChangeEvent<HTMLInputElement>) => {
       dispatch({type: name , value: event.target.value});
   }
 
-  const {doPostRequest} = usePostRequest<userInterface,void>('/auth/login',()=>{
-      console.log('[login success]');
-      handleSetIsLogin(true);
+  const {doPostRequest} = usePostRequest<userInterface,void>('/auth/login',(token: any)=>{
+      console.log('[Login Success ... ]');
+      cookie.save('access_token',token,{});
       history.push('/main');
-      window.location.reload();
   });
 
   const onClickLogin = () => {
@@ -274,7 +277,7 @@ export default function Login(props:AuthInterface):JSX.Element {
             <Grid item xs={12}>
               <Button
                 type="submit"
-                
+                style={{marginTop: '20px'}}
                 variant="contained" 
                 color="secondary"
                 href="http://localhost:5000/auth/login/admin"

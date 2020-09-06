@@ -34,9 +34,8 @@ interface infointerface{
     [cocktailname:string]:maxinfointerface;
 }
 interface recommendinterface{
-    [cocktailname:string]:number;
+    [cocktailname:string]:number;   
 }
-
 
 router.route('/')
     .post(
