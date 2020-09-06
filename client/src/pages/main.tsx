@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/main/Header'; 
-import CocktailRecIngre from '../components/main/CocktailRecIngre';
+import CocktailIndex from '../components/main/Cocktailindex';
 import { withRouter, useHistory } from 'react-router-dom';
 import { useSampleState, useSampleDispatch } from '../modules/globalContext';
 import Dispatch from 'react';
@@ -21,7 +21,7 @@ const Main: React.FunctionComponent = ({children}) => {
     return(
         <div style={{ marginTop: 5, padding: 20 }}>
             {/* <Header></Header> */}
-            <CocktailRecIngre></CocktailRecIngre>
+            <CocktailIndex></CocktailIndex>
         </div>
     );
 }

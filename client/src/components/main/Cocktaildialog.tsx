@@ -1,13 +1,9 @@
 import React from 'react';
-import {DialogTitle,Dialog,AppBar,Toolbar,Typography,Grid,Paper,Card,CardMedia
-        ,Table,TableBody,TableCell,TableContainer,TableRow,Box,DialogContent,
-        DialogContentText, List, ListItem, Divider, ListItemText,Button} from '@material-ui/core';
-import { createStyles, makeStyles,Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import {DialogTitle,Dialog,AppBar,Toolbar,Typography,Grid,Box,DialogContent} from '@material-ui/core';
+import { createStyles, makeStyles,Theme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Rating from '@material-ui/lab/Rating';
-// import Image from '@material-ui-image';
-import { maxWidth } from '@material-ui/system';
 
 interface poscocktailinfo{
     strdrink:string;
@@ -24,12 +20,6 @@ interface DialogProps{
     handleClose: () => void;
     cocktailInfo?:poscocktailinfo;
     defaultInfo?: any;
-}
-
-const testItem={
-    title: "My 4 post",
-    excerpt: "This is my fourth post with more content inside",
-    image: "https://bit.ly/2WNi2Ml"
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -52,21 +42,9 @@ const useStyles = makeStyles((theme: Theme) =>
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
-    // media: {
-    //     height: '50%',
-    //     width: '50%',
-    //     objectFit: 'cover'
-    // },
     table: {
         minWidth: 650,
     },
-    // image: {
-    //     backgroundImage: 'url(https://source.unsplash.com/random)',
-    //     backgroundRepeat: 'no-repeat',
-    //     height: '50%',
-    //     width: '50%',
-    //     backgroundPosition: 'center',
-    // },
     img: {
         width:'auto',
         height:'auto',
@@ -81,24 +59,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function createData(name: string, measure: number) {
-    return { name, measure };
-}
-const rows = [
-    createData('Frozen yoghurt', 4),
-    createData('Ice cream sandwich', 9.0),
-    createData('Eclair', 24),
-    createData('Cupcake', 3.7),
-    createData('Gingerbread', 16.0),
-];
-
 function Cocktaildialog(props:DialogProps):JSX.Element {
     const {open,handleOpen,handleClose,cocktailInfo}=props
     const [value, setValue] = React.useState<number | null>(0);
     const classes = useStyles();
-
-    const defaultImage = 'https://bit.ly/2WNi2Ml';
-
     console.log("cocktailInfo : ",cocktailInfo);
 
     return(
@@ -133,8 +97,6 @@ function Cocktaildialog(props:DialogProps):JSX.Element {
                             {cocktailInfo!=undefined && cocktailInfo.strdrink}
                         </Typography>
                     </Grid>
-                    
-                        
                         {cocktailInfo!=undefined && cocktailInfo.stringredient!=undefined && cocktailInfo.stringredient
                         .map((stringredient,index) => (
                             <Grid item xs={4}>
@@ -154,8 +116,6 @@ function Cocktaildialog(props:DialogProps):JSX.Element {
                                 </Grid>
                             </Grid>
                         ))}
-                        
-                    
                     <Grid item xs={12}>
                         <Typography variant="h5" gutterBottom>
                             {cocktailInfo!=undefined && cocktailInfo.strinstructions}
