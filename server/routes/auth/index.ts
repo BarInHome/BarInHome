@@ -37,16 +37,16 @@ router.post('/signup', passport.authenticate('local-signup', {session: false}) ,
 });
 
 router.post('/logout', verifyToken , (req,res)=>{
-    const sql_init_refresh = `
-        const sql_refreshUpdate = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
-    `;
-    doQuery(sql_init_refresh,[null, req.user])
+    console.log('[Logout user ... ]',req.user);
+    const sql_refreshUpdate = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
+    doQuery(sql_refreshUpdate, [null, req.user])
         .then(() => {
             res.clearCookie('refresh_token');
             req.logout();
             response.Helper.ok(req,res,true);
         })
         .catch((err) => {
+            console.log(err);
             response.Helper.mysqlError(req,res,err);
         })
 });
