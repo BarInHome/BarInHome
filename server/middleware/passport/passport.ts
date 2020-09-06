@@ -33,7 +33,7 @@ passport.use('jwt' , new JwtStrategy({
 },verifications.tokenValidateCheck));
 
 passport.use('local-login', new LocalStrategy({
-    usernameField: "id" ,
+    usernameField: "id",
     passwordField: "pw",
     passReqToCallback: true
   },verifications.localLogin));

@@ -42,7 +42,7 @@ router.route('/')
     .post(
         (req:express.Request,res:express.Response)=>{
             console.log("post");
-            const sql1 = `SELECT drinkKategorie,userId FROM refrigerator WHERE userId = ?`
+            const sql1 = `SELECT drinkKategorie,userId FROM refrigerator WHERE userId = ?`;
             const params1 = 'ididid';
             // console.log(req.user);
             
