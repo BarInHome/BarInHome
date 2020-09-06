@@ -17,7 +17,7 @@ interface poscocktail{
   implecocktailinfo:poscocktailinfo[];
 }
 
-function CocktailRecIngre():JSX.Element { 
+function CocktailIndex():JSX.Element { 
     const [poscocktail, setposcocktail ] = React.useState<poscocktailinfo[]>([]);
     const [implecocktail, setimplecocktail ] = React.useState<poscocktailinfo[]>([]);
     const {data, doPostRequest} = usePostRequest<void,poscocktail>('/main',() => {
@@ -73,5 +73,5 @@ function CocktailRecIngre():JSX.Element {
     );
 }
 
-export default CocktailRecIngre;
+export default CocktailIndex;
 

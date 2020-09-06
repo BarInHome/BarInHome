@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
-import { decode } from 'punycode';
+import response from '../responseHelper/helper';
 import express from 'express';
+import { InternalServerError } from 'http-errors';
+import { decode } from 'querystring';
 const process_env = require('../../secret');
 
 export interface payload {
@@ -8,18 +10,32 @@ export interface payload {
     roles : string;
 }
 
-export const verifyToken = (req: express.Request,res: express.Response, next: express.NextFunction) => {
-    const clientToken = req.body.token;
-    const decoded: payload = jwt.verify(clientToken, process_env.secret) as payload;
+// {
+//     "name": "TokenExpiredError",
+//     "message": "jwt expired",
+//     "expiredAt": "2020-09-06T07:19:07.000Z"
+// }
 
-    if(decoded){
-        if(decoded.roles === 'Admin') next();
-        else {
-            // 권한 검사 로직
-            next();
+export const verifyToken = (req: express.Request,res: express.Response, next: express.NextFunction) => {
+    const clientToken = req.headers['access_token'] as string;
+    try{
+        const decoded: payload = jwt.verify(clientToken, process_env.secret) as payload;
+        if(decoded){
+            if(decoded.roles === 'Admin') {
+                req.user = decoded.sub;
+                next();
+            }
+            else {
+                // 권한 검사 로직
+                req.user = decoded.sub;
+                next();
+            }
+        }
+        else{
+            response.Helper.serverError(req,res,new InternalServerError());
         }
     }
-    else{
-        res.send(false).status(401);
+    catch(err){
+        response.Helper.jwtExpired(req,res,err);
     }
 }

@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 function Door(): JSX.Element {
     const classes = useStyles();
-
+    
     return(
         <Grid container xs={12} direction="row" justify="center">
             <Grid item xs={12} className={classes.media}>

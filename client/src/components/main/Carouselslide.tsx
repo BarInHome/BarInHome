@@ -69,6 +69,7 @@ export default function CarouselSlide(props:CarouselProps) {
     };
 
     return (
+
         <Grid container item xs={12} spacing={0} direction="row" justify="space-between" alignItems="center">
             <Grid item xs='auto'>
                 <Arrow
