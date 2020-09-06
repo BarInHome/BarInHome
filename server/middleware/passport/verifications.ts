@@ -60,7 +60,10 @@ const localLogin = (
             else{
               return done(false, null);
             }
-        });
+        })
+        .catch((err) => {
+          console.log(err);
+        })
     };
 
 const localSignup = (

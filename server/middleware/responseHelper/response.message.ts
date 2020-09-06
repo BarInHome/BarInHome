@@ -2,7 +2,7 @@ export const Status = {
     OK: 200,          
     BAD_REQUEST: 400,
     UNAUTHORIZED: 401,
-    MISSING_TOKEN: 402,
+    TOKEN_EXPIRED: 402,
     FORBIDDEN: 403,
     NOT_FOUND: 404,
     UNSUPPORTED_ACTION: 405,
@@ -30,7 +30,7 @@ export const statusMessage = (status: number) => {
             return 'Internal Server Error';
         case Status.DATABASE_ERROR:
             return 'Database Error';
-        case Status.MISSING_TOKEN:
-            return 'Missing Access Token'    
+        case Status.TOKEN_EXPIRED:
+            return 'JWT Expired'
     }
 }

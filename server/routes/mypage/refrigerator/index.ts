@@ -3,6 +3,7 @@ import ingredientList from '../../../data/ingredient.json';
 import doQuery from '../../../database/doQuery';
 import response from '../../../middleware/responseHelper/helper';
 import { route } from '../..';
+import { verifyToken } from '../../../middleware/jwt/jwtCheck';
 const router = express.Router();
 
 /*
@@ -92,7 +93,6 @@ router.route('/search')
             catch(err){
                 response.Helper.serverError(req,res,err);
             }
-            
         }
     )
     .all(

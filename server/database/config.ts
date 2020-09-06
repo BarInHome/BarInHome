@@ -8,7 +8,7 @@ module.exports = function(){
             host: 'localhost',
             port: '3306',
             user: 'root',
-            password: 'love97jawoon!',
+            password: 'wjdrms15!',
             database: 'barinhome'
           })
         },

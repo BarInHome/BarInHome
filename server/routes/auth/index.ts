@@ -2,6 +2,9 @@ import express from 'express';
 import loginRouter from './login';
 import passport from '../../middleware/passport/passport';
 import JwtToken from  '../../middleware/jwt/JwtToken';
+import { verifyToken } from '../../middleware/jwt/jwtCheck';
+import response from '../../middleware/responseHelper/helper';
+import doQuery from '../../database/doQuery';
 const router = express.Router();
 
 router.use('/login',loginRouter);
@@ -13,18 +16,39 @@ router.post('/profile', passport.authenticate('jwt' , {session: false}), (req,re
 router.post('/signup', passport.authenticate('local-signup', {session: false}) , (req,res) => {
     JwtToken.create(req.user as string)
         .then((result) => { 
-            res.json({
-                accessToken: result.accesstoken,
-                status: 201
-            })
+            const sql_refreshUpdate = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
+            const {accesstoken,refreshtoken} = result; 
+            
+            doQuery(sql_refreshUpdate, [refreshtoken, req.user])
+                .then((result)=>{
+                    res.header({
+                    'access_token': accesstoken,
+                    });
+                    res.cookie('refresh_token', refreshtoken, { httpOnly:true });
+                    response.Helper.ok(req,res,true);
+                })
+                .catch((err) => {
+                    response.Helper.unauthorized(req,res);
+                })
+        })
+        .catch((err) => {
+            response.Helper.serverError(req,res,err);
         })
 });
 
-router.post('/logout', (req,res)=>{
-    // logout -> middleware token validation -> destrory refresh token
-    
-    req.logout();
-    res.status(200).send(true);      
+router.post('/logout', verifyToken , (req,res)=>{
+    const sql_init_refresh = `
+        const sql_refreshUpdate = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
+    `;
+    doQuery(sql_init_refresh,[null, req.user])
+        .then(() => {
+            res.clearCookie('refresh_token');
+            req.logout();
+            response.Helper.ok(req,res,true);
+        })
+        .catch((err) => {
+            response.Helper.mysqlError(req,res,err);
+        })
 });
 
 
@@ -34,6 +58,7 @@ export default router;
 
 // import validate, { IsString, IsIn, IsInt, IsNumber,IsNotEmpty  } from 'class-validator';
 // import validator from '../../middleware/validator/validator';
+
 // export class test{
 //     constructor(){
 //       this.key1 = '';

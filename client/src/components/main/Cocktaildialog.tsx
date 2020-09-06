@@ -6,7 +6,7 @@ import { createStyles, makeStyles,Theme, withStyles, WithStyles } from '@materia
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Rating from '@material-ui/lab/Rating';
-import Image from 'material-ui-image';
+// import Image from '@material-ui-image';
 import { maxWidth } from '@material-ui/system';
 
 interface poscocktailinfo{

@@ -6,6 +6,7 @@ router.route('/')
     .get(
         (req,res) => {
             // user info 검색
+            console.log('req.user:',req.user);
             const sql_userInfo = `
                 SELECT * FROM userinfo WHERE id = ?
             `;

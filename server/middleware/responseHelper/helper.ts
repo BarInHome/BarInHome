@@ -122,7 +122,7 @@ const Helper = {
         });
     },
 
-    missingToken: function(req: express.Request, res: express.Response, error: any) {
+    jwtExpired: function(req: express.Request, res: express.Response, error: any) {
         if(error instanceof Error){
             error = {
                 message: error.message,
@@ -131,12 +131,13 @@ const Helper = {
         };
 
         const body = {
-            message: statusMessage(Status.MISSING_TOKEN),
+            name: 'TokenExpiredError',
+            message: statusMessage(Status.TOKEN_EXPIRED),
             error: error
         };
 
         jsonResponse(res, body, {
-            status: Status.MISSING_TOKEN
+            status: Status.TOKEN_EXPIRED
         });
     }
 };
