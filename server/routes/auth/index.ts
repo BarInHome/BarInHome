@@ -28,6 +28,7 @@ router.post('/signup', passport.authenticate('local-signup', {session: false}) ,
                     response.Helper.ok(req,res,true);
                 })
                 .catch((err) => {
+                    console.log(err.message);
                     response.Helper.unauthorized(req,res);
                 })
         })

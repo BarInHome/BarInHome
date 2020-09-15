@@ -17,7 +17,7 @@ async function create(id: string , roles= 'user'): Promise<Token>{
         sub : id,
         roles: roles,
     };
-    const accesstoken: string = jwt.sign( payload, process_env.secret, { expiresIn:  '7m'} );
+    const accesstoken: string = jwt.sign( payload, process_env.secret, { expiresIn:  '7h'} );
     const refreshtoken: string = jwt.sign( {}, process_env.secret, { expiresIn:  '24h' } );
     return { accesstoken,refreshtoken };
 }

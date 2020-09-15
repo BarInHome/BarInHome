@@ -34,21 +34,21 @@ export default function usePostRequest<PARAM_TYPE = {[key: string]: any}, RES_DA
       .then((res)=>{
         console.log('[Access Token refresh ... ]');
         setCookie({name: 'access_token', value: res.headers['access_token']});
-        doPostRequest(param);
+        // doPostRequest(param);
       })
       .catch((err) => {
-        if (err.response.status === 402) {
-          console.error(`error in POST ${url}: `, err.response.status, err.response.data.message);
-          setError(err.response.data.message || DEFAULT_ERROR_MESSAGE);
-          history.replace('/');
-        }
-        else if(err.response.status === 401) {
-          console.error(`error in POST ${url}: `, err.response.status, err.response.data.message);
-          setError(err.response.data.message || DEFAULT_ERROR_MESSAGE);
-          history.replace('/');
-        }
+        // if (err.response.status === 402) {
+        //   console.error(`error in POST ${url}: `, err.response.status, err.response.data.message);
+        //   setError(err.response.data.message || DEFAULT_ERROR_MESSAGE);
+        //   history.replace('/');
+        // }
+        // else if(err.response.status === 401) {
+        //   console.error(`error in POST ${url}: `, err.response.status, err.response.data.message);
+        //   setError(err.response.data.message || DEFAULT_ERROR_MESSAGE);
+        //   history.replace('/');
+        // }
       })
-  },[setCookie])
+  },[])
 
   const doPostRequest = useCallback((param: PARAM_TYPE): void => { //param넣으면 void 나온다
     setLoading(true); // 로딩 시작
@@ -71,7 +71,7 @@ export default function usePostRequest<PARAM_TYPE = {[key: string]: any}, RES_DA
         setLoading(false); // 로딩 완료
         setSuccess(null);
         if (err.response.status === 402) {
-          doSilentRefresh(param);
+          // doSilentRefresh(param);
           console.error(`error in POST ${url}: `, err.response.status, err.response.data.message);
           setError(err.response.data.message || DEFAULT_ERROR_MESSAGE);
         } 

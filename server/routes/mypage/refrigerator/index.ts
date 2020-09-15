@@ -167,12 +167,12 @@ router.route('/delete')
             if(deleteList.length > 0){
                 let sql_delete = `
                     DELETE FROM refrigerator 
-                    WHERE userId = ${req.user} 
+                    WHERE userId = ?
                     AND idIngredient 
                     IN (
                 `;
-                const sql_values:any[] = [];
-                
+                const sql_values:string[] = [];
+                sql_values.push(req.user as string);
                 try{
                     for(let i = 0; i < deleteList.length; ++i){
                         if(i < deleteList.length - 1){
@@ -189,6 +189,7 @@ router.route('/delete')
                             response.Helper.ok(req,res,true);
                         })
                         .catch((err) => {
+                            console.log(err);
                             response.Helper.mysqlError(req,res,err);
                         })
                 }
