@@ -92,28 +92,7 @@ export default function LeftMenuDrawer(props: Props): JSX.Element {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return(
-        <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Paper elevation={5}>
-            <Drawer
-              container={container}
-              variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
-            >
-              <LeftMenu handleSetMenuIndex={handleSetMenuIndex} menuIndex={menuIndex}/>
-            </Drawer>
-          </Paper>
-          
-        </Hidden>
+        <nav className={classes.drawer} aria-label="mailbox folders"> 
         <Hidden xsDown implementation="css" >
           <Paper elevation={5}>
           <Drawer
