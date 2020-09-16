@@ -28,6 +28,7 @@ router.post('/signup', passport.authenticate('local-signup', {session: false}) ,
                     response.Helper.ok(req,res,true);
                 })
                 .catch((err) => {
+                    console.log(err.message);
                     response.Helper.unauthorized(req,res);
                 })
         })
@@ -50,52 +51,4 @@ router.post('/logout', verifyToken , (req,res)=>{
             response.Helper.mysqlError(req,res,err);
         })
 });
-
-
 export default router;
-
-
-
-// import validate, { IsString, IsIn, IsInt, IsNumber,IsNotEmpty  } from 'class-validator';
-// import validator from '../../middleware/validator/validator';
-
-// export class test{
-//     constructor(){
-//       this.key1 = '';
-//       this.key2 = '';
-//     }
-    
-//     @IsNumber()
-//     key1: string;
-    
-//     @IsString()
-//     key2: string;
-// }
-
-// class test2{
-//   constructor(){
-//     this.key1 = '';
-//     this.key2 = '';
-//   }
-  
-//   @IsNumber()
-//   @IsNotEmpty()
-//   key1: string;
-  
-//   @IsString()
-//   @IsNotEmpty()
-//   key2: string;
-// }
-
-// router.use((req,res,next) => validator.paramValidator(req,res,test,next));
-// router.route('/test')
-//   .get(
-//     (req,res) => {
-//       res.send('GET OK');
-//     } 
-//   )
-//   .post(
-//     (req,res) => {
-//       res.send('POST OK');
-//     } 
-//   )

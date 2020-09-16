@@ -21,6 +21,11 @@ import MyRefrigerator from '../DashBoardContents/MyRefrigerator/RefrigeratorBoar
 import UserInformation from '../DashBoardContents/UserInformation/MyInfo';
 import useGetRequest from '../../../utils/hooks/useGetRequest';
 
+import MyPageRoutes from '../../../pages/route';
+import { Switch, Route } from 'react-router-dom';
+import MypageRoutes from '../../../pages/route';
+
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -81,14 +86,26 @@ export default function MyPage() {
   }
   const ContentsArray = [<MyRefrigerator/>,<UserInformation/>,<div>3</div>,<div>4</div>];
 
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <nav className={classes.drawer} aria-label="mailbox folders">
         <LeftMenuDrawer handleSetMenuIndex={handleSetMenuIndex} menuIndex={menuIndex}/>    
       </nav>
-      <main className={classes.content}>
+      {/* <main className={classes.content}>
         {ContentsArray[menuIndex]}
+      </main> */}
+      <main className={classes.content}>
+        <Switch>
+          {MypageRoutes?.map((route) => (
+            <Route
+              path={'/mypage' + route.path}
+              component={route.component}
+              key={route.name}
+            />
+          ))}
+        </Switch>
       </main>
     </div>
   );

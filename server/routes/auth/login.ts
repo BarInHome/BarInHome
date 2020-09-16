@@ -11,7 +11,7 @@ router.post('/', passport.authenticate('local-login',{session: false}) , (req,re
         .then((result) => {
             const sql_refreshUpdate = 'UPDATE userinfo SET refresh = ? WHERE id = ?';
             const {accesstoken,refreshtoken} = result; 
-            
+            console.log(refreshtoken.length);
             doQuery(sql_refreshUpdate, [refreshtoken, req.user])
                 .then((result)=>{
                     res.header({
@@ -21,6 +21,7 @@ router.post('/', passport.authenticate('local-login',{session: false}) , (req,re
                     response.Helper.ok(req,res,true);
                 })
                 .catch((err) => {
+                    console.log(err);
                     response.Helper.unauthorized(req,res);
                 })
         })

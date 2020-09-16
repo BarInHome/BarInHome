@@ -1,5 +1,6 @@
 import express from 'express';
 import doQuery from '../../../database/doQuery';
+import response from '../../../middleware/responseHelper/helper';
 const router = express.Router();
 
 router.route('/')
@@ -14,11 +15,11 @@ router.route('/')
                 .then((data) => {
                     if(data.result[0]){
                         console.log('success');
-                        res.send(data.result[0]);
+                        response.Helper.ok(req,res,data.result[0]);
                     }
                 })
                 .catch((err) => {
-                    res.status(401).send(null);
+                    response.Helper.mysqlError(req,res,err);
                 })
         }
     )

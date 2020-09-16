@@ -1,22 +1,17 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import RefrigeratorItem from './RefrigeratorItem';
 import Button from '@material-ui/core/Button';
-import  testItems  from "./test-items";
 import Paper from '@material-ui/core/Paper';
 
+import AddDialogItems from './add-dialog/AddDialogItems';
 import useDialog from '../../../../utils/hooks/useDialog';
-import RefrigeratorAddDialog from './RefrigeratorAddDialog';
+import RefrigeratorAddDialog from './add-dialog/RefrigeratorAddDialog';
 import useGetRequest from '../../../../utils/hooks/useGetRequest';
-import {UseGetRequestObject} from '../../../../utils/hooks/useGetRequest';
 import { usePostRequest } from '../../../../utils';
+
+// interface
+import { Ingredient } from './MyRerigerator.interface'
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -30,17 +25,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     paperWraper: {
         minHeight: '800px',
         padding : '24px',
+    },
+    buttonWrapper: {
+        fontWeight: 'bold',
     }
   }));
-
-  interface Ingredient{
-    idIngredient:string;
-    strDescription:string|null;
-    strIngredient : string|null;
-    strType : string|null;
-    strAlcohol : string|null;
-    strABV:string|null;
-}
 
 
 function RefrigeratorBoard():JSX.Element{
@@ -49,10 +38,9 @@ function RefrigeratorBoard():JSX.Element{
     const {open , handleOpen, handleClose } = useDialog();
     const findAllRequest = useGetRequest('/mypage/refrigerator/findAll');
     const deleteRequest = usePostRequest('/mypage/refrigerator/delete',() => {
-        window.location.reload();
+        findAllRequest.doGetRequest();
     });
     const [myIngredientsList, setMyIngredientsList] = React.useState<Ingredient[]>(findAllRequest.data as Ingredient[]);
-    const [changeFlag, setChangeFlag] = React.useState(false);
     const selectedIngredients:any[] = [];
     React.useEffect(() => {
         setMyIngredientsList(findAllRequest.data as Ingredient[]);
@@ -61,7 +49,7 @@ function RefrigeratorBoard():JSX.Element{
 
     const handleSelectedIngredients = (index: number, PushOrPop: boolean) => {
         if(PushOrPop){
-            if(myIngredientsList != undefined)
+            if(myIngredientsList !== undefined)
                 selectedIngredients.push(myIngredientsList[index]);
             console.log('selectedIngredients PUSH',selectedIngredients);
         }
@@ -83,7 +71,7 @@ function RefrigeratorBoard():JSX.Element{
                         <Grid item>
                             <Button
                                 variant="contained"
-                                color="primary"
+                                color="secondary"
                                 size="large"
                                 onClick={()=>handleOpen()}
                             >
@@ -93,7 +81,7 @@ function RefrigeratorBoard():JSX.Element{
                         <Grid item>
                             <Button
                                 variant="contained"
-                                color="secondary"
+                                color="primary"
                                 size="large"
                                 onClick={handleDeleteButton}
                             >
@@ -104,12 +92,13 @@ function RefrigeratorBoard():JSX.Element{
                     <Grid item container justify="center" spacing={5}>
                         {myIngredientsList!= undefined && myIngredientsList.map((item,index)  => (   
                         <Grid item>
-                            <RefrigeratorItem
+                            <AddDialogItems
                                 index={index}
                                 handleSelectedIngredients={handleSelectedIngredients}
                                 name={item.strIngredient as string}
                                 type={item.strType as string}
-                                alcohol={item.strAlcohol as string}  
+                                alcohol={item.strAlcohol as string}
+                                abv={item.strABV as string}
                             />
                         </Grid>
                         ))}
@@ -117,7 +106,6 @@ function RefrigeratorBoard():JSX.Element{
                 </Paper>
             </Grid>
             <RefrigeratorAddDialog
-                setChangeFlag={setChangeFlag}
                 request={findAllRequest.doGetRequest}
                 open={open} 
                 handleOpen={handleOpen}

@@ -22,7 +22,7 @@ ReactDOM.render(
           <Switch>
             <Route exact path='/' component={Door}/>
             <Route path='/main' component={Main}/>
-            <Route exact path='/mypage' component={Mypage}/>
+            <Route path='/mypage' component={Mypage}/>
           </Switch>
         </ThemeProvider>
     </BrowserRouter>

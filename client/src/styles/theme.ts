@@ -5,13 +5,16 @@ const theme = createMuiTheme({
       primary: {
         light: '#ffe8cc',
         main: '#ffc078',
-        dark: '#d9480f',
+        dark: '#e03131',
         contrastText: '#ffff',
       },
       secondary:{
-          main: '#f03e3e', 
+          main: '#22b8cf',
+          light: '#339af0',
+          dark: '#1864ab', 
           contrastText: '#ffff',
-      }
+      },
+
     },
     typography: {
       fontFamily: "Oxygen",
