@@ -18,30 +18,24 @@ interface CarouselProps{
     defaultInfo?: any;
 }
 
+const useStyles = makeStyles((theme: Theme) => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+      },
+    media: {           // this is the`className` passed to `CardMedia` later
+        height: '100%',     // as an example I am modifying width and height
+        width: '100%',
+    },
+}));
+
+
 function CarouselItem(props:CarouselProps){
     const {cocktailInfo} = props;
-    const useStyles = makeStyles((theme: Theme) => ({
-        root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            overflow: 'hidden',
-            backgroundColor: theme.palette.background.paper,
-          },
-        card: {
-            borderRadius: 5,
-            padding: '75px 50px',
-            margin: '0px 25px',
-            width: '500px',
-            // boxShadow: '20px 20px 20px black',
-            display: 'flex',
-            justifyContent: 'center',
-        },
-        media: {           // this is the`className` passed to `CardMedia` later
-            height: '100%',     // as an example I am modifying width and height
-            width: '100%',
-        },
-    }));
+   
     const classes = useStyles();
 
     const {open , handleOpen, handleClose } = useDialog();
@@ -62,7 +56,7 @@ function CarouselItem(props:CarouselProps){
     return (
         <div>
         <Cocktaildialog open={open} handleOpen={handleOpen} handleClose={handleClose} cocktailInfo={selectcocktail}/>
-            <Grid container item xs={11} spacing={1} direction="row" justify="center" alignItems="center">
+            <Grid container item xs={12} spacing={1} direction="row" justify="center" alignItems="center">
                 {cocktailInfo!=undefined && cocktailInfo.map((cocktail,index) => ( 
                     <Grid item xs={3} key={cocktail.strdrink}>
                         <Card className={classes.root}>

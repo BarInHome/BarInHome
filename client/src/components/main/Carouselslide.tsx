@@ -3,6 +3,7 @@ import {Grid,IconButton,Slide}from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import CarouselItem from './Carouselitem';
+import { createStyles, makeStyles,Theme } from '@material-ui/core/styles';
 
 type Direction = "left" | "right" | "down" | "up";
 
@@ -43,8 +44,17 @@ function Arrow(props:ArrowProps) {
                 disabled={disabled}>{icon}</IconButton>;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      minWidth:'40%',
+    }
+  }),
+);
+
 export default function CarouselSlide(props:CarouselProps) {
     const { cocktailInfo, defaultInfo } = props;
+    const classes = useStyles();
 
     const [slideIn, setSlideIn] = React.useState<boolean>(true);
     const [slideDirection, setSlideDirection] = React.useState<string>('down');
@@ -69,9 +79,9 @@ export default function CarouselSlide(props:CarouselProps) {
     };
 
     return (
-
+        <div className={classes.root}>
         <Grid container item xs={12} spacing={0} direction="row" justify="space-between" alignItems="center">
-            <Grid item xs='auto'>
+            <Grid item>
                 <Arrow
                     direction='left'
                     clickFunction={() => onArrowClick('left')}
@@ -80,14 +90,14 @@ export default function CarouselSlide(props:CarouselProps) {
                     scrollitems={scrollitems}
                 />
             </Grid>
-            <Grid item xs={11}> 
+            <Grid item xs={10}>
                 <Slide in={slideIn} direction={slideDirection as Direction}>
                     <div>
                         <CarouselItem cocktailInfo={cocktailInfo.slice(index,index+showitems)}/>
                     </div>
                 </Slide>
             </Grid>
-            <Grid item xs='auto'>
+            <Grid item>    
                 <Arrow
                     direction='right'
                     clickFunction={() => onArrowClick('right')}
@@ -97,6 +107,6 @@ export default function CarouselSlide(props:CarouselProps) {
                 />
             </Grid>
         </Grid>    
-        
+        </div>
     );
 }
