@@ -5,6 +5,10 @@ import session from 'express-session';
 import apiAxios from '../../OpenAPI/apiAxios';
 import { AxiosError } from 'axios';
 import response from '../../middleware/responseHelper/helper';
+import commentRouter from './comment';
+import {verifyToken} from '../../middleware/jwt/jwtCheck'
+
+
 const router = express.Router();    
 
 interface poscocktailinfo{
@@ -37,16 +41,17 @@ interface recommendinterface{
     [cocktailname:string]:number;   
 }
 
+router.use('/comment',commentRouter);
+
 router.route('/')
     .post(
-        (req:express.Request,res:express.Response)=>{
+        verifyToken,(req:express.Request,res:express.Response)=>{
             console.log("post");
             const sql1 = `SELECT drinkKategorie,userId FROM refrigerator WHERE userId = ?`;
-            const params1 = 'ididid';
-            // console.log(req.user);
             
+            console.log("req.user", req.user);
             //첫번째 유저가 가지고 있는 술들을 가져온다
-            dbQuery(sql1,[params1]).
+            dbQuery(sql1,[req.user]).
                 then((row)=>{
                     
                     if(row.result[0]){
@@ -56,7 +61,7 @@ router.route('/')
                             useringredient.push(element.drinkKategorie);
                         });
                         const sql2 = `SELECT cocktailName,ingredient,maxIngredient FROM recipe WHERE ingredient IN(${tokens})`;
-                        console.log("useringredient:",useringredient)
+                        // console.log("useringredient:",useringredient)
                         dbQuery(sql2,useringredient)
                             .then((row)=>{
                                 const rescancocktail:cocktail[] = row.result;
@@ -111,15 +116,15 @@ router.route('/')
                                 let incomcocktail:string[]=[];
                                 for(let prop in incompletecocktail){incomcocktail.push(prop);}
 
-                                console.log("reccocktails\n",reccocktail);
-                                console.log("incomcocktails\n",incomcocktail);
+                                // console.log("reccocktails\n",reccocktail);
+                                // console.log("incomcocktails\n",incomcocktail);
                                
                                 
                                 let poscocktail:poscocktail= {} as poscocktail;
                                 let pos_poscocktail:poscocktailinfo[]=[];
                                 let pos_implecocktail:poscocktailinfo[]=[];
 
-                                console.log("rec length: ",reccocktail.length,"incom length: ",incomcocktail.length)
+                                // console.log("rec length: ",reccocktail.length,"incom length: ",incomcocktail.length)
                                 let count:number=reccocktail.length+incomcocktail.length;
                                 reccocktail.forEach(function(recommend:string){
                                     apiAxios(0,0,recommend)
@@ -139,8 +144,8 @@ router.route('/')
                                             }else if(element.indexOf("strMeasure")>=0 && drinks[element]!=null && drinks[element]!=""){
                                                 measure.push(drinks[element]);
                                             }else if(element=="dateModified"){
-                                                console.log("last save ");
-                                                console.log("ingredient ",ingredient,"measure ",measure)
+                                                // console.log("last save ");
+                                                // console.log("ingredient ",ingredient,"measure ",measure)
                                                 poscocktailinfo.stringredient=ingredient;
                                                 poscocktailinfo.strmeasure=measure;
                                             }
@@ -180,7 +185,7 @@ router.route('/')
                                             if (element.indexOf("strIngredient")>=0 && drinks[element]!=null && drinks[element]!=""){
                                                 // console.log("implete ingredient push",element,drinks[element]);
                                                 ingredient.push(drinks[element]);
-                                                console.log(drinks[element],"ingredient",ingredient);
+                                                // console.log(drinks[element],"ingredient",ingredient);
                                                 if(useringredient.indexOf(drinks[element])>=0){
                                                     console.log("flag ture");
                                                     flag.push(true);
@@ -192,24 +197,24 @@ router.route('/')
                                             else if(element.indexOf("strMeasure")>=0 && drinks[element]!=null && drinks[element]!=""){
                                                 // console.log("implete measure push",element,drinks[element]);
                                                 measure.push(drinks[element])
-                                                console.log(drinks[element],"measure",measure);
+                                                // console.log(drinks[element],"measure",measure);
                                             }
                                             else if(element=="dateModified"){
-                                                console.log("last save ");
-                                                console.log("ingredient ",ingredient,"measure ",measure)
+                                                // console.log("last save ");
+                                                // console.log("ingredient ",ingredient,"measure ",measure)
                                                 impletecocktailinfo.stringredient=ingredient;
                                                 impletecocktailinfo.strmeasure=measure;
                                                 impletecocktailinfo.flag=flag;
                                             }
                                         }
                                         count--;
-                                        console.log("impletecocktailinfo ",impletecocktailinfo)
+                                        // console.log("impletecocktailinfo ",impletecocktailinfo)
                                         pos_implecocktail.push(impletecocktailinfo);
                                         // console.log("poscocktail ",poscocktail);
                                         if(count<=0){
                                             poscocktail.poscocktailinfo=pos_poscocktail;
                                             poscocktail.implecocktailinfo=pos_implecocktail;
-                                            console.log("finally : ",poscocktail);
+                                            // console.log("finally : ",poscocktail);
                                             response.Helper.ok(req,res,poscocktail);
                                         }
                                     })
